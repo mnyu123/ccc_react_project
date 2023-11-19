@@ -1,0 +1,32 @@
+/* Main_nav.css */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Header 컴포넌트의 높이와 패딩을 고려한 상단 여백 추가 */
+.small_nav_1 {
+    margin-top: 100px; /* 15px (header의 상단 패딩) + 15px (header의 하단 패딩) */
+    padding: 25px;
+}
+
+.small_nav_1 ul {
+    text-align: center;
+    list-style-type: none;
+}
+
+.small_nav_1 ul li {
+    display: inline;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 24px;
+    margin-inline: 40px;
+    color: #000000;
+}
+
+.small_nav_1 a {
+    color: #373737;
+}
+
+.small_nav_1 a:hover {
+    color: #692ead;
+}

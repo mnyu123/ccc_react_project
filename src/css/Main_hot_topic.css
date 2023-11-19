@@ -1,0 +1,135 @@
+/*Main_hot_topic.css*/
+
+.soaring_wrap {
+    width: 1280px;
+    margin: auto;
+    overflow: hidden;
+    padding: 20px 0 30px 0;
+}
+
+.soaring1 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px 26px;
+}
+
+.item img {
+    width: 96px;
+    height: 139px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.soaring_wrap h2 {
+    text-align: center;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+}
+
+.slide {
+    display: flex;
+    overflow: hidden;
+    width: 200%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+    margin-top: 30px;
+}
+
+.soaring1,
+.soaring2 {
+    flex-shrink: 0;
+    width: 50%;
+    height: 85%;
+}
+
+#prevBtn,
+#nextBtn {
+    position: absolute;
+    bottom: 10px;
+    font-size: 18px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#nextBtn {
+    right: 1320px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    user-select: none;
+    border: #b9b9b9 solid 1px;
+    border-radius: 50%;
+    color: #3f3f3f;
+    box-shadow: 0px 0px 2px 0px rgba(90, 90, 90,0.082);
+    text-align: center;
+    justify-content: center;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 5px; /* 상하좌우 마진 조정 */
+    padding-right: 7px;
+}
+
+#prevBtn {
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    user-select: none;
+    border: #b9b9b9 solid 1px;
+    border-radius: 50%;
+    color: #3f3f3f;
+    box-shadow: 0px 0px 2px 0px rgba(90, 90, 90,0.082);
+    text-align: center;
+    justify-content: center;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 5px; /* 상하좌우 마진 조정 */
+    padding-left: 7px;
+}
+
+.number {
+    width: 80px;
+    text-align: center;
+}
+
+@media screen and (max-width: 640px) {
+    .soaring_wrap {
+        width: 100%;
+        padding: 10px 0 15px 0;
+    }
+
+    .soaring1 {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 1px 13px;
+    }
+
+    .item img {
+        width: 70px;
+        height: 100px;
+    }
+
+    #nextBtn {
+        right: 10px;
+        width: 30px;
+        height: 30px;
+        font-size: 20px;
+    }
+
+    #prevBtn {
+        right: 50px;
+        width: 30px;
+        height: 30px;
+        font-size: 20px;
+    }
+}
