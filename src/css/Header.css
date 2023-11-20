@@ -40,7 +40,7 @@
    width: 100px;
    height: 26px;
    padding: 0 10px 10px 0;
-   margin-right: -10px;
+   margin-right: 20px;
 }
 
 .search_wrap {
@@ -97,6 +97,7 @@
    .logo {
        width: 300px;
        height: 78px;
+       margin-right: 20px;
    }
 
    .search_wrap,

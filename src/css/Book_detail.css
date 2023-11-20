@@ -1,0 +1,234 @@
+/* Book_detail.css */
+
+.todaybooks_wrap,
+.monthbooks_wrap {
+    width: 1280px;
+    height: 650px;
+    margin: auto;
+}
+
+.todaybooks_wrap {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.todaybooks_wrap .book_intro,
+.todaybooks_wrap .book_cover_wrap,
+.todaybooks_wrap .book_info_wrap {
+    flex: 1 1 0;
+}
+
+.todaybooks_wrap .book_cover_wrap {
+    flex: 1.5 1 0;
+}
+
+.todaybooks_wrap .book_intro,
+.todaybooks_wrap .book_cover_wrap {
+    text-align: center;
+}
+
+.todaybooks_wrap .book_info_wrap {
+    margin-right: 0;
+}
+
+.todaybooks_wrap .book_cover {
+    width: 300px;
+    height: auto;
+    object-fit: cover;
+    box-shadow: 0px 0px 50px 8px rgba(63, 63, 63, 0.2);
+}
+
+.todaybooks_wrap .book_info {
+    height: auto;
+    border: 1px solid #dadada;
+    border-radius: 6px;
+    padding: 10px 5px;
+    background-color: #fbf8fea0;
+}
+
+.todaybooks_wrap .info_wrap .publisher,
+.todaybooks_wrap .info_wrap .date {
+    color: #5c5c5c;
+    font-size: 14px;
+    margin-top: 2px;
+}
+
+.todaybooks_wrap .info_wrap .author {
+    font-size: 14px;
+}
+
+.todaybooks_wrap .category_wrap {
+    display: inline-block;
+    border: 1px solid #692ead;
+    border-radius: 6px;
+}
+
+.todaybooks_wrap .category {
+    font-size: 15px;
+    color: #6f36b0;
+    padding: 1px 2px;
+    font-weight: 500;
+}
+
+.todaybooks_wrap .title_wrap {
+    padding: 10px 0px;
+}
+
+.todaybooks_wrap .title {
+    font-size: 2.5ch;
+    font-weight: 600;
+}
+
+.todaybooks_wrap .libraryBtn_wrap {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 10px;
+}
+
+.todaybooks_wrap .button_content {
+    display: flex;
+    align-items: center;
+}
+
+.monthbooks_wrap {
+    border-top: 1px solid #dadada;
+}
+
+.monthbooks_wrap .bcontent_wrap {
+    display: flex;
+    margin-top: 20px;
+}
+
+.monthbooks_wrap .book_description {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.monthbooks_wrap .description_box {
+    width: 90%;
+    border-top: 1px solid #dadada;
+    border-bottom: 1px solid #dadada;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.monthbooks_wrap .description_content,
+.monthbooks_wrap .description_more {
+    color: #5c5c5c;
+}
+
+.monthbooks_wrap .summary {
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+.monthbooks_wrap .description_more {
+    display: none;
+}
+
+.monthbooks_wrap .best_category {
+    flex-grow: 0;
+    width: auto;
+}
+
+.monthbooks_wrap .best_category_wrap {
+    height: auto;
+    border: 1px solid #dadada;
+    border-radius: 6px;
+    padding: 10px;
+    background-color: #fbf8fe7b;
+}
+
+.monthbooks_wrap .best_list {
+    margin-top: 20px;
+}
+
+.monthbooks_wrap .best_list li {
+    font-size: 13px;
+    display: flex;
+    font-weight: 600;
+}
+
+.monthbooks_wrap .best_list .dotted-line {
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    width: auto;
+    margin: 5px;
+    border-top: 1px dotted #2f2f2f;
+}
+
+.monthbooks_wrap .best_list a {
+    color: black;
+    text-decoration: none;
+}
+
+.monthbooks_wrap .best_list a:hover {
+    text-decoration: underline;
+}
+
+.monthbooks_wrap .number_image_wrapper {
+    margin-right: 5px;
+}
+
+.monthbooks_wrap .number_image_wrapper img {
+    max-width: 100%;
+    vertical-align: middle;
+}
+
+.monthbooks_wrap .text_wrapper {
+    display: flex;
+    align-items: center;
+}
+
+@media screen and (max-width: 640px) {
+
+    .todaybooks_wrap,
+    .monthbooks_wrap {
+        width: 100%;
+        flex-direction: column;
+        padding: 360px 0;
+    }
+
+    .todaybooks_wrap .book_intro,
+    .todaybooks_wrap .book_cover_wrap,
+    .todaybooks_wrap .book_info_wrap {
+        flex: 1 1 auto;
+    }
+
+    .todaybooks_wrap .book_cover_wrap {
+        flex: 1 1 auto;
+    }
+
+    .todaybooks_wrap .book_cover {
+        width: 100%;
+    }
+
+    .todaybooks_wrap .book_info {
+        padding: 5px;
+    }
+
+    .todaybooks_wrap .title {
+        font-size: 2ch;
+    }
+
+    .monthbooks_wrap .bcontent_wrap {
+        flex-direction: column;
+    }
+
+    .monthbooks_wrap .bcontent_wrap .book_description,
+    .monthbooks_wrap .bcontent_wrap .best_category {
+        width: 100%;
+        margin-bottom: 170px; /* 마진 추가 */
+    }
+
+    .monthbooks_wrap .bcontent_wrap .book_description .description_box,
+    .monthbooks_wrap .bcontent_wrap .best_category .category_box {
+        width: 80%;
+        margin: auto;
+    }
+}

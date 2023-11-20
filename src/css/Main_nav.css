@@ -44,6 +44,7 @@ html {
     .small_nav_1 ul li {
         display: inline;
         font-size: 18px;
+        white-space: nowrap;
         font-weight: 600;
         line-height: 24px;
         margin-inline: 40px;

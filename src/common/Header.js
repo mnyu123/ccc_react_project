@@ -32,7 +32,9 @@ class Header extends React.Component {
         <header className="header_fixed">
           <div className="header_inner">
             <div className="logo">
-              <img src={logo} alt="로고" />
+              <Link to="/">
+                <img src={logo} alt="로고" />
+              </Link>
             </div>
             <div className="search_wrap">
               <div className="search_box">
@@ -82,7 +84,10 @@ class Header extends React.Component {
         <a href="#" className="top-button" onClick={this.scrollToTop}>
           <img src={upArrow} alt="Top 버튼" />
         </a>
-        <Mypage isMypageOpen={this.state.isMypageOpen} onClose={this.toggleMypage} />
+        <Mypage
+          isMypageOpen={this.state.isMypageOpen}
+          onClose={this.toggleMypage}
+        />
       </React.Fragment>
     );
   }
