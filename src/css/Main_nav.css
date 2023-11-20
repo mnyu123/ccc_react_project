@@ -5,7 +5,7 @@ html {
 
 /* Header 컴포넌트의 높이와 패딩을 고려한 상단 여백 추가 */
 .small_nav_1 {
-    margin-top: 100px; /* 15px (header의 상단 패딩) + 15px (header의 하단 패딩) */
+    margin-top: 140px; /* 15px (header의 상단 패딩) + 15px (header의 하단 패딩) */
     padding: 25px;
 }
 
