@@ -16,6 +16,7 @@ function App() {
           <Route path="/bookdetail" element={<BookDetail />} />
           <Route path="/login" element={<CccLogin />} />
           <Route path="/register" element={<CccRegister />} />
+          <Route path="/login" element={<CccLogin />} />
         </Routes>
       </BrowserRouter>
     </div>
