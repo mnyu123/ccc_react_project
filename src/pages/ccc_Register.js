@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "../css/ccc_Register.css";
 
 const CccRegister = () => {
+  const logo = "/images/ccc_image/logo.png";
   console.log("회원가입 페이지 렌더링 됨.");
 
   const [color, setColor] = useState("#929294");
@@ -27,9 +29,9 @@ const CccRegister = () => {
   return (
     <div className="register-container">
       <div className="inner">
-        <a href="ccc_main_log.html">
-          <img src="/images/ccc_image/logo.png" alt="Logo" className="logo" />
-        </a>
+        <Link to="/">
+          <img src={logo} alt="로고" />
+        </Link>
         <div className="content">
           <form
             id="join_form"
@@ -83,7 +85,7 @@ const CccRegister = () => {
                   <div className="form_item adult" id="divIdentityGender">
                     <span className="label">성별</span>
                     <div className="radio_group">
-                    <label className="radio_label">
+                      <label className="radio_label">
                         <input
                           type="radio"
                           id="identityGender1"
