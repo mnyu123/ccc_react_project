@@ -10,7 +10,8 @@
     align-items: center;
     opacity: 0;
     visibility: hidden;
-    z-index: 1000; /* 다른 요소들보다 더 높은 값을 지정해 줍니다. */
+    background-color: rgba(255, 255, 255, 0.5); /* 배경 색상을 흰색에 50% 투명도로 설정합니다. */
+    z-index: 10; /* 다른 요소들보다 더 높은 값을 지정해 줍니다. */
     transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
 }
 
