@@ -1,0 +1,52 @@
+const express = require("express");
+const mysql = require("mysql");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+
+const app = express();
+const port = 3000;
+
+app.use(cors());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+const db = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "1234",
+  database: "bookshelf",
+});
+
+db.connect((error) => {
+  if (error) {
+    console.error("MySQL 연결 실패: ${error}");
+  } else {
+    console.log("MySQL에 성공적으로 연결되었습니다.");
+  }
+});
+
+app.post("/Login", (req, res) => {
+  const user = req.body.user;
+  const query = "SELECT * FROM user WHERE UserID = ? AND UserPW = ?";
+
+  db.query(query, [user.UserID, user.UserPW], (error, results) => {
+    if (error) {
+      console.error(error);
+      res
+        .status(500)
+        .send({
+          error: "로그인에 실패하였습니다. 아이디와 비밀번호를 확인해주세요.",
+        });
+    } else {
+      if (results.length > 0) {
+        res.send({ success: true, message: "로그인 성공" });
+      } else {
+        res.send({ success: false, message: "로그인 실패" });
+      }
+    }
+  });
+});
+
+app.listen(port, () => {
+  console.log("Server running on port ${port}");
+});
