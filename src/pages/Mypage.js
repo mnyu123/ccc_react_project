@@ -38,7 +38,7 @@ const Mypage = ({ isMypageOpen, onClose }) => {
         <button>로그아웃</button>
         <button onClick={openPolledit}>장르 재선택</button>
         <button onClick={onClose}>닫기</button>
-        {isPolleditOpen && <Polledit onClose={closePolledit} />}  // 수정된 부분
+        {isPolleditOpen && <Polledit onClose={closePolledit} />}  
       </div>
     </div>
   );
