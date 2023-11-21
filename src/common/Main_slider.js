@@ -3,6 +3,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+import "../css/custom.css";
+
 const MainSlider = () => {
   const settings = {
     dots: false,
@@ -26,7 +28,7 @@ const MainSlider = () => {
       <h2>오늘의 책</h2>
       <div className="main_wrap">
         <Slider {...settings} className="main">
-          <div className="item1">
+        <div className="item1 custom-class">
             <div className="slide-content">
               <img
                 className="img1"

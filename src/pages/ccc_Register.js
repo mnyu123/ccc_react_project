@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../css/ccc_Register.css";
+import Poll from "../common/Poll"; // Poll 컴포넌트를 import
 
 const CccRegister = () => {
   const logo = "/images/ccc_image/logo.png";
@@ -11,6 +12,8 @@ const CccRegister = () => {
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+
+  const [isModalOpen, setIsModalOpen] = useState(false); // 모달 창의 열림 여부를 나타내는 상태
 
   const handleSelectChange = (e) => {
     if (e.target.value !== "") {
@@ -23,7 +26,12 @@ const CccRegister = () => {
   };
 
   const handleButtonClick = () => {
-    window.location.href = "ccc_poll.html";
+    if (userId && password && name) {
+      setIsModalOpen(true);
+      console.log("모달 생성됨."); // 모달이 생성되었음을 콘솔에 출력
+    } else {
+      alert("아이디, 비밀번호, 이름을 모두 입력해주세요.");
+    }
   };
 
   return (
@@ -137,6 +145,7 @@ const CccRegister = () => {
               >
                 회원가입
               </button>
+              {isModalOpen && <Poll isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />}
             </div>
           </form>
         </div>

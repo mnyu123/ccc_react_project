@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../css/Main_hot_topic.css';
 
 const MainHotTopic = () => {
@@ -23,19 +23,28 @@ const MainHotTopic = () => {
         slideContainer.style.transform = `translateX(-${currentIndex * (100 / slides.length)}%)`;
     };
 
+    useEffect(() => {
+        updateSlidePosition();
+    }, [currentIndex]);
+
     const prevSlide = () => {
         setCurrentIndex(prevIndex => {
             let newIndex = prevIndex - 1;
-            return newIndex < 0 ? slides.length - 1 : newIndex;
+            if (newIndex < 0) newIndex = slides.length - 1;
+            console.log('이전 버튼 눌려짐'); // 이 부분 추가
+            return newIndex;
         });
     };
 
     const nextSlide = () => {
         setCurrentIndex(prevIndex => {
             let newIndex = prevIndex + 1;
-            return newIndex >= slides.length ? 0 : newIndex;
+            if (newIndex >= slides.length) newIndex = 0;
+            console.log('다음 버튼 눌려짐'); // 이 부분 추가
+            return newIndex;
         });
     };
+
 
     return (
         <div className="soaring_wrap" id="soaring_wrap">

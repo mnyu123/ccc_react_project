@@ -28,7 +28,7 @@
 .monthbooks_wrap .book_covers {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between;  /* 추가 */
     padding: 0px;
     margin: 10px 0px;
 }
