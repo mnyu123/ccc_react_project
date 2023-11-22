@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../css/ccc_Register.css";
 import Poll from "../common/Poll"; // Poll 컴포넌트를 import
+import axios from 'axios';
 
 const CccRegister = () => {
   const logo = "/images/ccc_image/logo.png";
@@ -12,6 +13,8 @@ const CccRegister = () => {
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [gender, setGender] = useState("");
+  const [age, setAge] = useState("");
 
   const [isModalOpen, setIsModalOpen] = useState(false); // 모달 창의 열림 여부를 나타내는 상태
 
@@ -25,12 +28,47 @@ const CccRegister = () => {
     }
   };
 
+  // 성별 선택 핸들러
+const handleGenderChange = (e) => {
+  setGender(e.target.value);
+};
+
+// 연령대 선택 핸들러
+const handleAgeChange = (e) => {
+  setAge(e.target.value);
+  if (e.target.value !== "") {
+    setColor("#692ead");
+    setFontWeight("700");
+  } else {
+    setColor("#929294");
+    setFontWeight("normal");
+  }
+};
+
   const handleButtonClick = () => {
     if (userId && password && name) {
-      setIsModalOpen(true);
-      console.log("모달 생성됨."); // 모달이 생성되었음을 콘솔에 출력
+      axios.post('http://localhost:3000/register', {
+  user: {
+    UserID: userId,
+    UserPW: password,
+    UserName: name,
+    UserGender: gender,
+    UserAge: age
+  }
+})
+
+      .then(function (response) {
+        console.log(response);
+        // 성공 시 처리 로직
+        setIsModalOpen(true);
+        console.log("모달 생성됨.");
+      })
+      .catch(function (error) {
+        console.log(error);
+        // 실패 시 처리 로직
+      });
     } else {
-      alert("아이디, 비밀번호, 이름을 모두 입력해주세요.");
+      alert("정보를 모두 입력해주세요.");
     }
   };
 
@@ -99,6 +137,7 @@ const CccRegister = () => {
                           id="identityGender1"
                           name="identityGender"
                           value="M"
+                          onChange={handleGenderChange}
                         />
                         남자
                       </label>
@@ -108,6 +147,7 @@ const CccRegister = () => {
                           id="identityGender2"
                           name="identityGender"
                           value="F"
+                          onChange={handleGenderChange}
                         />
                         여자
                       </label>
@@ -119,7 +159,7 @@ const CccRegister = () => {
                       id="ageRange"
                       name="ageRange"
                       className="custom-select"
-                      onChange={handleSelectChange}
+                      onChange={handleAgeChange}
                       style={{ color: color, fontWeight: fontWeight }}
                     >
                       <option value="">선택하세요▽</option>
