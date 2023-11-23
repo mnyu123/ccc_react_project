@@ -1,6 +1,6 @@
 // MVC 패턴중 컨트롤러
 // 사용자 요청을 받아 적절한 모델(userModel)안의 함수를 호출
-// 그 결과를 뷰(View , 리액트)에 전달험
+// 그 결과를 post 요청으로 뷰(View , 리액트)에 전달험 
 // controller.js
 const express = require("express");
 const userModel = require("./userModel");
