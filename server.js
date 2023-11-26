@@ -3,6 +3,7 @@ const mysql = require("mysql");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
+
 const app = express();
 const port = 3000;
 
@@ -97,6 +98,28 @@ app.post("/Login", (req, res) => {
     }
   });
 });
+
+app.post("/polledit", (req, res) => {
+  const userid = req.body.userid; // 요청 본문에서 사용자 아이디를 가져옴
+  const usergenre = req.body.usergenre;
+
+  const query =
+    "UPDATE usergenre SET genre1 = ?, genre2 = ?, genre3 = ? WHERE UserID = ?";
+
+  db.query(
+    query,
+    [usergenre.genre1, usergenre.genre2, usergenre.genre3, userid],
+    (error, results) => {
+      if (error) {
+        res.status(500).send({ error: "변경에 실패하였습니다. 다시 시도해주세요." });
+      } else {
+        res.send({ success: true, message: "변경이 완료되었습니다." });
+      }
+    }
+  );
+});
+
+
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
