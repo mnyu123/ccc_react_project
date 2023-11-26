@@ -57,13 +57,13 @@ app.post("/register", (req, res) => {
 });
 
 app.post("/poll", (req, res) => {
-  const usergenre = req.body.usergenre;
+  const {userId, usergenre} = req.body;
   const query =
-    "INSERT INTO usergenre (genre1, genre2, genre3) VALUES (?, ?, ?)";
+    "INSERT INTO usergenre (UserID, genre1, genre2, genre3) VALUES (?, ?, ?, ?)";
 
   db.query(
     query,
-    [usergenre.genre1, usergenre.genre2, usergenre.genre3],
+    [userId, usergenre.genre1, usergenre.genre2, usergenre.genre3],
     (error, results) => {
       if (error) {
         res

@@ -29,7 +29,7 @@ const genres = [
   "만화",
 ];
 
-const Poll = ({ isModalOpen, setIsModalOpen }) => {
+const Poll = ({ isModalOpen, setIsModalOpen, userId }) => {
   const [selectedGenres, setSelectedGenres] = useState([]);
   const [errorMessage, setErrorMessage] = useState(false);
   const [isSignedUp, setIsSignedUp] = useState(false);
@@ -51,6 +51,7 @@ const Poll = ({ isModalOpen, setIsModalOpen }) => {
     } else {
       try {
         const user = {
+          userId,
           usergenre: {
             genre1: selectedGenres[0], // 첫 번째 장르
             genre2: selectedGenres[1], // 두 번째 장르
