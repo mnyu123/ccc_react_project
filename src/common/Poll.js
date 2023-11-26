@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../css/Poll.css";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const genres = [
@@ -30,11 +30,11 @@ const genres = [
 ];
 
 const Poll = ({ isModalOpen, setIsModalOpen }) => {
-    const [selectedGenres, setSelectedGenres] = useState([]);
-    const [errorMessage, setErrorMessage] = useState(false);
-    const [isSignedUp, setIsSignedUp] = useState(false);
+  const [selectedGenres, setSelectedGenres] = useState([]);
+  const [errorMessage, setErrorMessage] = useState(false);
+  const [isSignedUp, setIsSignedUp] = useState(false);
 
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleCheck = (genre) => {
     if (selectedGenres.includes(genre)) {
@@ -52,12 +52,12 @@ const Poll = ({ isModalOpen, setIsModalOpen }) => {
       try {
         const user = {
           usergenre: {
-            genre1: selectedGenres[0],  // 첫 번째 장르
-            genre2: selectedGenres[1],  // 두 번째 장르
-            genre3: selectedGenres[2],  // 세 번째 장르
+            genre1: selectedGenres[0], // 첫 번째 장르
+            genre2: selectedGenres[1], // 두 번째 장르
+            genre3: selectedGenres[2], // 세 번째 장르
           },
         };
-        const response = await axios.post('http://localhost:3000/poll', user);
+        const response = await axios.post("http://localhost:3000/poll", user);
         console.log(response.data);
         setErrorMessage(false);
         setIsSignedUp(true);
@@ -68,8 +68,6 @@ const Poll = ({ isModalOpen, setIsModalOpen }) => {
       }
     }
   };
-  
-  
 
   return (
     <div id="popup" className={`popup ${isModalOpen ? "show-popup" : ""}`}>

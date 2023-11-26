@@ -1,6 +1,7 @@
 .register-container {
     display: flex;
-    justify-content: center; /* 중앙 정렬을 위해 추가 */
+    justify-content: center;
+    /* 중앙 정렬을 위해 추가 */
     align-items: center;
     height: 100vh;
 }
@@ -10,7 +11,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100%; /* 중앙 정렬을 위해 추가 */
+    width: 100%;
+    /* 중앙 정렬을 위해 추가 */
 }
 
 .logo {
@@ -54,8 +56,10 @@
     max-width: 100%;
     min-height: 50px;
     padding: 0 10px 0 10px;
-    border-radius: 5px; /* 둥근 테두리를 위해 추가 */
-    border: 1px solid #000000; /* 테두리 색상을 위해 추가 */
+    border-radius: 5px;
+    /* 둥근 테두리를 위해 추가 */
+    border: 1px solid #000000;
+    /* 테두리 색상을 위해 추가 */
 }
 
 .input {
@@ -77,7 +81,7 @@
     padding: 6px;
     font-size: 13.5px;
     line-height: normal;
-    color:#929294;
+    color: #929294;
     margin-top: 16px;
 }
 
@@ -100,7 +104,8 @@
 .radio_group {
     display: flex;
     gap: 10px;
-    align-items: center; /* 추가: 성별 선택과 연령대 선택을 같은 라인에 위치하게 함 */
+    align-items: center;
+    /* 추가: 성별 선택과 연령대 선택을 같은 라인에 위치하게 함 */
 }
 
 .radio_group label {

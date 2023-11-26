@@ -79,11 +79,9 @@ app.post("/Login", (req, res) => {
   db.query(query, [user.UserID, user.UserPW], (error, results) => {
     if (error) {
       console.error(error);
-      res
-        .status(500)
-        .send({
-          error: "로그인에 실패하였습니다. 아이디와 비밀번호를 확인해주세요.",
-        });
+      res.status(500).send({
+        error: "로그인에 실패하였습니다. 아이디와 비밀번호를 확인해주세요.",
+      });
     } else {
       if (results.length > 0) {
         res.send({ success: true, message: "로그인 성공" });
