@@ -32,7 +32,8 @@ const Ccc_Login = () => {
         console.log(user.UserID);
         if (res.data.success) {
            // 로그인 성공 시 사용자 정보를 세션 스토리지에 저장
-          sessionStorage.setItem('userinfo', JSON.stringify(user.UserID));
+           sessionStorage.setItem('userid', JSON.stringify(user.UserID));
+            sessionStorage.setItem('userpw', JSON.stringify(user.UserPW));
           navigate("/");
         } else {
           alert(res.data.message);
