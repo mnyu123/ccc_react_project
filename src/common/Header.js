@@ -14,15 +14,12 @@ if (userid) {
 } else {
   console.log('로그인 정보가 없습니다.');
 }
-
-
 class Header extends React.Component {
   // 검색창의 값과 Mypage 컴포넌트의 표시 상태를 저장하기 위한 state를 설정합니다.
   state = {
     search: "",
     isMypageOpen: false,
   };
- 
 
   // 마이페이지를 열고 닫는 메서드입니다.
   toggleMypage = () => {
@@ -113,5 +110,10 @@ class Header extends React.Component {
   };
 }
 
+if (userid) {
+  console.log('사용자: ', userid);
+} else {
+  console.log('로그인 정보가 없습니다.');
+}
 
 export default Header;

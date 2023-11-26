@@ -1,4 +1,3 @@
-
 .login-container {
     display: flex;
     flex-direction: column;
@@ -30,7 +29,7 @@
     border: 1px solid #c6c6c6;
     border-radius: 6px;
     background-color: #fff;
-    box-shadow: 0 5px 8px 0 rgba(68,68,68,.04);
+    box-shadow: 0 5px 8px 0 rgba(68, 68, 68, .04);
 }
 
 .panel_inner {
@@ -66,7 +65,7 @@
     width: 100%;
     padding: 13px 0 13px;
     border-radius: 6px;
-    border: solid 1px rgba(0,0,0,.15);
+    border: solid 1px rgba(0, 0, 0, .15);
     background-color: #692ead;
 }
 
@@ -87,13 +86,13 @@
     width: 100%;
     padding: 10px 0;
     border-radius: 6px;
-    border: solid 1px rgba(0,0,0,.15);
+    border: solid 1px rgba(0, 0, 0, .15);
     background-color: #ffffff;
     margin-bottom: 8px;
 }
 
 .button-icon {
-   margin-right: 5px;
+    margin-right: 5px;
 }
 
 .btn_with .sign-in-with {

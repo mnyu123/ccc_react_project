@@ -74,7 +74,7 @@ const Mypage = ({ isMypageOpen, onClose }) => {
         <button onClick={handleLogout}>로그아웃</button>
         <button onClick={openPolledit}>장르 재선택</button>
         <button onClick={onClose}>닫기</button>
-        {isPolleditOpen && <Polledit onClose={closePolledit} />}  
+        {isPolleditOpen && <Polledit onClose={closePolledit} />}
       </div>
     </div>
   );

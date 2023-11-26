@@ -4,14 +4,16 @@
     left: 0;
     width: 100%;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.5); 
+    background: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
     opacity: 0;
     visibility: hidden;
-    background-color: rgba(255, 255, 255, 0.5); /* 배경 색상을 흰색에 50% 투명도로 설정합니다. */
-    z-index: 10; /* 다른 요소들보다 더 높은 값을 지정해 줍니다. */
+    background-color: rgba(255, 255, 255, 0.5);
+    /* 배경 색상을 흰색에 50% 투명도로 설정합니다. */
+    z-index: 10;
+    /* 다른 요소들보다 더 높은 값을 지정해 줍니다. */
     transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
 }
 
@@ -19,8 +21,8 @@
     background: white;
     padding: 20px;
     border-radius: 10px;
-    width: 80%; 
-    max-width: 500px; 
+    width: 80%;
+    max-width: 500px;
 }
 
 .modal-content h2 {
@@ -37,19 +39,24 @@
 
 .modal-content button {
     margin-bottom: 10px;
-    margin-right: 3px; /* 버튼 요소들 간의 간격을 3px로 설정합니다. */
+    margin-right: 3px;
+    /* 버튼 요소들 간의 간격을 3px로 설정합니다. */
     background-color: white;
     color: black;
     border: none;
     padding: 5px 10px;
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease; /* hover 효과의 부드러운 전환을 위해 transition 속성을 추가합니다. */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    /* hover 효과의 부드러운 전환을 위해 transition 속성을 추가합니다. */
 }
 
 .modal-content button:hover {
-    background-color: purple; /* 마우스를 올렸을 때의 배경색을 purple로 설정합니다. */
-    color: white; /* 마우스를 올렸을 때의 글자색을 white로 설정합니다. */
+    background-color: purple;
+    /* 마우스를 올렸을 때의 배경색을 purple로 설정합니다. */
+    color: white;
+    /* 마우스를 올렸을 때의 글자색을 white로 설정합니다. */
 }
+
 .modal.open {
     opacity: 1;
     visibility: visible;
