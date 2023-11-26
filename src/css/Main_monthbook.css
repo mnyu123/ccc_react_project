@@ -28,7 +28,8 @@
 .monthbooks_wrap .book_covers {
     width: 100%;
     display: flex;
-    justify-content: space-between;  /* 추가 */
+    justify-content: space-between;
+    /* 추가 */
     padding: 0px;
     margin: 10px 0px;
 }
@@ -216,33 +217,33 @@
 /* 반응형 웹 디자인 */
 @media screen and (max-width: 640px) {
     .monthbooks_wrap {
-      width: 100%;
-      padding: 0 10px;
-      box-sizing: border-box;
+        width: 100%;
+        padding: 0 10px;
+        box-sizing: border-box;
     }
-  
+
     .monthbooks_wrap .book_covers {
-      flex-direction: column;
-      align-items: center;
+        flex-direction: column;
+        align-items: center;
     }
-  
+
     .monthbooks_wrap .book_covers img {
-      margin: 10px auto;
+        margin: 10px auto;
     }
-  
+
     .month {
-      width: 100%;
-      padding: 0 10px;
-      box-sizing: border-box;
+        width: 100%;
+        padding: 0 10px;
+        box-sizing: border-box;
     }
-  
+
     .month-line1,
     .month-line2,
     .month-line3 {
-      flex-direction: column;
-      align-items: center;
+        flex-direction: column;
+        align-items: center;
     }
-  
+
     .book1,
     .book2,
     .book3,
@@ -252,7 +253,7 @@
     .book7,
     .book8,
     .book9 {
-      width: 100%;
-      height: auto;
+        width: 100%;
+        height: auto;
     }
-  }
+}

@@ -7,6 +7,7 @@ const search = "/images/ccc_image/search.png";
 const books = "/images/ccc_image/books.png";
 const user = "/images/ccc_image/user.png";
 const upArrow = "/images/ccc_image/up-arrow.png";
+const userinfo = JSON.parse(sessionStorage.getItem("userinfo"));
 
 class Header extends React.Component {
   // 검색창의 값과 Mypage 컴포넌트의 표시 상태를 저장하기 위한 state를 설정합니다.
@@ -99,6 +100,12 @@ class Header extends React.Component {
       behavior: "smooth",
     });
   };
+}
+
+if (userinfo) {
+  console.log("사용자: ", userinfo);
+} else {
+  console.log("로그인 정보가 없습니다.");
 }
 
 export default Header;

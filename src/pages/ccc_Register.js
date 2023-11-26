@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../css/ccc_Register.css";
 import Poll from "../common/Poll"; // Poll 컴포넌트를 import
-import axios from 'axios';
+import axios from "axios";
 
 const CccRegister = () => {
   const logo = "/images/ccc_image/logo.png";
@@ -29,44 +29,45 @@ const CccRegister = () => {
   };
 
   // 성별 선택 핸들러
-const handleGenderChange = (e) => {
-  setGender(e.target.value);
-};
+  const handleGenderChange = (e) => {
+    setGender(e.target.value);
+  };
 
-// 연령대 선택 핸들러
-const handleAgeChange = (e) => {
-  setAge(e.target.value);
-  if (e.target.value !== "") {
-    setColor("#692ead");
-    setFontWeight("700");
-  } else {
-    setColor("#929294");
-    setFontWeight("normal");
-  }
-};
+  // 연령대 선택 핸들러
+  const handleAgeChange = (e) => {
+    setAge(e.target.value);
+    if (e.target.value !== "") {
+      setColor("#692ead");
+      setFontWeight("700");
+    } else {
+      setColor("#929294");
+      setFontWeight("normal");
+    }
+  };
 
   const handleButtonClick = () => {
     if (userId && password && name) {
-      axios.post('http://localhost:3000/register', {
-  user: {
-    UserID: userId,
-    UserPW: password,
-    UserName: name,
-    UserGender: gender,
-    UserAge: age
-  }
-})
+      axios
+        .post("http://localhost:3000/register", {
+          user: {
+            UserID: userId,
+            UserPW: password,
+            UserName: name,
+            UserGender: gender,
+            UserAge: age,
+          },
+        })
 
-      .then(function (response) {
-        console.log(response);
-        // 성공 시 처리 로직
-        setIsModalOpen(true);
-        console.log("모달 생성됨.");
-      })
-      .catch(function (error) {
-        console.log(error);
-        // 실패 시 처리 로직
-      });
+        .then(function (response) {
+          console.log(response);
+          // 성공 시 처리 로직
+          setIsModalOpen(true);
+          console.log("모달 생성됨.");
+        })
+        .catch(function (error) {
+          console.log(error);
+          // 실패 시 처리 로직
+        });
     } else {
       alert("정보를 모두 입력해주세요.");
     }
@@ -185,7 +186,12 @@ const handleAgeChange = (e) => {
               >
                 회원가입
               </button>
-              {isModalOpen && <Poll isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />}
+              {isModalOpen && (
+                <Poll
+                  isModalOpen={isModalOpen}
+                  setIsModalOpen={setIsModalOpen}
+                />
+              )}
             </div>
           </form>
         </div>

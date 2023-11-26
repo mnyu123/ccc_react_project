@@ -28,7 +28,7 @@ const MainSlider = () => {
       <h2>오늘의 책</h2>
       <div className="main_wrap">
         <Slider {...settings} className="main">
-        <div className="item1 custom-class">
+          <div className="item1 custom-class">
             <div className="slide-content">
               <img
                 className="img1"

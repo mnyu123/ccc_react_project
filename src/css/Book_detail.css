@@ -223,7 +223,8 @@
     .monthbooks_wrap .bcontent_wrap .book_description,
     .monthbooks_wrap .bcontent_wrap .best_category {
         width: 100%;
-        margin-bottom: 170px; /* 마진 추가 */
+        margin-bottom: 170px;
+        /* 마진 추가 */
     }
 
     .monthbooks_wrap .bcontent_wrap .book_description .description_box,
