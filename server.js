@@ -39,6 +39,25 @@ app.post('/register', (req, res) => {
   });
 });
 
+app.post("/poll", (req, res) => {
+  const usergenre = req.body.usergenre;
+  const query = 'INSERT INTO usergenre (genre1, genre2, genre3) VALUES (?, ?, ?)';
+  
+  db.query(query, [usergenre.genre1, usergenre.genre2, usergenre.genre3], (error, results) => {
+    
+    if (error) {
+      res
+        .status(500)
+        .send({ error: "회원가입에 실패하였습니다. 다시 시도해주세요." });
+    } else {
+      res.send({
+        success: true,
+        message: "회원가입이 성공적으로 완료되었습니다.",
+      });
+    }
+  });
+});
+
 app.post('/Login', (req, res) => {
   const user = req.body.user;
   const query = 'SELECT * FROM user WHERE UserID = ? AND UserPW = ?';
