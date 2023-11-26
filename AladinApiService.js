@@ -5,9 +5,9 @@ const router = express.Router();
 
 const ttbkey = "ttbwhdudwo55821335001";
 
-router.get("/:query", async (req, res) => {
-  if (!req.params.query) {
-    return res.status(400).json({ message: "query 값이 필요합니다." });
+router.get("/:categoryId", async (req, res) => {
+  if (!req.params.categoryId) {
+    return res.status(400).json({ message: "categoryId 값이 필요합니다." });
   }
   try {
     const response = await axios.get(
@@ -15,8 +15,9 @@ router.get("/:query", async (req, res) => {
       {
         params: {
           ttbkey: ttbkey,
-          Query: req.params.query,
-          QueryType: "Title",
+          CategoryId: req.params.categoryId,
+          Query: req.query.Query, // 클라이언트에서 보낸 검색어를 사용합니다.
+          QueryType: req.query.QueryType, // 클라이언트에서 보낸 검색어 종류를 사용합니다.
           MaxResults: 10,
           start: 1,
           SearchTarget: "Book",

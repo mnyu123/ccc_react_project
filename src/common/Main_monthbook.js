@@ -10,7 +10,12 @@ const Main_monthbook = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`/api/aladin/해리포터`);
+        const response = await axios.get(`/api/aladin/55889`, {
+          params: {
+            Query: '시/에세이', 
+            QueryType: 'Title'
+          },
+        });
         setBooks(response.data.item);
       } catch (e) {
         console.log(e);

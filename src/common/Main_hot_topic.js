@@ -10,7 +10,12 @@ const MainHotTopic = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`/api/aladin/해리포터`);
+        const response = await axios.get(`/api/aladin/656`, {
+          params: {
+            Query: '인문', 
+            QueryType: 'Title'
+          },
+        });
         setBooks(response.data.item);
       } catch (e) {
         console.log(e);
