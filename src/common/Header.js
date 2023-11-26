@@ -7,7 +7,9 @@ const search = "/images/ccc_image/search.png";
 const books = "/images/ccc_image/books.png";
 const user = "/images/ccc_image/user.png";
 const upArrow = "/images/ccc_image/up-arrow.png";
+
 const userid = JSON.parse(sessionStorage.getItem('userid'));
+
 
 if (userid) {
   console.log('사용자: ', userid);
@@ -110,10 +112,12 @@ class Header extends React.Component {
   };
 }
 
+
 if (userid) {
   console.log('사용자: ', userid);
+
 } else {
-  console.log('로그인 정보가 없습니다.');
+  console.log("로그인 정보가 없습니다.");
 }
 
 export default Header;

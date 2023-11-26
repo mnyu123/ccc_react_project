@@ -4,6 +4,7 @@ import MainPage from "./pages/Main_page";
 import BookDetail from "./pages/Book_detail";
 import CccRegister from "./pages/ccc_Register";
 import CccLogin from "./pages/ccc_Login";
+import BookSearch from "./pages/BookSearch";
 import MyLibrary from "./pages/Mylibrary"; // mylibrary.js 파일을 import
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Route path="/login" element={<CccLogin />} />
           <Route path="/register" element={<CccRegister />} />
           <Route path="/login" element={<CccLogin />} />
+          <Route path="/booksearch" element={<BookSearch query="해리포터" />} />
         </Routes>
       </BrowserRouter>
     </div>
