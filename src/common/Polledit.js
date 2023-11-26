@@ -78,7 +78,7 @@ const Polledit = (props) => {
         <div className="title-container">
           <h1>선호 장르 조사</h1>
           <button className="close-btn" onClick={props.onClose}>
-            <img src="close.png" alt="close" />
+            <img src="images/ccc_library/close.png" alt="close" />
           </button>
         </div>
       </div>
