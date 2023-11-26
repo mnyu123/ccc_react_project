@@ -6,9 +6,15 @@ const cors = require("cors");
 const app = express();
 const port = 3000;
 
+const aladinApiService = require('./AladinApiService'); 
+// 상대 경로를 사용하여 AladinApiService.js를 가져옵니다.
+
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+app.use('/api/aladin', aladinApiService); 
+// '/api/aladin' 경로로 들어오는 요청을 AladinApiService 라우터로 처리하도록 설정합니다.
 
 const db = mysql.createConnection({
   host: "localhost",
