@@ -19,6 +19,7 @@ const MainHotTopic = () => {
     fetchData();
   }, []);
 
+
   return (
     <div className="soaring_wrap" id="soaring_wrap">
       <h2>급상승</h2>
@@ -33,6 +34,7 @@ const MainHotTopic = () => {
           ))}
         </div>
       </div>
+
     </div>
   );
 };
