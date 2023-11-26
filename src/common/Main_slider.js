@@ -23,7 +23,12 @@ const MainSlider = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`/api/aladin/해리포터`);
+        const response = await axios.get(`/api/aladin/1`, {
+          params: {
+            Query: '소설', 
+            QueryType: 'Title'
+          },
+        });
         setBooks(response.data.item);
       } catch (e) {
         console.log(e);

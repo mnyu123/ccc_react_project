@@ -18,7 +18,7 @@ function App() {
           <Route path="/login" element={<CccLogin />} />
           <Route path="/register" element={<CccRegister />} />
           <Route path="/login" element={<CccLogin />} />
-          <Route path="/booksearch" element={<BookSearch query="해리포터" />} />
+          <Route path="/booksearch" element={<BookSearch />} />
         </Routes>
       </BrowserRouter>
     </div>
