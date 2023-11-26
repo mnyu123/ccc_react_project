@@ -12,8 +12,8 @@ const MainHotTopic = () => {
       try {
         const response = await axios.get(`/api/aladin/656`, {
           params: {
-            Query: '인문', 
-            QueryType: 'Title'
+            Query: "인문",
+            QueryType: "Title",
           },
         });
         setBooks(response.data.item);
@@ -23,7 +23,6 @@ const MainHotTopic = () => {
     };
     fetchData();
   }, []);
-
 
   return (
     <div className="soaring_wrap" id="soaring_wrap">
@@ -39,7 +38,6 @@ const MainHotTopic = () => {
           ))}
         </div>
       </div>
-
     </div>
   );
 };

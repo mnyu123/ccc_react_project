@@ -12,8 +12,8 @@ const Main_monthbook = () => {
       try {
         const response = await axios.get(`/api/aladin/55889`, {
           params: {
-            Query: '시/에세이', 
-            QueryType: 'Title'
+            Query: "시/에세이",
+            QueryType: "Title",
           },
         });
         setBooks(response.data.item);

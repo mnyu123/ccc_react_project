@@ -25,8 +25,8 @@ const MainSlider = () => {
       try {
         const response = await axios.get(`/api/aladin/1`, {
           params: {
-            Query: '소설', 
-            QueryType: 'Title'
+            Query: "소설",
+            QueryType: "Title",
           },
         });
         setBooks(response.data.item);

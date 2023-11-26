@@ -87,6 +87,19 @@
    height: 50px;
 }
 
+/* 로그인 아이콘 */
+.login_icon {
+   width: 30px;
+   height: 30px;
+}
+
+/* 회원가입 아이콘 */
+.register_icon {
+   width: 30px;
+   height: 30px;
+}
+
+
 @media (min-width: 641px) {
    .header_inner {
       width: 1000px;

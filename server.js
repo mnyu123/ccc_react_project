@@ -3,18 +3,17 @@ const mysql = require("mysql");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
-
 const app = express();
 const port = 3000;
 
-const aladinApiService = require('./AladinApiService'); 
+const aladinApiService = require("./AladinApiService");
 // 상대 경로를 사용하여 AladinApiService.js를 가져옵니다.
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use('/api/aladin', aladinApiService); 
+app.use("/api/aladin", aladinApiService);
 // '/api/aladin' 경로로 들어오는 요청을 AladinApiService 라우터로 처리하도록 설정합니다.
 
 const db = mysql.createConnection({
@@ -57,7 +56,7 @@ app.post("/register", (req, res) => {
 });
 
 app.post("/poll", (req, res) => {
-  const {userId, usergenre} = req.body;
+  const { userId, usergenre } = req.body;
   const query =
     "INSERT INTO usergenre (UserID, genre1, genre2, genre3) VALUES (?, ?, ?, ?)";
 
@@ -111,15 +110,15 @@ app.post("/polledit", (req, res) => {
     [usergenre.genre1, usergenre.genre2, usergenre.genre3, userid],
     (error, results) => {
       if (error) {
-        res.status(500).send({ error: "변경에 실패하였습니다. 다시 시도해주세요." });
+        res
+          .status(500)
+          .send({ error: "변경에 실패하였습니다. 다시 시도해주세요." });
       } else {
         res.send({ success: true, message: "변경이 완료되었습니다." });
       }
     }
   );
 });
-
-
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
