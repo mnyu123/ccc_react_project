@@ -4,8 +4,10 @@ import axios from "axios";
 import "../css/Book_detail.css";
 import Header from "../common/Header";
 import Footer from "../common/Footer";
+import BestList from "../common/BestList"; // BestList 컴포넌트를 임포트합니다.
 const defaultImage = "/images/ccc_image/bookmarks.png";
 const changedImage = "/images/ccc_image/bookmarkson.png";
+
 
 const BookDetail = () => {
   const { bookIsbn } = useParams();
@@ -27,7 +29,7 @@ const BookDetail = () => {
       try {
         // API를 호출합니다.
         const response = await axios.get(`/api/bookDetail/${bookIsbn}`);
-        console.log(response); // API 응답 출력
+        console.log("API 응답 결과 테스트용:", response); // API 응답 출력
         // 상태를 업데이트합니다.
         setBookDetail(response.data.item[0]);
       } catch (e) {
@@ -69,7 +71,9 @@ const BookDetail = () => {
                   </p>
                 </div>
                 <div className="title_wrap">
-                <p className="title">{bookDetail.title.replace("알라딘 상품정보 - ", "")} </p>
+                  <p className="title">
+                    {bookDetail.title.replace("알라딘 상품정보 - ", "")}{" "}
+                  </p>
                 </div>
                 <div className="info_wrap">
                   <p className="author">{bookDetail.author}</p>
@@ -124,29 +128,9 @@ const BookDetail = () => {
               </div>
             </div>
           </div>
-          {bestList && (
-            <div className="best_category">
-              <div className="best_category_wrap">
-                <h2>분야 베스트</h2>
-                <ul className="best_list">
-                  {bestList.map((book, index) => (
-                    <li key={index}>
-                      <div className="number_image_wrapper">
-                        <img
-                          src={`/images/ccc_image/${index + 1}.png`}
-                          alt={`${index + 1}번`}
-                        />
-                      </div>
-                      <a href={book.link}>
-                        <span className="text_wrapper">{book.title}</span>
-                      </a>
-                      <div className="dotted-line"></div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          )}
+          {bookDetail && <BestList categoryId={bookDetail.categoryId} />} 
+          {/* categoryId를 prop으로 전달함 */}
+          {/* BestList 컴포넌트 호출 */}
         </div>
       </main>
 
