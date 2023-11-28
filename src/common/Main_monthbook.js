@@ -10,9 +10,9 @@ const Main_monthbook = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`/api/aladin/55889`, {
+        const response = await axios.get(`/api/aladin/2551`, {
           params: {
-            Query: "시/에세이",
+            Query: "만화",
             QueryType: "Title",
           },
         });
