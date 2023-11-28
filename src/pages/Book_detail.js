@@ -14,9 +14,20 @@ const BookDetail = () => {
   const [libraryIcon, setLibraryIcon] = useState(defaultImage);
   const [descriptionMore, setDescriptionMore] = useState(false);
 
-  const handleLibraryBtnClick = () => {
-    setLibraryIcon(libraryIcon === defaultImage ? changedImage : defaultImage);
-  };
+ // 내 서재 담기 버튼 클릭 이벤트 핸들러
+ const handleLibraryBtnClick = () => {
+  if (libraryIcon === defaultImage) {
+    setLibraryIcon(changedImage);
+    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    favorites.push(bookDetail);
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+  } else {
+    setLibraryIcon(defaultImage);
+    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    favorites = favorites.filter(book => book.isbn !== bookDetail.isbn);
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+  }
+};
 
   const handleExpandBtnClick = () => {
     setDescriptionMore(!descriptionMore);
@@ -34,6 +45,11 @@ const BookDetail = () => {
       }
     };
     fetchBookDetail();
+    // 이미 즐겨찾기에 추가된 책인지 확인합니다.
+    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    if (favorites.some(book => book.isbn === bookIsbn)) {
+      setLibraryIcon(changedImage);
+    }
   }, [bookIsbn]);
 
   return (
