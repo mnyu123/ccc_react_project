@@ -9,12 +9,18 @@ const port = 3000;
 const aladinApiService = require("./AladinApiService");
 // 상대 경로를 사용하여 AladinApiService.js를 가져옵니다.
 
+const bookDetailService = require("./BookDetailService");
+// 알라딘 책 상세페이지 관련
+
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use("/api/aladin", aladinApiService);
 // '/api/aladin' 경로로 들어오는 요청을 AladinApiService 라우터로 처리하도록 설정합니다.
+
+app.use("/api/bookDetail", bookDetailService);
+// 알라딘 책 상세페이지 관련
 
 const db = mysql.createConnection({
   host: "localhost",

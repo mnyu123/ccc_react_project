@@ -14,7 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/mylibrary" element={<MyLibrary />} />
-          <Route path="/bookdetail" element={<BookDetail />} />
+          <Route path="/bookDetail/:bookIsbn" element={<BookDetail />} />
           <Route path="/login" element={<CccLogin />} />
           <Route path="/register" element={<CccRegister />} />
           <Route path="/login" element={<CccLogin />} />

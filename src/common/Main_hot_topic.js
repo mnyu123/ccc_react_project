@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "../css/Main_hot_topic.css";
 
 import axios from "axios";
@@ -30,11 +31,13 @@ const MainHotTopic = () => {
       <div className="slide">
         <div className="soaring1">
           {books.map((book, index) => (
-            <div key={book.isbn} className="item">
-              <img src={book.cover} alt={book.title} />
-              <span className="number">{index + 1}</span>
-              <p className="description">{book.description}</p>
-            </div>
+            <Link to={`/bookDetail/${book.isbn}`} key={book.isbn}>
+              <div className="item">
+                <img src={book.cover} alt={book.title} />
+                <span className="number">{index + 1}</span>
+                <p className="description">{book.description}</p>
+              </div>
+            </Link>
           ))}
         </div>
       </div>
