@@ -9,6 +9,7 @@ const MyLibrary = () => {
 
   const [isListCoverClicked, setIsListCoverClicked] = useState(false);
   const [isListViewClicked, setIsListViewClicked] = useState(false);
+  const [favorites, setFavorites] = useState([]);
 
   const [scrollPosition, setScrollPosition] = useState(0);
   const headerNormalHeight = 0; // 적절한 높이 값으로 설정해주세요
@@ -20,6 +21,13 @@ const MyLibrary = () => {
     window.addEventListener("scroll", onScroll);
 
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const savedFavorites = JSON.parse(localStorage.getItem('favorites'));
+    if(savedFavorites) {
+      setFavorites(savedFavorites);
+    }
   }, []);
 
   return (
@@ -93,6 +101,12 @@ const MyLibrary = () => {
           <div className="container1">
             <div className="book-container1" id="bookContainer">
               {/* 동적으로 생성될 책 항목 */}
+              {favorites.map((book, index) => (
+                <div key={index}>
+                  <h4>{book.title}</h4>
+                  <p>{book.author}</p>
+                </div>
+              ))}
             </div>
           </div>
           <div className="container2">
