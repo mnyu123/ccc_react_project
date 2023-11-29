@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import Header from "../common/Header";
 import Footer from "../common/Footer";
@@ -14,7 +15,17 @@ const MyLibrary = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const headerNormalHeight = 0; // 적절한 높이 값으로 설정해주세요
 
+  const navigate = useNavigate();
+
   useEffect(() => {
+    // 페이지가 로드될 때 로그인 상태를 확인
+    const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+
+    // 로그인 상태가 false일 경우 로그인 페이지로 이동
+    if (isLoggedIn !==  'true') {
+      navigate('/login');
+    }
+    
     const onScroll = () => {
       setScrollPosition(window.pageYOffset);
     };

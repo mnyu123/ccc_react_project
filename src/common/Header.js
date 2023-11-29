@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../css/Header.css";
 import { Link } from "react-router-dom";
 import Mypage from "../pages/Mypage";
@@ -13,11 +13,6 @@ const registerIcon = "/images/ccc_other/register.png"; // 회원가입 아이콘
 
 const userid = JSON.parse(sessionStorage.getItem("userid"));
 
-if (userid) {
-  console.log("사용자: ", userid);
-} else {
-  console.log("로그인 정보가 없습니다.");
-}
 class Header extends React.Component {
   // 검색창의 값과 Mypage 컴포넌트의 표시 상태를 저장하기 위한 state를 설정합니다.
   state = {
