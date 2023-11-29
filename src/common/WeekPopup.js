@@ -7,10 +7,12 @@ const customStyles = {
   content : {
     top                   : '50%',
     left                  : '50%',
-    right                 : '50%',
+    right                 : 'auto',
     bottom                : 'auto',
     marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
+    transform             : 'translate(-50%, -50%)',
+    backgroundColor       : 'lightblue', // 배경 색상 지정
+    padding               : '20px'   
   }
 };
 
@@ -18,6 +20,13 @@ Modal.setAppElement('#root')
 
 const WeekPopup = ({ onClose }) => {
   const [isRemembered, setIsRemembered] = useState(false);
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden'; // 모달이 마운트되면 스크롤을 막습니다.
+    return () => {
+      document.body.style.overflow = 'unset'; // 모달이 언마운트되면 스크롤을 허용합니다.
+    };
+  }, []);
 
   const handleCheckboxChange = (e) => {
     setIsRemembered(e.target.checked);
