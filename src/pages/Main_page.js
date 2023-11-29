@@ -11,7 +11,6 @@ const MainPage = () => {
   console.log("ㅊㅊㅊ 메인화면 렌더링됨.");
 
   const [isPopupOpen, setIsPopupOpen] = useState(true); // 팝업의 표시 여부를 제어하는 상태 변수
-
   const handleClosePopup = () => {
     setIsPopupOpen(false); // 팝업 닫기
   };
@@ -24,7 +23,7 @@ const MainPage = () => {
       <MainMonthBook />
       <MainHotTopic />
       <Footer />
-      {isPopupOpen && <WeekPopup onClose={handleClosePopup} />}{" "}
+      {isPopupOpen && <WeekPopup isOpen={isPopupOpen} onClose={handleClosePopup} />}
       {/* 팝업 표시 */}
     </div>
   );
