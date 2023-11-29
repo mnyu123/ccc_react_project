@@ -1,61 +1,37 @@
 import React, { useState, useEffect } from "react";
+import Modal from 'react-modal'; //모달을 위해 react modal 컴포넌트를 사용했습니다.
 import "../css/WeekPopup.css";
 
+// 팝업에 대한 스타일 지정(필요없으면 안써도되고 필요시 수정)
+const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : '50%',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)'
+  }
+};
+
+Modal.setAppElement('#root')
+
 const WeekPopup = ({ onClose }) => {
-  console.log("이번주 책 팝업 렌더링 됨.");
-
   const [isRemembered, setIsRemembered] = useState(false);
-
-  const handleClose = () => {
-    onClose(); // 부모 컴포넌트에서 전달된 onClose 함수 호출
-    if (isRemembered) {
-      // 쿠키에 저장하는 로직이 들어가야 함
-    }
-  };
 
   const handleCheckboxChange = (e) => {
     setIsRemembered(e.target.checked);
   };
 
   return (
-    <div className="overlay">
-      <div className="popup">
-        <div className="week">
-          <div className="week-book">
-            <h4>금주의 책</h4>
-          </div>
-          <span className="close" onClick={handleClose}>
-            &times;
-          </span>
-        </div>
-        <hr />
-        <div className="book">
-          <div className="book-cover">책 표지</div>
-          <div className="book-explain">
-            <div className="book-title">
-              <h1>책 제목</h1>
-            </div>
-            <div className="book-author">
-              <h5>저자</h5>
-            </div>
-            <div className="book-review">
-              <h4>
-                동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세
-              </h4>
-            </div>
-          </div>
-        </div>
-        <hr />
-        <div className="check-close">
-          <input
-            type="checkbox"
-            id="remember"
-            onChange={handleCheckboxChange}
-          />
-          <label htmlFor="remember">오늘 하루 열지 않음</label>
-        </div>
-      </div>
-    </div>
+    <Modal
+        isOpen={true}
+        onRequestClose={onClose} //모달이 닫힘(화면 외부를 클릭하거나 esc키 감지)
+        style={customStyles}
+        contentLabel="modal"
+      >
+        <button onClick={onClose}>닫기</button>
+      </Modal>
   );
 };
 
