@@ -21,7 +21,7 @@ const MyLibrary = () => {
     // 페이지가 로드될 때 로그인 상태를 확인
     const isLoggedIn = sessionStorage.getItem('isLoggedIn');
 
-    // 로그인 상태가 false일 경우 로그인 페이지로 이동
+    // 로그인 상태가 true가 아닐 경우 로그인 페이지로 이동
     if (isLoggedIn !==  'true') {
       navigate('/login');
     }
@@ -34,8 +34,9 @@ const MyLibrary = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const userId = sessionStorage.getItem('userid'); 
   useEffect(() => {
-    const savedFavorites = JSON.parse(localStorage.getItem('favorites'));
+    const savedFavorites = JSON.parse(localStorage.getItem(userId));
     if(savedFavorites) {
       setFavorites(savedFavorites);
     }
@@ -113,11 +114,14 @@ const MyLibrary = () => {
             <div className="book-container1" id="bookContainer">
               {/* 동적으로 생성될 책 항목 */}
               {favorites.map((book, index) => (
-                <div key={index}>
-                  <h4>{book.title}</h4>
-                  <p>{book.author}</p>
-                </div>
-              ))}
+      <div key={index}>
+        <Link to={`/bookDetail/${book.isbn}`} key={book.isbn}>
+          <img src={book.cover} alt={book.title} />
+          <h4>{book.title}</h4>
+          <p>{book.author}</p>
+        </Link>
+      </div>
+    ))}
             </div>
           </div>
           <div className="container2">

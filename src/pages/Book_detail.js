@@ -16,20 +16,26 @@ const BookDetail = () => {
   const [libraryIcon, setLibraryIcon] = useState(defaultImage);
   const [descriptionMore, setDescriptionMore] = useState(false);
 
- // 내 서재 담기 버튼 클릭 이벤트 핸들러
- const handleLibraryBtnClick = () => {
+// 로그인한 사용자의 아이디를 가져옵니다.
+const userId = sessionStorage.getItem('userid'); 
+
+// 내 서재 담기 버튼 클릭 이벤트 핸들러
+const handleLibraryBtnClick = () => {
   if (libraryIcon === defaultImage) {
     setLibraryIcon(changedImage);
-    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    let favorites = JSON.parse(localStorage.getItem(userId)) || [];
     favorites.push(bookDetail);
-    localStorage.setItem('favorites', JSON.stringify(favorites));
+    localStorage.setItem(userId, JSON.stringify(favorites));
   } else {
     setLibraryIcon(defaultImage);
-    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    let favorites = JSON.parse(localStorage.getItem(userId)) || [];
     favorites = favorites.filter(book => book.isbn !== bookDetail.isbn);
-    localStorage.setItem('favorites', JSON.stringify(favorites));
+    localStorage.setItem(userId, JSON.stringify(favorites));
   }
 };
+
+// 이미 즐겨찾기에 추가된 책인지 확인합니다.
+const favorites = JSON.parse(localStorage.getItem(userId)) || [];
 
   const handleExpandBtnClick = () => {
     setDescriptionMore(!descriptionMore);
