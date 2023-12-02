@@ -53,18 +53,16 @@
     margin-right: 4%;
 }
 
-h1,
-h2 {
-    margin-left: 15px;
-    color: #1b003a;
-}
-
 .content-title {
     padding-bottom: 15px;
+    margin-left: 15px;
+    color: #1b003a;
     border-bottom: 1.5px dotted #2E0062;
 }
 
 .content-explain {
+    margin-left: 15px;
+    color: #1b003a;
     padding-top: 20px;
 }
 

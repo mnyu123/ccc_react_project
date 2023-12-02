@@ -44,7 +44,7 @@ const Polledit = (props) => {
     }
   };
 
- const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (selectedGenres.length === 0) {
       setErrorMessage(true);
@@ -72,35 +72,35 @@ const Polledit = (props) => {
 
 
   return (
-    <div id="popup" className={`popup ${showPopup ? "show-popup" : ""}`}>
-      <div className="overlay"></div>
-      <div className="content-title">
-        <div className="title-container">
-          <h1>선호 장르 조사</h1>
-          <button className="close-btn" onClick={props.onClose}>
+    <div id="popup2" className={`popup2 ${showPopup ? "show-popup2" : ""}`}>
+      <div className="overlay2"></div>
+      <div className="content-title2">
+        <div className="title-container2">
+          선호 장르 조사
+          <button className="close-btn2" onClick={props.onClose}>
             <img src="images/ccc_library/close.png" alt="close" />
           </button>
         </div>
       </div>
-      <div className="content-explain">
-        <h2>책 선호 장르를 선택해 주세요.</h2>
+      <div className="content-explain2">
+        책 선호 장르를 선택해 주세요.
       </div>
-      <div className="content">
+      <div className="content2">
         {genres.map((genre, index) => (
-          <div key={index}>
+          <div key={index} className="genre-item2">
             <input
               type="checkbox"
               name="genre"
               value={genre}
               checked={selectedGenres.includes(genre)}
               onChange={() => handleCheck(genre)}
-            />{" "}
-            {genre}
+            />
+            <span className="genre-name2">{genre}</span>
           </div>
         ))}
-        <div className="positioned-container">
-          {errorMessage && <p className="error-message">적어도 하나의 장르를 선택해 주세요.</p>}
-          <button className="signup-btn" onClick={handleSubmit}>
+        <div className="positioned-container2">
+          {errorMessage && <p className={`error-message2 ${errorMessage ? "show-error2" : ""}`}>적어도 하나의 장르를 선택해 주세요.</p>}
+          <button className="signup-btn2" onClick={handleSubmit}>
             수정
           </button>
         </div>
