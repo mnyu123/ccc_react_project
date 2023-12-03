@@ -10,7 +10,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 820px;
+    width: 790px;
     height: auto;
     background-color: #f8f6fa;
     border-radius: 15px;
@@ -45,7 +45,7 @@
     justify-content: flex-start; 
     width: 720px;
     padding-top: 15px;
-    margin-left: 4%;
+    margin-left: 7%;
     margin-right: 4%;
 }
 
@@ -141,7 +141,7 @@ input[type="checkbox"]:checked:before {
     right: 0; /* 오른쪽으로부터 0px 떨어진 위치에 배치 */
     bottom: 0;
     box-sizing: border-box;
-    width: 70px;
+    width: 80px;
     margin-left: 475px;
     font-size: 20px;
     padding: 3px;
