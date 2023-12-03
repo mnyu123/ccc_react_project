@@ -17,7 +17,7 @@ router.get("/:categoryId", async (req, res) => {
           ttbkey: ttbkey,
           QueryType: "Bestseller", // 베스트셀러 정보를 요청합니다.
           CategoryId: req.params.categoryId, // 카테고리 ID를 클라이언트에서 받아옵니다.
-          MaxResults: 10, // 결과의 최대 개수를 지정합니다.
+          MaxResults: 9, // 결과의 최대 개수를 지정합니다.
           start: 1, // 시작 위치를 지정합니다.
           output: "js", // 출력 형식을 지정합니다.
           Version: 20131101, // API 버전을 지정합니다.
