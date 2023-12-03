@@ -32,7 +32,7 @@ const BestList = ({ categoryId }) => {
                   alt={`${index + 1}번`}
                 />
               </div>
-              <a href={book.link}>
+              <a href={`http://localhost:3001/bookDetail/${book.isbn}`}>
                 <span className="text_wrapper">{book.title}</span>
               </a>
               <div className="dotted-line"></div>

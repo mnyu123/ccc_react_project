@@ -25,6 +25,7 @@ router.get("/:categoryId", async (req, res) => {
       }
     );
 
+    // 원본 데이터
     const data = response.data;
     console.log(data); // 콘솔에 데이터 출력
 
