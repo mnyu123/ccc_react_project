@@ -6,7 +6,7 @@ const Footer = () => {
   console.log("푸터 부분 렌더링됨.");
   return (
     <footer>
-      <p>Developer: 한유정, 이다은, 박진우, 우승진, 조영재</p>
+      <p id="footer">Developer: 한유정, 이다은, 박진우, 우승진, 조영재</p>
     </footer>
   );
 };

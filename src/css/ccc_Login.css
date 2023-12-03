@@ -1,7 +1,10 @@
 .login-container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
+    height: 100vh;
+    margin: auto;
 }
 
 .logo {
@@ -14,15 +17,24 @@
     margin-top: 10px;
 }
 
-.login_wrap {
+.login_wrap,
+.panel_wrap,
+.panel_item,
+.panel_inner {
     box-sizing: border-box;
-    width: 460px;
+}
+
+.login_wrap {
+    width: 500px;
     margin: 0 auto;
+    padding: 0;
 }
 
 .panel_wrap {
     position: relative;
     z-index: 3;
+    margin: 0;
+    padding: 0; 
 }
 
 .panel_item {
@@ -30,10 +42,17 @@
     border-radius: 6px;
     background-color: #fff;
     box-shadow: 0 5px 8px 0 rgba(68, 68, 68, .04);
+    padding: 0;
 }
 
 .panel_inner {
     padding: 20px 28px;
+    margin: 0;
+}
+
+.input_row:focus-within {
+    border-color: #692ead;
+    z-index: 2;
 }
 
 .input_row {
@@ -46,6 +65,17 @@
     box-sizing: border-box;
     text-align: left;
     box-shadow: 0 2px 6px 0 rgba(68, 68, 68, .08);
+    z-index: 1;
+}
+
+.input_row input[type=text]:focus,
+.input_row input[type=password]:focus {
+    border-color: #692ead;
+}
+
+
+.input_row+.input_row {
+    margin-top: -1px
 }
 
 .input_text {
@@ -53,8 +83,33 @@
     display: block;
     width: 100%;
     font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: -.5px;
     color: #222;
+    box-sizing: border-box;
+    z-index: 3
 }
+
+.id_pw_wrap .input_row {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    padding: 14px 17px 13px;
+    box-sizing: border-box
+}
+
+.id_pw_wrap .input_row:first-child {
+    border-radius: 6px 6px 0 0;
+    box-shadow: none
+}
+
+.id_pw_wrap .input_row:last-child {
+    border-radius: 0 0 6px 6px !important;
+    box-shadow: none
+}
+
+
 
 .btn_login_wrap {
     margin-top: 30px;
@@ -74,6 +129,45 @@
     font-weight: 700;
     color: #fff;
 }
+
+
+.dotted-line {
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-top: 12px;
+    font-size: initial;
+    line-height: initial;
+}
+
+.dotted-line span {
+    position: relative;
+    display: inline-block;
+    font-size: 14px; 
+    background-color: white;
+    z-index: 1
+}
+
+.dotted-line:before,
+.dotted-line:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: calc(50% - 10px - 10px); 
+    border-top: 1px dotted #2f2f2f;
+    z-index: 0;  
+}
+
+.dotted-line:before {
+    left: 0;
+}
+
+.dotted-line:after {
+    right: 0;
+}
+
+
 
 .btn_with_wrap {
     margin-top: 12px;
@@ -104,6 +198,8 @@
 .dotted-line2 {
     text-align: center;
     margin-top: 15px;
+    font-size: 14px;
+    line-height: initial;
 }
 
 .dotted-line2 button {
