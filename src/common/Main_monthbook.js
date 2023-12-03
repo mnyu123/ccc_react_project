@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 import "../css/Main_monthbook.css";
@@ -10,10 +11,10 @@ const Main_monthbook = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`/api/aladin/55889`, {
+        const response = await axios.get(`/api/aladin/2551`, {
           params: {
-            Query: '시/에세이', 
-            QueryType: 'Title'
+            Query: "만화",
+            QueryType: "Title",
           },
         });
         setBooks(response.data.item);
@@ -42,13 +43,15 @@ const Main_monthbook = () => {
       ) : (
         <div className="book_covers">
           {books.map((book, index) => (
-            <div className="coverbook1" key={book.isbn}>
-              <img src={book.cover} alt={`book${index + 1}`} />
-              <div className="coverexplain">
-                <div className="bookcovertitle">{book.title}</div>
-                <div className="author">{book.author}</div>
+            <Link to={`/bookDetail/${book.isbn}`} key={book.isbn}>
+              <div className="coverbook1">
+                <img src={book.cover} alt={`book${index + 1}`} />
+                <div className="coverexplain">
+                  <div className="bookcovertitle">{book.title}</div>
+                  <div className="author">{book.author}</div>
+                </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       )}

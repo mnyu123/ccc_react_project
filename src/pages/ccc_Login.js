@@ -36,6 +36,8 @@ const Ccc_Login = () => {
            sessionStorage.setItem('userid', JSON.stringify(user.UserID));
            sessionStorage.setItem('userpw', JSON.stringify(user.UserPW));
          
+            // 로그인 성공 여부를 세션 스토리지에 저장
+            sessionStorage.setItem('isLoggedIn', 'true');
 
           navigate("/");
         } else {

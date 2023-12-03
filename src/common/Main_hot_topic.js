@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "../css/Main_hot_topic.css";
 
 import axios from "axios";
@@ -12,8 +13,8 @@ const MainHotTopic = () => {
       try {
         const response = await axios.get(`/api/aladin/656`, {
           params: {
-            Query: '인문', 
-            QueryType: 'Title'
+            Query: "인문",
+            QueryType: "Title",
           },
         });
         setBooks(response.data.item);
@@ -24,22 +25,22 @@ const MainHotTopic = () => {
     fetchData();
   }, []);
 
-
   return (
     <div className="soaring_wrap" id="soaring_wrap">
       <h2>급상승</h2>
       <div className="slide">
         <div className="soaring1">
           {books.map((book, index) => (
-            <div key={book.isbn} className="item">
-              <img src={book.cover} alt={book.title} />
-              <span className="number">{index + 1}</span>
-              <p className="description">{book.description}</p>
-            </div>
+            <Link to={`/bookDetail/${book.isbn}`} key={book.isbn}>
+              <div className="item">
+                <img src={book.cover} alt={book.title} />
+                <span className="number">{index + 1}</span>
+                <p className="description">{book.description}</p>
+              </div>
+            </Link>
           ))}
         </div>
       </div>
-
     </div>
   );
 };

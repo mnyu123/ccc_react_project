@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import Modal from 'react-modal'; //모달을 위해 react modal 컴포넌트를 사용했습니다.
 import "../css/WeekPopup.css";
+
 
 // 팝업에 대한 스타일 지정(필요없으면 안써도되고 필요시 수정)
 const customStyles = {
@@ -16,17 +18,27 @@ const customStyles = {
   }
 };
 
+
+
 Modal.setAppElement('#root')
+
+
 
 const WeekPopup = ({ onClose }) => {
   const [isRemembered, setIsRemembered] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    document.body.style.overflow = 'hidden'; // 모달이 마운트되면 스크롤을 막습니다.
-    return () => {
-      document.body.style.overflow = 'unset'; // 모달이 언마운트되면 스크롤을 허용합니다.
-    };
+// 페이지가 로드될 때 로그인 상태를 확인
+const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+
+// 로그인 상태가 true가 아닐 경우 로그인 페이지로 이동
+if (isLoggedIn !==  'true') {
+  navigate('/');
+}
+
   }, []);
+
 
   const handleCheckboxChange = (e) => {
     setIsRemembered(e.target.checked);
@@ -34,7 +46,7 @@ const WeekPopup = ({ onClose }) => {
 
   return (
     <Modal
-        isOpen={true}
+        isOpen={sessionStorage.getItem('isLoggedIn') === 'true'}
         onRequestClose={onClose} //모달이 닫힘(화면 외부를 클릭하거나 esc키 감지)
         style={customStyles}
         contentLabel="modal"

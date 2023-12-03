@@ -34,7 +34,7 @@ const Polledit = (props) => {
   const [errorMessage, setErrorMessage] = useState(false);
   const [showPopup, setShowPopup] = useState(true);
   const navigate = useNavigate();
-  const userid = JSON.parse(sessionStorage.getItem('userid'));
+  const userid = JSON.parse(sessionStorage.getItem("userid"));
 
   const handleCheck = (genre) => {
     if (selectedGenres.includes(genre)) {
@@ -58,7 +58,10 @@ const Polledit = (props) => {
             genre3: selectedGenres[2],
           },
         };
-        const response = await axios.post("http://localhost:3000/polledit", user);
+        const response = await axios.post(
+          "http://localhost:3000/polledit",
+          user
+        );
         console.log(response.data);
         setErrorMessage(false);
         setShowPopup(false);
@@ -68,8 +71,6 @@ const Polledit = (props) => {
       }
     }
   };
-
-
 
   return (
     <div id="popup2" className={`popup2 ${showPopup ? "show-popup2" : ""}`}>
@@ -98,9 +99,13 @@ const Polledit = (props) => {
             <span className="genre-name2">{genre}</span>
           </div>
         ))}
-        <div className="positioned-container2">
-          {errorMessage && <p className={`error-message2 ${errorMessage ? "show-error2" : ""}`}>적어도 하나의 장르를 선택해 주세요.</p>}
-          <button className="signup-btn2" onClick={handleSubmit}>
+
+        <div className="positioned-container">
+          {errorMessage && (
+            <p className="error-message">적어도 하나의 장르를 선택해 주세요.</p>
+          )}
+          <button className="signup-btn" onClick={handleSubmit}>
+
             수정
           </button>
         </div>

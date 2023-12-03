@@ -190,7 +190,7 @@ const CccRegister = () => {
                 <Poll
                   isModalOpen={isModalOpen}
                   setIsModalOpen={setIsModalOpen}
-                  userId={userId} 
+                  userId={userId}
                 />
               )}
             </div>

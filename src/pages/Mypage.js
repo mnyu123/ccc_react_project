@@ -1,20 +1,17 @@
 import React, { useState, useEffect } from "react";
 import "../css/Mypage.css"; // Mypage.css를 불러옵니다.
 import Polledit from "../common/Polledit"; // 수정된 부분
-import { useNavigate } from 'react-router-dom';
-
-
-
+import { useNavigate } from "react-router-dom";
 
 const Mypage = ({ isMypageOpen, onClose }) => {
   const [isPolleditOpen, setIsPolleditOpen] = useState(false);
   const [userid, setUserid] = useState(null); // userid를 상태로 관리
-  const [enteredPassword, setEnteredPassword] = useState(''); // 비밀번호 입력 상태
+  const [enteredPassword, setEnteredPassword] = useState(""); // 비밀번호 입력 상태
   const navigate = useNavigate();
-  const userpw = JSON.parse(sessionStorage.getItem('userpw'));
+  const userpw = JSON.parse(sessionStorage.getItem("userpw"));
 
   useEffect(() => {
-    const storedUserid = sessionStorage.getItem('userid');
+    const storedUserid = sessionStorage.getItem("userid");
     if (storedUserid) {
       setUserid(JSON.parse(storedUserid));
     }
@@ -23,8 +20,9 @@ const Mypage = ({ isMypageOpen, onClose }) => {
   const handleLogout = () => {
     sessionStorage.removeItem('userid');
     sessionStorage.removeItem('userpw');
+    sessionStorage.setItem('isLoggedIn', 'false');
     setUserid(null); // 로그아웃하면 userid를 null로 설정
-    navigate('/');
+    navigate("/");
   };
 
   const openPolledit = () => {
@@ -35,12 +33,12 @@ const Mypage = ({ isMypageOpen, onClose }) => {
     setIsPolleditOpen(false);
   };
 
-   // 비밀번호 확인 함수
-   const handlePasswordCheck = () => {
+  // 비밀번호 확인 함수
+  const handlePasswordCheck = () => {
     if (enteredPassword === userpw) {
-      console.log('비밀번호가 일치합니다.');
+      console.log("비밀번호가 일치합니다.");
     } else {
-      console.log('비밀번호가 일치하지 않습니다.');
+      console.log("비밀번호가 일치하지 않습니다.");
     }
   };
 
@@ -54,20 +52,12 @@ const Mypage = ({ isMypageOpen, onClose }) => {
           <span>
             <img src="/images/ccc_image/ghost.png" alt="profile" />
           </span>
-          {/* <span className="username_wrap">
-            <input
-              type="text"
-              value="사용자"
-              className="username"
-              id="username"
-              readOnly
-            />
-          </span> */}
+
           <span>{userid}님,</span>
         </div>
-       <input 
-          type="password" 
-          placeholder="비밀번호" 
+        <input
+          type="password"
+          placeholder="비밀번호"
           onChange={(e) => setEnteredPassword(e.target.value)}
         />
         <button onClick={handlePasswordCheck}>확인</button>

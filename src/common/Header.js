@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../css/Header.css";
 import { Link } from "react-router-dom";
 import Mypage from "../pages/Mypage";
@@ -8,14 +8,11 @@ const books = "/images/ccc_image/books.png";
 const user = "/images/ccc_image/user.png";
 const upArrow = "/images/ccc_image/up-arrow.png";
 
-const userid = JSON.parse(sessionStorage.getItem('userid'));
+const loginIcon = "/images/ccc_other/login.png"; // 로그인 아이콘 이미지 경로
+const registerIcon = "/images/ccc_other/register.png"; // 회원가입 아이콘 이미지 경로
 
+const userid = JSON.parse(sessionStorage.getItem("userid"));
 
-if (userid) {
-  console.log('사용자: ', userid);
-} else {
-  console.log('로그인 정보가 없습니다.');
-}
 class Header extends React.Component {
   // 검색창의 값과 Mypage 컴포넌트의 표시 상태를 저장하기 위한 state를 설정합니다.
   state = {
@@ -33,11 +30,9 @@ class Header extends React.Component {
     this.setState({ search: event.target.value });
   };
 
-  
-
   render() {
     console.log("헤더 렌더링됨.");
-    console.log('사용자: ', userid);
+    console.log("사용자: ", userid);
     return (
       <React.Fragment>
         <header className="header_fixed">
@@ -88,6 +83,18 @@ class Header extends React.Component {
                 >
                   <img src={user} alt="search_button" />
                 </button>
+                {/* 로그인 버튼 */}
+                <Link to="/login">
+                  <img className="login_icon" src={loginIcon} alt="로그인" />
+                </Link>
+                {/* 회원가입 버튼 */}
+                <Link to="/register">
+                  <img
+                    className="register_icon"
+                    src={registerIcon}
+                    alt="회원가입"
+                  />
+                </Link>
               </div>
             </div>
           </div>
@@ -112,10 +119,8 @@ class Header extends React.Component {
   };
 }
 
-
 if (userid) {
-  console.log('사용자: ', userid);
-
+  console.log("사용자: ", userid);
 } else {
   console.log("로그인 정보가 없습니다.");
 }

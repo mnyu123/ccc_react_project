@@ -32,8 +32,9 @@
     margin-right: 0;
 }
 
+/* 책 이미지 설정 관련 */
 .todaybooks_wrap .book_cover {
-    width: 300px;
+    width: 100px; /* 가로 크기 */
     height: auto;
     object-fit: cover;
     box-shadow: 0px 0px 50px 8px rgba(63, 63, 63, 0.2);

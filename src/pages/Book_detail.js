@@ -1,21 +1,72 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 import "../css/Book_detail.css";
 import Header from "../common/Header";
 import Footer from "../common/Footer";
+import BestList from "../common/BestList"; // BestList 컴포넌트를 임포트합니다.
 const defaultImage = "/images/ccc_image/bookmarks.png";
 const changedImage = "/images/ccc_image/bookmarkson.png";
 
+
 const BookDetail = () => {
+  const { bookIsbn } = useParams();
+  const [bookDetail, setBookDetail] = useState(null);
+  const [bestList, setBestList] = useState([]);
   const [libraryIcon, setLibraryIcon] = useState(defaultImage);
   const [descriptionMore, setDescriptionMore] = useState(false);
 
-  const handleLibraryBtnClick = () => {
-    setLibraryIcon(libraryIcon === defaultImage ? changedImage : defaultImage);
-  };
+// 로그인한 사용자의 아이디를 가져옵니다.
+const userId = sessionStorage.getItem('userid'); 
+
+// 내 서재 담기 버튼 클릭 이벤트 핸들러
+const handleLibraryBtnClick = () => {
+  if (libraryIcon === defaultImage) {
+    setLibraryIcon(changedImage);
+    let favorites = JSON.parse(localStorage.getItem(userId)) || [];
+    favorites.push(bookDetail);
+    localStorage.setItem(userId, JSON.stringify(favorites));
+    localStorage.setItem(`${bookDetail.isbn}-icon`, changedImage);  // 아이콘 상태 저장
+  } else {
+    setLibraryIcon(defaultImage);
+    let favorites = JSON.parse(localStorage.getItem(userId)) || [];
+    favorites = favorites.filter(book => book.isbn !== bookDetail.isbn);
+    localStorage.setItem(userId, JSON.stringify(favorites));
+    localStorage.setItem(`${bookDetail.isbn}-icon`, defaultImage);  // 아이콘 상태 저장
+  }
+};
+
+// 이미 즐겨찾기에 추가된 책인지 확인합니다.
+const favorites = JSON.parse(localStorage.getItem(userId)) || [];
 
   const handleExpandBtnClick = () => {
     setDescriptionMore(!descriptionMore);
   };
+
+  useEffect(() => {
+    const fetchBookDetail = async () => {
+      try {
+        // API를 호출합니다.
+        const response = await axios.get(`/api/bookDetail/${bookIsbn}`);
+        console.log("API 응답 결과 테스트용:", response); // API 응답 출력
+        // 상태를 업데이트합니다.
+        setBookDetail(response.data.item[0]);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchBookDetail();
+    // 이미 즐겨찾기에 추가된 책인지 확인합니다.
+    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    if (favorites.some(book => book.isbn === bookIsbn)) {
+      setLibraryIcon(changedImage);
+    }
+
+    const iconState = localStorage.getItem(`${bookIsbn}-icon`);
+  if (iconState) {
+    setLibraryIcon(iconState);
+  }
+  }, [bookIsbn]);
 
   return (
     <>
@@ -28,40 +79,45 @@ const BookDetail = () => {
               alt="Left Image"
               className="side-image"
             />
-            <p className="bintro">
-              음악 속에서 새로운 의미를 만들어낸다는 점이 NCT의 특별함이라고
-              생각해요.
-            </p>
+            {/* 책 설명 부분 왼쪽에 크게 */}
+            {bookDetail && <p className="bintro">{bookDetail.description}</p>}
             <img
-              src="/images/ccc_image/double-quotes (1).png"
+              src="/images/ccc_image/right.png"
               alt="Right Image"
               className="side-image"
             />
           </div>
 
-          <div className="book_cover_wrap">
-            <img
-              src="/images/ccc_bookcover/아레나 옴므+(2023년 11월호).jpg"
-              alt="book cover image"
-              className="book_cover"
-            />
-          </div>
           <div className="book_info_wrap">
-            <div className="book_info">
-              <div className="category_wrap">
-                <p className="category">
-                  분야 : <span className="category_db">잡지</span>
-                </p>
+            {bookDetail && (
+              <div className="book_info">
+                <div className="category_wrap">
+                  <p className="category">
+                    분야 :{" "}
+                    <span className="category_db">
+                      {bookDetail.categoryName}
+                    </span>
+                  </p>
+                </div>
+                <div className="title_wrap">
+                  <p className="title">
+                    {bookDetail.title.replace("알라딘 상품정보 - ", "")}{" "}
+                  </p>
+                </div>
+                <div className="info_wrap">
+                  <p className="author">{bookDetail.author}</p>
+                  <p className="publisher">{bookDetail.publisher}</p>
+                  <p className="date">{bookDetail.pubDate}</p>
+                </div>
+                <div className="book_cover_wrap">
+                  <img
+                    src={bookDetail.cover}
+                    alt={bookDetail.title}
+                    className="book_cover"
+                  />
+                </div>
               </div>
-              <div className="title_wrap">
-                <p className="title"> 아레나 옴므+(2023년 11월호) </p>
-              </div>
-              <div className="info_wrap">
-                <p className="author">아레나옴므 편집부 저자(글)</p>
-                <p className="publisher">서울문화</p>
-                <p className="date">2023년 10월 20일</p>
-              </div>
-            </div>
+            )}
             <div className="libraryBtn_wrap">
               <button className="libraryBtn" onClick={handleLibraryBtnClick}>
                 <div className="button_content">
@@ -81,87 +137,32 @@ const BookDetail = () => {
             <div className="book_description">
               <h2>작품 소개</h2>
               <div className="description_box">
-                <p className="description_content">
-                  블랙칼라 워커를 위한 국내 최초의 남성 패션지 아레나 옴므
-                  플러스.
-                </p>
+                {bookDetail && (
+                  <p className="description_content">
+                    {bookDetail.description}
+                  </p>
+                )}
                 <p className="summary">줄거리</p>
-                <p
-                  className="description_more"
-                  style={{ display: descriptionMore ? "block" : "none" }}
-                >
-                  주요기사 : NCT 도영18p{" "}
-                </p>
+                {bookDetail && (
+                  <p
+                    className="description_more"
+                    style={{ display: descriptionMore ? "block" : "none" }}
+                  >
+                    {bookDetail.description}
+                  </p>
+                )}
                 <button className="expand_btn" onClick={handleExpandBtnClick}>
                   {descriptionMore ? "접기▲" : "펼치기▼"}
                 </button>
               </div>
             </div>
-            <div className="best_category">
-              <div className="best_category_wrap">
-                <h2>분야 베스트</h2>
-                <ul className="best_list">
-                  <li>
-                    <div className="number_image_wrapper">
-                      <img src="/images/ccc_image/1.png" alt="1번" />
-                    </div>
-                    <a href="페이지1의_링크">
-                      <span className="text_wrapper">
-                        보그(2023년 10월호)(E형)
-                      </span>
-                    </a>
-                  </li>
-                  <div className="dotted-line"></div>
-                  <li>
-                    <div className="number_image_wrapper">
-                      <img src="/images/ccc_image/2.png" alt="2번" />
-                    </div>
-                    <a href="페이지2의_링크">
-                      <span className="text_wrapper">
-                        보나몽(2023년 10월호)
-                      </span>
-                    </a>
-                  </li>
-                  <div className="dotted-line"></div>
-                  <li>
-                    <div className="number_image_wrapper">
-                      <img src="/images/ccc_image/3.png" alt="3번" />
-                    </div>
-                    <a href="페이지3의_링크">
-                      <span className="text_wrapper">
-                        아레나 옴므+(2023년 11월호)
-                      </span>
-                    </a>
-                  </li>
-                  <div className="dotted-line"></div>
-                  <li>
-                    <div className="number_image_wrapper">
-                      <img src="/images/ccc_image/4.png" alt="4번" />
-                    </div>
-                    <a href="페이지4의_링크">
-                      <span className="text_wrapper">
-                        초등독서평설(2023년 10월호)
-                      </span>
-                    </a>
-                  </li>
-                  <div className="dotted-line"></div>
-                  <li>
-                    <div className="number_image_wrapper">
-                      <img src="/images/ccc_image/5.png" alt="5번" />
-                    </div>
-                    <a href="페이지5의_링크">
-                      <span className="text_wrapper">
-                        게이머즈(2023년 10월 283호)
-                      </span>
-                    </a>
-                  </li>
-                  <div className="dotted-line"></div>
-                </ul>
-              </div>
-            </div>
           </div>
+          {bookDetail && <BestList categoryId={bookDetail.categoryId} />} 
+          {/* categoryId를 prop으로 전달함 */}
+          {/* BestList 컴포넌트 호출 */}
         </div>
       </main>
+
       <Footer />
     </>
   );

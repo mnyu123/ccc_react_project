@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import Header from "../common/Header";
 import Footer from "../common/Footer";
@@ -9,17 +10,36 @@ const MyLibrary = () => {
 
   const [isListCoverClicked, setIsListCoverClicked] = useState(false);
   const [isListViewClicked, setIsListViewClicked] = useState(false);
+  const [favorites, setFavorites] = useState([]);
 
   const [scrollPosition, setScrollPosition] = useState(0);
   const headerNormalHeight = 0; // 적절한 높이 값으로 설정해주세요
 
+  const navigate = useNavigate();
+
   useEffect(() => {
+    // 페이지가 로드될 때 로그인 상태를 확인
+    const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+
+    // 로그인 상태가 true가 아닐 경우 로그인 페이지로 이동
+    if (isLoggedIn !==  'true') {
+      navigate('/login');
+    }
+    
     const onScroll = () => {
       setScrollPosition(window.pageYOffset);
     };
     window.addEventListener("scroll", onScroll);
 
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const userId = sessionStorage.getItem('userid'); 
+  useEffect(() => {
+    const savedFavorites = JSON.parse(localStorage.getItem(userId));
+    if(savedFavorites) {
+      setFavorites(savedFavorites);
+    }
   }, []);
 
   return (
@@ -93,6 +113,15 @@ const MyLibrary = () => {
           <div className="container1">
             <div className="book-container1" id="bookContainer">
               {/* 동적으로 생성될 책 항목 */}
+              {favorites.map((book, index) => (
+      <div key={index}>
+        <Link to={`/bookDetail/${book.isbn}`} key={book.isbn}>
+          <img src={book.cover} alt={book.title} />
+          <h4>{book.title}</h4>
+          <p>{book.author}</p>
+        </Link>
+      </div>
+    ))}
             </div>
           </div>
           <div className="container2">
