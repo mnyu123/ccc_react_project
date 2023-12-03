@@ -26,11 +26,13 @@ const handleLibraryBtnClick = () => {
     let favorites = JSON.parse(localStorage.getItem(userId)) || [];
     favorites.push(bookDetail);
     localStorage.setItem(userId, JSON.stringify(favorites));
+    localStorage.setItem(`${bookDetail.isbn}-icon`, changedImage);  // 아이콘 상태 저장
   } else {
     setLibraryIcon(defaultImage);
     let favorites = JSON.parse(localStorage.getItem(userId)) || [];
     favorites = favorites.filter(book => book.isbn !== bookDetail.isbn);
     localStorage.setItem(userId, JSON.stringify(favorites));
+    localStorage.setItem(`${bookDetail.isbn}-icon`, defaultImage);  // 아이콘 상태 저장
   }
 };
 
@@ -59,6 +61,11 @@ const favorites = JSON.parse(localStorage.getItem(userId)) || [];
     if (favorites.some(book => book.isbn === bookIsbn)) {
       setLibraryIcon(changedImage);
     }
+
+    const iconState = localStorage.getItem(`${bookIsbn}-icon`);
+  if (iconState) {
+    setLibraryIcon(iconState);
+  }
   }, [bookIsbn]);
 
   return (
