@@ -17,6 +17,7 @@ const Main_monthbook = () => {
             QueryType: "Title",
           },
         });
+        console.log("이달의 책 테스트 : ",response.data.item); // 디버깅용
         setBooks(response.data.item);
       } catch (e) {
         console.log(e);
@@ -42,7 +43,7 @@ const Main_monthbook = () => {
         </div>
       ) : (
         <div className="book_covers">
-          {books.map((book, index) => (
+          {books.slice(0, viewMore ? 3 : books.length).map((book, index) => (
             <Link to={`/bookDetail/${book.isbn}`} key={book.isbn}>
               <div className="coverbook1">
                 <img src={book.cover} alt={`book${index + 1}`} />
