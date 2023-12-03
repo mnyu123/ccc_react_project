@@ -1,5 +1,14 @@
-.custom-class {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
+.smain_container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+}
+
+.smain_container h2 {
+  margin-bottom: 20px; /* 제목과 슬라이더 사이의 거리를 조절합니다. */
+}
+
+.smain_container .main-slider {
+  width: 45%;
 }
