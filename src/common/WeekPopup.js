@@ -37,10 +37,6 @@ if (isLoggedIn !==  'true') {
   navigate('/');
 }
 
-    document.body.style.overflow = 'hidden'; // 모달이 마운트되면 스크롤을 막습니다.
-    return () => {
-      document.body.style.overflow = 'unset'; // 모달이 언마운트되면 스크롤을 허용합니다.
-    };
   }, []);
 
 
