@@ -1,23 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Slider from "react-slick";
+import axios from "axios";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
 import "../css/custom.css";
 
-// api 정보 관련 가져오기
-import axios from "axios";
-
 const MainSlider = () => {
-  // api 관련
   const [books, setBooks] = useState([]);
+  const slider1 = useRef();
+  const slider2 = useRef();
 
-  const settings = {
-    dots: false,
+  const settings1 = {
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    arrows: true,
+    fade: true,
+    asNavFor: slider2.current,
+  };
+
+  const settings2 = {
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    asNavFor: slider1.current,
+    arrows: false,
+    centerMode: true,
+    focusOnSelect: true,
   };
 
   useEffect(() => {
@@ -40,10 +49,10 @@ const MainSlider = () => {
   return (
     <div className="smain_container">
       <h2>오늘의 책</h2>
-      <Slider {...settings} className="main">
-        {books.map((book) => (
-          <div className="item1 custom-class" key={book.isbn}>
-            <div className="slide-content">
+      <div className="main-slider">
+        <Slider {...settings1} ref={slider1} className="main">
+          {books.map((book) => (
+            <div key={book.isbn}>
               <img className="img1" src={book.cover} alt={book.title} />
               <div className="book-info">
                 <p className="book-title">{book.title}</p>
@@ -54,9 +63,18 @@ const MainSlider = () => {
                 </p>
               </div>
             </div>
-          </div>
-        ))}
-      </Slider>
+          ))}
+        </Slider>
+      </div>
+      <div className="main-slider">
+        <Slider {...settings2} ref={slider2}>
+          {books.map((book) => (
+            <div key={book.isbn}>
+              <img className="img1" src={book.cover} alt={book.title} />
+            </div>
+          ))}
+        </Slider>
+      </div>
     </div>
   );
 };
