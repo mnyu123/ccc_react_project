@@ -11,7 +11,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 790px;
-    height: auto;
+    height: 485px;
     background-color: #f8f6fa;
     border-radius: 15px;
     border: 1px solid #1b003a;
@@ -81,11 +81,12 @@
 }
 
 .error-message2 {
-    color: red;
+     color: red;
     display: none;
     font-size: 10px;
     position: absolute;
-    bottom: 5px;
+    right: 0;
+    margin-right: 80px;
 }
 
 .positioned-container2 {
@@ -95,12 +96,6 @@
     justify-content: flex-end;
     flex-direction: row;
     position: relative;
-}
-
-.error-message2,
-.signup-btn2 {
-    position: absolute;
-    left: 0;
 }
 
 form {
@@ -137,9 +132,9 @@ input[type="checkbox"]:checked:before {
 }
 
 .signup-btn2 {
-    position: absolute; /* 버튼의 위치를 절대적으로 설정 */
-    right: 0; /* 오른쪽으로부터 0px 떨어진 위치에 배치 */
     bottom: 0;
+    position: absolute;
+    left: 0;
     box-sizing: border-box;
     width: 80px;
     margin-left: 475px;
