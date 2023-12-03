@@ -18,7 +18,7 @@ router.get("/:categoryId", async (req, res) => {
           CategoryId: req.params.categoryId,
           Query: req.query.Query, // 클라이언트에서 보낸 검색어를 사용합니다.
           QueryType: req.query.QueryType, // 클라이언트에서 보낸 검색어 종류를 사용합니다.
-          MaxResults: 10,
+          MaxResults: 9,
           start: 1,
           SearchTarget: "Book",
           output: "js",

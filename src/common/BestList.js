@@ -11,7 +11,7 @@ const BestList = ({ categoryId }) => {
         const response = await axios.get(`/api/bestList/${categoryId}`);
         console.log("API 응답 결과 테스트용:", response); // API 응답 출력
         // 상태를 업데이트합니다.
-        setBestList(response.data.item);
+        setBestList(response.data.item.slice(0, 5));
       } catch (e) {
         console.log(e);
       }
@@ -32,7 +32,7 @@ const BestList = ({ categoryId }) => {
                   alt={`${index + 1}번`}
                 />
               </div>
-              <a href={book.link}>
+              <a href={`http://localhost:3001/bookDetail/${book.isbn}`}>
                 <span className="text_wrapper">{book.title}</span>
               </a>
               <div className="dotted-line"></div>
