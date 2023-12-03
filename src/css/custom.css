@@ -3,6 +3,7 @@
   justify-content: space-between;
   flex-direction: row; /* 자식 요소들을 가로로 배치합니다. */
   align-items: center; /* 자식 요소들을 세로선 중앙에 배치합니다. */
+  padding: 100px; /* 모든 방향에 20px의 내부 여백을 추가합니다. */
 }
 
 .smain_container h2 {
@@ -14,4 +15,17 @@
 
 .smain_container .main-slider {
   width: 45%;
+}
+
+.img1 {
+  width: 150px;
+  height: auto;
+  float: left;
+  margin-right: 20px;
+}
+
+.book-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
