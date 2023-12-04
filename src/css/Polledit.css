@@ -154,14 +154,18 @@ input[type="checkbox"]:checked:before {
     align-items: center;
 }
 
-.close-btn2 {
+.title-container2 button {
     background-color: transparent;
     border: none;
     cursor: pointer;
     margin-right: 10px;
 }
 
-.close-btn2 img {
+.title-container2 button img {
     height: 25px;
     width: 25px;
+}
+
+.title-container2 button:hover {
+    background-color: transparent !important;
 }
