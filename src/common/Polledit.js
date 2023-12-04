@@ -86,10 +86,18 @@ const Polledit = (props) => {
         책 선호 장르를 선택해 주세요.
       </div>
       <div className="content2">
-        {genres.map((genre, index) => (<div key={index} className="genre-item2">
-          <input type="checkbox" name="genre" value={genre} checked={selectedGenres.includes(genre)} onChange={() => handleCheck(genre)} />
-          <span className="genre-name2">
-            {genre}</span> </div>))}
+        {genres.map((genre, index) => (
+          <div key={index} className="genre-item2">
+            <input type="checkbox" 
+            name="genre" 
+            value={genre} 
+            checked={selectedGenres.includes(genre)} 
+            onChange={() => handleCheck(genre)} />
+            <span className="genre-name2">
+              {genre}
+            </span>
+          </div>
+        ))}
         <div className="positioned-container2">
           {errorMessage && <p className={`error-message2 ${errorMessage ? "show-error2" : ""}`}>
             적어도 하나의 장르를 선택해 주세요.</p>}

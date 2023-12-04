@@ -74,14 +74,14 @@ const Poll = ({ isModalOpen, setIsModalOpen, userId }) => {
     <div id="popup" className={`popup ${isModalOpen ? "show-popup" : ""}`}>
       <div className="overlay"></div>
       <div className="content-title">
-        <h1>선호 장르 조사</h1>
+        선호 장르 조사
       </div>
       <div className="content-explain">
-        <h2>책 선호 장르를 선택해 주세요.</h2>
+        책 선호 장르를 선택해 주세요.
       </div>
       <div className="content">
         {genres.map((genre, index) => (
-          <div key={index}>
+          <div key={index} className="genre-item">
             <input
               type="checkbox"
               name="genre"
@@ -89,18 +89,21 @@ const Poll = ({ isModalOpen, setIsModalOpen, userId }) => {
               checked={selectedGenres.includes(genre)}
               onChange={() => handleCheck(genre)}
             />{" "}
-            {genre}
+            <span className="genre-name2">
+              {genre}
+            </span>
           </div>
         ))}
         <div className="positioned-container">
-          {errorMessage && (
-            <p className="error-message">적어도 하나의 장르를 선택해 주세요.</p>
-          )}
+          <div className="button-and-error">
+            <button className="signup-btn" onClick={handleSubmit}>
+              회원가입
+            </button>
+            {errorMessage && <p className={`error-message ${errorMessage ? "show-error" : ""}`}>
+              적어도 하나의 장르를 선택해 주세요.</p>}
+          </div>
           {isSignedUp && <p>회원가입이 완료되었습니다.</p>}{" "}
           {/* 회원가입 완료 메시지 출력 */}
-          <button className="signup-btn" onClick={handleSubmit}>
-            회원가입
-          </button>
         </div>
       </div>
     </div>
