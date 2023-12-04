@@ -81,7 +81,7 @@
 }
 
 .error-message2 {
-     color: red;
+    color: red;
     display: none;
     font-size: 10px;
     position: absolute;
@@ -96,16 +96,6 @@
     justify-content: flex-end;
     flex-direction: row;
     position: relative;
-}
-
-form {
-    flex-basis: 33.33%;
-    font-size: 150%;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    margin-right: 20px;
-    margin-left: 20px;
-    line-height: 175%;
 }
 
 input[type="checkbox"] {
@@ -131,14 +121,14 @@ input[type="checkbox"]:checked:before {
     background-color: #611ab3;
 }
 
-.signup-btn2 {
+.positioned-container2 button {
     bottom: 0;
     position: absolute;
     left: 0;
     box-sizing: border-box;
-    width: 80px;
+    width: 100px;
     margin-left: 475px;
-    font-size: 20px;
+    font-size: 18px;
     padding: 3px;
     padding-left: 27px;
     padding-right: 27px;
@@ -149,7 +139,7 @@ input[type="checkbox"]:checked:before {
     font-weight: 600;
 }
 
-.signup-btn2:hover {
+.positioned-container2 button:hover {
     color: white;
     background-color: #611ab3;
 }

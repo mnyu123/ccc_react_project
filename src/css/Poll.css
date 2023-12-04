@@ -93,6 +93,7 @@
     position: absolute;
     right: 0;
     margin-right: 80px;
+    margin-top: 5px;
 }
 
 .positioned-container {
@@ -108,16 +109,6 @@
 .signup-btn {
     position: absolute;
     left: 0;
-}
-
-form {
-    flex-basis: 33.33%;
-    font-size: 150%;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    margin-right: 20px;
-    margin-left: 20px;
-    line-height: 175%;
 }
 
 input[type="checkbox"] {
