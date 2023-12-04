@@ -79,12 +79,12 @@ const CccRegister = () => {
         <Link to="/">
           <img src={logo} alt="로고" />
         </Link>
-        <div className="content">
+        <div className="content_rg">
           <form
             id="join_form"
             method="post"
             action="register_system.php"
-            className="form"
+            className="form_rg"
           >
             <div className="form_content">
               <div className="form_section">
@@ -130,50 +130,59 @@ const CccRegister = () => {
                     />
                   </div>
                   <div className="form_item adult" id="divIdentityGender">
-                    <span className="label">성별</span>
-                    <div className="radio_group">
-                      <label className="radio_label">
+                    <ul className="adult_list">
+                      <li className="radio_item frist">
                         <input
                           type="radio"
                           id="identityGender1"
                           name="identityGender"
                           value="M"
+                          className="blind"
                           onChange={handleGenderChange}
                         />
-                        남자
-                      </label>
-                      <label className="radio_label">
+                        <label htmlFor="identityGender1">남자</label>
+                      </li>
+                      <li className="radio_item frist">
                         <input
                           type="radio"
                           id="identityGender2"
                           name="identityGender"
                           value="F"
+                          className="blind"
                           onChange={handleGenderChange}
                         />
-                        여자
-                      </label>
-                    </div>
+                        <label htmlFor="identityGender2">여자</label>
+                      </li>
+                    </ul>
+                    <ul className="adult_list" id="listForeigner">
+                      <li className="radio_item second">
+                        <input type="radio" id="foreigner1" name="foreigner" value="K" className="blind" checked />
+                        <label htmlFor="foreigner1">연령대</label>
+                      </li>
+
+                      <li className="radio_item second">
+                        <select
+                          id="ageRange"
+                          name="ageRange"
+                          className="custom-select"
+                          onChange={handleAgeChange}
+                        >
+                          <option value="">선택하세요▽</option>
+                          <option value="10">10대</option>
+                          <option value="20">20대</option>
+                          <option value="30">30대</option>
+                          <option value="40">40대</option>
+                          <option value="50">50대</option>
+                          <option value="60">60대</option>
+                          <option value="70">70대</option>
+                          <option value="80">80대</option>
+                        </select>
+                      </li>
+                    </ul>
+
                   </div>
-                  <div className="form_item adult" id="divAgeRange">
-                    <span className="label">연령대</span>
-                    <select
-                      id="ageRange"
-                      name="ageRange"
-                      className="custom-select"
-                      onChange={handleAgeChange}
-                      style={{ color: color, fontWeight: fontWeight }}
-                    >
-                      <option value="">선택하세요▽</option>
-                      <option value="10">10대</option>
-                      <option value="20">20대</option>
-                      <option value="30">30대</option>
-                      <option value="40">40대</option>
-                      <option value="50">50대</option>
-                      <option value="60">60대</option>
-                      <option value="70">70대</option>
-                      <option value="80">80대</option>
-                    </select>
-                  </div>
+
+
                 </div>
               </div>
             </div>
