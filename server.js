@@ -132,6 +132,26 @@ app.post("/polledit", (req, res) => {
   );
 });
 
+app.get("/api/usergenre/:userId", (req, res) => {
+  const userId = req.params.userId;
+  const query = "SELECT * FROM usergenre WHERE UserID = ?";
+
+  db.query(query, [userId], (error, results) => {
+    if (error) {
+      console.error(error);
+      res.status(500).send({
+        error: "장르 정보를 가져오는데 실패하였습니다. 다시 시도해주세요.",
+      });
+    } else {
+      if (results.length > 0) {
+        res.send({ success: true, genre1: results[0].genre1 });
+      } else {
+        res.send({ success: false, message: "장르 정보가 없습니다." });
+      }
+    }
+  });
+});
+
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });

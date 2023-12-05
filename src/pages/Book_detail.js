@@ -8,7 +8,6 @@ import BestList from "../common/BestList"; // BestList 컴포넌트를 임포트
 const defaultImage = "/images/ccc_image/bookmarks.png";
 const changedImage = "/images/ccc_image/bookmarkson.png";
 
-
 const BookDetail = () => {
   const { bookIsbn } = useParams();
   const [bookDetail, setBookDetail] = useState(null);
@@ -16,34 +15,35 @@ const BookDetail = () => {
   const [libraryIcon, setLibraryIcon] = useState(defaultImage);
   const [descriptionMore, setDescriptionMore] = useState(false);
 
-// 로그인한 사용자의 아이디를 가져옵니다.
-const userId = sessionStorage.getItem('userid'); 
+  // 로그인한 사용자의 아이디를 가져옵니다.
+  const userId = sessionStorage.getItem("userid");
 
-// 내 서재 담기 버튼 클릭 이벤트 핸들러
-const handleLibraryBtnClick = () => {
-  if (libraryIcon === defaultImage) {
-    setLibraryIcon(changedImage);
-    let favorites = JSON.parse(localStorage.getItem(userId)) || [];
-    favorites.push(bookDetail);
-    localStorage.setItem(userId, JSON.stringify(favorites));
-    localStorage.setItem(`${bookDetail.isbn}-icon`, changedImage);  // 아이콘 상태 저장
-  } else {
-    setLibraryIcon(defaultImage);
-    let favorites = JSON.parse(localStorage.getItem(userId)) || [];
-    favorites = favorites.filter(book => book.isbn !== bookDetail.isbn);
-    localStorage.setItem(userId, JSON.stringify(favorites));
-    localStorage.setItem(`${bookDetail.isbn}-icon`, defaultImage);  // 아이콘 상태 저장
-  }
-};
+  // 내 서재 담기 버튼 클릭 이벤트 핸들러
+  const handleLibraryBtnClick = () => {
+    if (libraryIcon === defaultImage) {
+      setLibraryIcon(changedImage);
+      let favorites = JSON.parse(localStorage.getItem(userId)) || [];
+      favorites.push(bookDetail);
+      localStorage.setItem(userId, JSON.stringify(favorites));
+      localStorage.setItem(`${bookDetail.isbn}-icon`, changedImage); // 아이콘 상태 저장
+    } else {
+      setLibraryIcon(defaultImage);
+      let favorites = JSON.parse(localStorage.getItem(userId)) || [];
+      favorites = favorites.filter((book) => book.isbn !== bookDetail.isbn);
+      localStorage.setItem(userId, JSON.stringify(favorites));
+      localStorage.setItem(`${bookDetail.isbn}-icon`, defaultImage); // 아이콘 상태 저장
+    }
+  };
 
-// 이미 즐겨찾기에 추가된 책인지 확인합니다.
-const favorites = JSON.parse(localStorage.getItem(userId)) || [];
+  // 이미 즐겨찾기에 추가된 책인지 확인합니다.
+  const favorites = JSON.parse(localStorage.getItem(userId)) || [];
 
   const handleExpandBtnClick = () => {
     setDescriptionMore(!descriptionMore);
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0); // 항상 페이지 최상단으로 focus
     const fetchBookDetail = async () => {
       try {
         // API를 호출합니다.
@@ -57,15 +57,15 @@ const favorites = JSON.parse(localStorage.getItem(userId)) || [];
     };
     fetchBookDetail();
     // 이미 즐겨찾기에 추가된 책인지 확인합니다.
-    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    if (favorites.some(book => book.isbn === bookIsbn)) {
+    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    if (favorites.some((book) => book.isbn === bookIsbn)) {
       setLibraryIcon(changedImage);
     }
 
     const iconState = localStorage.getItem(`${bookIsbn}-icon`);
-  if (iconState) {
-    setLibraryIcon(iconState);
-  }
+    if (iconState) {
+      setLibraryIcon(iconState);
+    }
   }, [bookIsbn]);
 
   return (
@@ -86,6 +86,15 @@ const favorites = JSON.parse(localStorage.getItem(userId)) || [];
               alt="Right Image"
               className="side-image"
             />
+          </div>
+          <div className="book_cover_wrap">
+            {bookDetail && (
+              <img
+                src={bookDetail.cover}
+                alt={bookDetail.title}
+                className="book_cover"
+              />
+            )}
           </div>
 
           <div className="book_info_wrap">
@@ -108,13 +117,6 @@ const favorites = JSON.parse(localStorage.getItem(userId)) || [];
                   <p className="author">{bookDetail.author}</p>
                   <p className="publisher">{bookDetail.publisher}</p>
                   <p className="date">{bookDetail.pubDate}</p>
-                </div>
-                <div className="book_cover_wrap">
-                  <img
-                    src={bookDetail.cover}
-                    alt={bookDetail.title}
-                    className="book_cover"
-                  />
                 </div>
               </div>
             )}
@@ -157,7 +159,7 @@ const favorites = JSON.parse(localStorage.getItem(userId)) || [];
               </div>
             </div>
           </div>
-          {bookDetail && <BestList categoryId={bookDetail.categoryId} />} 
+          {bookDetail && <BestList categoryId={bookDetail.categoryId} />}
           {/* categoryId를 prop으로 전달함 */}
           {/* BestList 컴포넌트 호출 */}
         </div>

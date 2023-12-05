@@ -31,7 +31,7 @@
     box-sizing: border-box;
     flex-direction: column;
     font-size: initial;
-line-height: initial;
+    line-height: initial;
 }
 
 .form_content {
@@ -208,12 +208,14 @@ line-height: initial;
     font-weight: 600;
     color: #692ead;
 }
+
 .second input:checked+label {
     z-index: 1;
     border-color: #692ead;
     font-weight: 600;
     color: #692ead;
 }
+
 .radio_item label {
     display: block;
     position: relative;
@@ -245,11 +247,11 @@ line-height: initial;
 }
 
 .custom-select::before {
-    position:absolute; 
-    top:0; 
-    bottom:0; 
-    margin:auto; 
-    content:'▼';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    content: '▼';
 }
 
 
@@ -262,7 +264,7 @@ line-height: initial;
     list-style: none
 }
 
-.adult_list .radio_item{
+.adult_list .radio_item {
     display: flex;
     align-items: center;
     margin-top: 10px;
@@ -275,4 +277,3 @@ line-height: initial;
 .radio_group label {
     cursor: pointer;
 }
-
