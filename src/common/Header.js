@@ -35,8 +35,8 @@ class Header extends React.Component {
     console.log("사용자: ", userid);
     return (
       <React.Fragment>
-        <header className="header_fixed">
-          <div className="header_inner">
+        <header className="header_fixed2">
+          <div className="header_inner2">
             <div className="logo">
               <Link to="/">
                 <img src={logo} alt="로고" />
@@ -50,7 +50,7 @@ class Header extends React.Component {
                     id="search"
                     name="search"
                     placeholder="관심있는 책을 검색해보세요."
-                    className="input_text"
+                    className="input_text_hd"
                     value={this.state.search}
                     // state의 값을 사용합니다.
                     onChange={this.handleChange}
