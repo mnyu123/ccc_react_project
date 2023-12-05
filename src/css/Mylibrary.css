@@ -5,9 +5,9 @@
     padding: 0;
 }
 
-main {
+.mylibrary-maincontainer {
     padding-top: 140px;
-    /* Header 컴포넌트의 높이에 따라 값을 조정해주세요. */
+    
 }
 
 button,
@@ -31,7 +31,7 @@ button {
 }
 
 .mylibrary {
-    width: 100%;
+    width: 1280px;
     padding: 100px 0 0 0;
     /* 100px padding-top added for the header */
     margin: auto;
@@ -39,8 +39,18 @@ button {
     justify-content: center;
 }
 
-/* 책 부분 */
+.library {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    gap: 1em;
+    font-weight: 600;
+    font-size: 25px;
+    color: #373737;
+}
 
+/* 책 부분 */
 .concontainer {
     width: 100%;
     padding: 0;
@@ -51,34 +61,41 @@ button {
 }
 
 /* 표지 보기 */
-
-.container1 {
-    width: 100%;
-    padding: 0;
-    margin: auto;
-    display: flex;
-    justify-content: center;
-}
-
-.book-container1 {
+.container1 .book-container1 {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 10px;
-    justify-content: flex-start;
+    justify-content: center;
     align-content: flex-start;
 }
 
-
-
-.container2 {
-    width: 100%;
-    padding: 0;
-    margin: auto;
-    display: none;
-    justify-content: center;
+.container1 .book-container1 .book-item1 {
+    width: 220px;
+    height: 360px;
+    padding: 10px 15px 1px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
-.book-container2 {
+.container1 .book-container1 .book-item1 img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #f2ebfa;
+}
+
+.container1 .book-container1 .book-item1 .description {
+    display: none;
+}
+
+.container1 .book-container1 .book-item1 img.selected {
+    border: 2px solid #6626af;
+    box-shadow: 0px 2px 10px rgba(231, 170, 255, 0.2);
+    box-sizing: border-box;
+}
+
+/* 목록 보기 */
+.container2 .book-container2 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
@@ -86,55 +103,214 @@ button {
     align-content: flex-start;
 }
 
-#libraryTitle {
-    font-size: 30px;
-    /* 원하는 크기로 조정 */
+.container2 .book-container2 .book-item2 {
+    width: 637px;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    border-bottom: 1px solid #f2ebfa;
+}
+
+.container2 .book-container2 .book-item2 .book-content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.container2 .book-container2 .book-item2 .img-wrapper {
+    width: 100px;
+    height: auto;
+    margin-left: 30px;
+}
+
+.container2 .book-container2 .book-item2 .description {
+    width: calc(100% - 100px);
+}
+
+
+.container2 .book-container2 .book-item2 img.selected {
+    border: 2px solid #6626af;
+    box-shadow: 0px 2px 10px rgba(231, 170, 255, 0.2);
+    box-sizing: border-box;
+}
+
+.img-wrapper {
+    position: relative;
+}
+
+.img-wrapper img {
+    width: 100%;
+    height: 100%;
+}
+
+.border-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(100% - 4px);
+    height: calc(100% - 4px);
+    border: 2px solid transparent;
+    /* 초기 상태에서는 테두리가 보이지 않도록 설정 */
+}
+
+.book-item1 .img-wrapper.selected .border-overlay,
+.book-item2 .img-wrapper.selected .border-overlay {
+    border-color: #6626af;
+    /* 선택된 경우에만 테두리가 보이도록 설정 */
+}
+
+.description {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.description div:first-child {
+    font-size: 18px;
+    margin-left: 20px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #373737;
+}
+
+.description div:last-child {
+    font-size: 16px;
+    margin-left: 20px;
+    color: #373737;
+}
+
+/* 버튼 모음 */
+.button-container {
+    width: 840px;
+    height: 40px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between; /* 자식 요소들 사이에 공간을 최대한 분배 */
+    align-items: center;
+}
+
+.selectAllButtons {
+    order: 1;
+  }
+  
+  .editButtonsAndViewButtons {
+    order: 2;
+  }
+  
+  .library-list {
+    order: 3;
+  }
+  
+.button-container .editAll {
+    justify-content: space-between;
+    flex: 1;
+}
+  
+.button-container .library-list {
+    display: flex;
+}
+
+.editButtons {
+    margin-top: 5px;;
+}
+
+.libraryAll {
+    margin-top: 25px;
+}
+  
+.library-list {
+    order: 1;
+    margin-right: 15px;
+    margin-left: 15px;
+    border-radius: 5px;
+    border: 1.5px solid #6626af;
+}
+
+#selectAllBtn {
+    font-size: 15px;
+    color: #373737;
     font-weight: bold;
-    /* 글씨를 굵게 */
-    /* 기존의 CSS 속성들 */
+    margin-left: 25px;
+    padding-right: 15px;
+    border-right: 1px solid #373737;
+}
+
+#selectAllcancelBtn {
+    font-size: 15px;
+    color: #373737;
+    font-weight: bold;
+    margin-left: 15px;
 }
 
 #editBtn {
     font-size: 15px;
+    color: #373737;
     font-weight: bold;
+    padding: 1px 5px 1px 5px;
 }
 
+#deleteBtn {
+    font-size: 13px;
+    color: #373737;
+    border-top: 1px solid #6626af;
+    border-bottom: 1px solid #6626af;
+    border-left: 1px solid #6626af;
+    border-right: none;
+    border-radius: 3px 0px 0px 3px;
+    padding: 1px 5px 1px 5px;
+}
 
-button#editBtn:hover {
-    font-weight: bold;
-    background-color: purple;
-    /* 마우스 hover 시 배경색이 purple로 변함 */
+#cancelBtn {
+    font-size: 13px;
+    color: #373737;
+    border: 1px solid #6626af;
+    border-radius: 0px 3px 3px 0px;
+    padding: 1px 5px 1px 5px;
+}
+
+#editBtn:hover {
+    font-size: 15px;
+    background-color: #6626af;
     color: white;
-    /* 마우스 hover 시 폰트 색이 white로 변함 */
+    border-radius: 3px;
+    padding: 1px 5px 1px 5px;
 }
 
-button.listCoverBtn,
-button.listViewBtn {
-    background-color: purple;
-    /* 배경색이 purple로 설정 */
-    /* 기존의 CSS 속성들 */
+#deleteBtn:hover,
+#cancelBtn:hover {
+    font-size: 13px;
+    background-color: #6626af;
+    color: white;
+    padding: 1px 5px 1px 5px;
 }
 
-.library-convert {
-    display: flex;
-    /* Flexbox 레이아웃 적용 */
-    justify-content: center;
-    /* 가로축에서 아이템들을 중앙으로 정렬 */
-    /* 기존의 CSS 속성들 */
+.listCoverBtn,
+.listViewBtn {
+    width: 25px;
+    height: 25px;
+    border: none;
+    text-align: center;
+    display: inline-block;
+    transition-duration: 0.4s;
+    cursor: pointer;
 }
 
-.library-list {
-    display: flex;
-    /* Flexbox 레이아웃 적용 */
-    /* 기존의 CSS 속성들 */
-    border: 3px solid;
-    /* 버튼에 5px 테두리 추가 */
-    border-radius: 8px;
-    /* 테두리를 둥글게 설정 */
+
+.listCoverBtn {
+    margin: 2px 1px 2px 3px;
 }
 
-.editAll,
-.listAll {
-    margin: 10px;
-    /* 버튼들 사이에 10px 간격 추가 */
+.listViewBtn {
+    margin: 2px 3px 2px 1px;
+}
+
+.library-cover {
+    background-color: #6626af;
+    border-radius: 3px 0px 0px 3px;
+}
+
+.library-view {
+    background-color: white;
+    border-radius: 0px 3px 3px 0px;
 }
