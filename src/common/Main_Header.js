@@ -153,9 +153,11 @@ class Header extends React.Component {
                                         <li>
                                             <a href="#">오늘의 책</a>
                                         </li>
+                                        <span>|</span>
                                         <li>
                                             <a href="#monthbooks_wrap">이달의 책</a>
                                         </li>
+                                        <span>|</span>
                                         <li>
                                             <a href="#soaring_wrap">급상승</a>
                                         </li>

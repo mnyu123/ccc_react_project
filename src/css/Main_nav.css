@@ -3,7 +3,6 @@ html {
     scroll-behavior: smooth;
 }
 
-/* Header 컴포넌트의 높이와 패딩을 고려한 상단 여백 추가 */
 .small_nav_1 {
     padding: 25px;
 }
@@ -24,6 +23,8 @@ html {
 
 .small_nav_1 a {
     color: #373737;
+    text-decoration: none;
+    cursor: pointer
 }
 
 .small_nav_1 a:hover {
