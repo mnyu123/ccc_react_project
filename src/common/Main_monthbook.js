@@ -17,7 +17,7 @@ const Main_monthbook = () => {
             QueryType: "Title",
           },
         });
-        console.log("이달의 책 테스트 : ",response.data.item); // 디버깅용
+        // console.log("이달의 책 테스트 : ",response.data.item); // 디버깅용
         setBooks(response.data.item);
       } catch (e) {
         console.log(e);
