@@ -3,143 +3,131 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import Header from "../common/Header";
 import Footer from "../common/Footer";
-import "../css/Mylibrary.css"; // CSS를 분리하여 import
+import "../css/Mylibrary.css";
 
 const MyLibrary = () => {
   console.log("내 서재 화면 렌더링됨.");
 
-  const [isListCoverClicked, setIsListCoverClicked] = useState(false);
-  const [isListViewClicked, setIsListViewClicked] = useState(false);
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [selectedBooks, setSelectedBooks] = useState([]);
+  const [isListView, setIsListView] = useState(false);
   const [favorites, setFavorites] = useState([]);
 
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const headerNormalHeight = 0; // 적절한 높이 값으로 설정해주세요
+  const containerClass = () => isListView ? 'concontainer container2' : 'concontainer container1';
+  const bookContainerClass = () => isListView ? 'book-container book-container2' : 'book-container book-container1';
+
+
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    // 페이지가 로드될 때 로그인 상태를 확인
     const isLoggedIn = sessionStorage.getItem('isLoggedIn');
 
-    // 로그인 상태가 true가 아닐 경우 로그인 페이지로 이동
-    if (isLoggedIn !==  'true') {
+    if (isLoggedIn !== 'true') {
       navigate('/login');
     }
-    
-    const onScroll = () => {
-      setScrollPosition(window.pageYOffset);
-    };
-    window.addEventListener("scroll", onScroll);
 
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  const userId = sessionStorage.getItem('userid'); 
-  useEffect(() => {
+    const userId = sessionStorage.getItem('userid');
     const savedFavorites = JSON.parse(localStorage.getItem(userId));
-    if(savedFavorites) {
+    if (savedFavorites) {
       setFavorites(savedFavorites);
     }
   }, []);
 
+  const handleEditMode = () => {
+    setIsEditMode(!isEditMode);
+    setSelectedBooks([]);
+  }
+
+  const selectBook = (book) => {
+    if (isEditMode) {
+      if (selectedBooks.includes(book)) {
+        setSelectedBooks(selectedBooks.filter(selectedBook => selectedBook !== book));
+      } else {
+        setSelectedBooks([...selectedBooks, book]);
+      }
+    } else {
+      navigate(`/bookDetail/${book.isbn}`);
+    }
+  }
+
+  const selectAllBooks = () => {
+    setSelectedBooks(favorites);
+  }
+
+  const deselectAllBooks = () => {
+    setSelectedBooks([]);
+  }
+
+  const deleteSelectedBooks = () => {
+    setFavorites(favorites.filter(book => !selectedBooks.includes(book)));
+    setSelectedBooks([]);
+  }
+
   return (
-    <main>
+    <main className="mylibrary-maincontainer">
       <div className="libraryAll">
         <div className="library">
           <span id="libraryTitle">내 서재</span>
-          <span id="bookCount"></span>
+          <span id="bookCount">(총 {favorites.length}권)</span>
         </div>
-
-        <div className="library-convert">
-          <div className="editAll">
-            <button id="selectAllBtn" style={{ display: "none" }}>
-              전체 선택
-            </button>
-            <button id="selectAllcancelBtn" style={{ display: "none" }}>
-              전체 선택 취소
-            </button>
-            <div className="edit">
-              <button id="editBtn">편집</button>
-              <button id="deleteBtn" style={{ display: "none" }}>
-                삭제
-              </button>
-              <button id="cancelBtn" style={{ display: "none" }}>
-                취소
-              </button>
-            </div>
-          </div>
-
-          <div className="listAll">
-            <div className="library-list">
-              <div className="library-cover">
-                <button
-                  className="listCoverBtn"
-                  id="listCoverBtn"
-                  onClick={() => setIsListCoverClicked(!isListCoverClicked)}
-                >
-                  <img
-                    src={
-                      isListCoverClicked
-                        ? "/images/ccc_library/list-2.png"
-                        : "/images/ccc_library/list-1.png"
-                    }
-                    alt="Image 1"
-                    id="buttonImage1"
-                  />
-                </button>
+  
+        <div className="button-container">
+  <div className="selectAllButtons" >
+    {isEditMode && (
+      <>
+        <button id="selectAllBtn" onClick={selectAllBooks}>전체 선택</button>
+        <button id="selectAllcancelBtn" onClick={deselectAllBooks}>전체 선택 취소</button>
+      </>
+    )}
+  </div>
+  <div className="editButtonsAndViewButtons" style={{ display: 'flex', flexDirection: 'row', margin: 0 }}>
+    <div className="editButtons" >
+      {!isEditMode && <button id="editBtn" onClick={handleEditMode}>편집</button>}
+      {isEditMode && (
+        <>
+          <button id="deleteBtn" onClick={deleteSelectedBooks}>삭제</button>
+          <button id="cancelBtn" onClick={handleEditMode}>취소</button>
+        </>
+      )}
+    </div>
+    <div className="library-list">
+      <div className="library-cover">
+        <button className="listCoverBtn" id="listCoverBtn" onClick={() => setIsListView(false)} style={{ margin: 0 }}>
+          <img src="/images/ccc_library/grid-2.png" alt="Image 1" id="buttonImage1" />
+        </button>
+      </div>
+      <div className="library-view">
+        <button className="listViewBtn" id="listViewBtn" onClick={() => setIsListView(true)} style={{ margin: 0 }}>
+          <img src="/images/ccc_library/list-1.png" alt="Image 2" id="buttonImage2" />
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+        <div className={containerClass()}>
+          <div className={bookContainerClass()} id="bookContainer">
+            {favorites.map((book, index) => (
+              <div
+                key={index}
+                onClick={() => selectBook(book)}
+                className={isEditMode && selectedBooks.includes(book) ? 'selected' : ''}
+              >
+                <img src={book.cover} alt={book.title} />
+                {isListView && (
+                  <>
+                    <h4>{book.title}</h4>
+                    <p>{book.author}</p>
+                  </>
+                )}
               </div>
-              <div className="library-view">
-                <button
-                  className="listViewBtn"
-                  id="listViewBtn"
-                  onClick={() => setIsListViewClicked(!isListViewClicked)}
-                >
-                  <img
-                    src={
-                      isListViewClicked
-                        ? "/images/ccc_library/grid-2.png"
-                        : "/images/ccc_library/grid-1.png"
-                    }
-                    alt="Image 2"
-                    id="buttonImage2"
-                  />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="concontainer">
-          <div className="container1">
-            <div className="book-container1" id="bookContainer">
-              {/* 동적으로 생성될 책 항목 */}
-              {favorites.map((book, index) => (
-      <div key={index}>
-        <Link to={`/bookDetail/${book.isbn}`} key={book.isbn}>
-          <img src={book.cover} alt={book.title} />
-          <h4>{book.title}</h4>
-          <p>{book.author}</p>
-        </Link>
-      </div>
-    ))}
-            </div>
-          </div>
-          <div className="container2">
-            <div className="book-container2" id="bookContainer2">
-              {/* 동적으로 생성될 책 항목 */}
-            </div>
+            ))}
           </div>
         </div>
       </div>
-
-      <div
-        className={
-          scrollPosition > headerNormalHeight ? "header_fixed" : "header_normal"
-        }
-      >
-        <Header />
-        <Link to="/">다시 메인으로</Link>
-      </div>
+  
+      <Header />
+      <Link to="/">다시 메인으로</Link>
       <Footer />
     </main>
   );
