@@ -43,6 +43,7 @@ const BookDetail = () => {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0); // 항상 페이지 최상단으로 focus
     const fetchBookDetail = async () => {
       try {
         // API를 호출합니다.
