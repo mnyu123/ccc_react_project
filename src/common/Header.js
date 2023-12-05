@@ -50,7 +50,7 @@ class Header extends React.Component {
                     id="search"
                     name="search"
                     placeholder="관심있는 책을 검색해보세요."
-                    className="input_text_hd"
+                    className="input_text_mh"
                     value={this.state.search}
                     // state의 값을 사용합니다.
                     onChange={this.handleChange}

@@ -1,4 +1,8 @@
-/* Header.css */
+.main_container {
+   width: 100%;
+   height: 100%;
+   background-color: #fdfdff;
+}
 
 .header_fixed2 {
    width: 100%;
@@ -8,37 +12,38 @@
    position: fixed;
    top: 0;
    z-index: 5;
+   background-color: #ffffffd4;
 }
 
 .header_inner2 {
-   width: 1280px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: auto;
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   margin: auto;
+   padding: 0 15px;
 }
 
 .logo,
 .search_wrap,
 .menu_wrap {
-   flex-grow: 1;
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }
 
 .logo {
-   width: 300px;
-   height: 78px;
-   padding: 0px 10px 10px 0px;
-   margin-right: -10px;
+   width: 100px;
+   height: 26px;
+   padding: 0 10px 10px 0;
+   margin-right: 20px;
 }
 
 .search_wrap {
-   display: flex;
-   align-items: center;
-   flex-direction: column;
-   justify-content: center;
-   margin: auto;
+   margin: 10px 0;
 }
-
 
 .search_box {
    width: 80%;
@@ -56,39 +61,27 @@
 
 .library_icon,
 .mypage_icon {
-    margin: 5px;
+   margin: 5px;
 }
 
 .search_box input[type=text]::-webkit-input-placeholder {
-    color: #b1b1b1
+   color: #b1b1b1;
 }
 
 .search_ {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+   width: 100%;
 }
 
-.input_text_hd {
-    width: 85%;
-    height: 49px;
-    padding: 0px 5px 0px 10px;
-    box-sizing: border-box;
-    font-size: 18px;
-    font-weight: 400;
-    letter-spacing: -.5px;
-    color: #222;
-    z-index: 2
-}
-
-.search_box {
-    width: 560px;
-    height: 48px;
-    border: 1px solid #5b5b5b;
-    border-radius: 25px 25px 25px 25px;
-    justify-content: center;
-    padding-right: 5px;
-    background-color: #fff;
+.input_text_mh {
+   width: 85%;
+   height: 49px;
+   padding: 0px 5px 0px 10px;
+   box-sizing: border-box;
+   font-size: 18px;
+   font-weight: 400;
+   letter-spacing: -.5px;
+   color: #222;
+   z-index: 2
 }
 
 .top-button {
@@ -119,7 +112,7 @@
 
 @media (min-width: 641px) {
    .header_inner2 {
-      width: 1000px;
+      width: 1280px;
       flex-direction: row;
       justify-content: space-between;
    }
