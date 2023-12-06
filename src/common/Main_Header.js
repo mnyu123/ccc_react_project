@@ -41,6 +41,26 @@ class Header extends React.Component {
         }
     }
 
+    handleClick = (event) => {
+        event.preventDefault();
+    
+        const targetId = event.target.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+    
+        if (targetElement) {  // targetElement가 존재할 때만 스크롤
+            const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+            
+            // 헤더의 높이를 직접 지정합니다. 예를 들어, 60px로 설정하였습니다.
+            const headerHeight = 109; 
+    
+            window.scrollTo({
+                top: targetPosition - headerHeight,
+                behavior: "smooth"
+            });
+        }
+    };
+    
+
 
     componentDidMount() {
         this.handleScroll();
@@ -151,15 +171,15 @@ class Header extends React.Component {
                                 <nav className="small_nav_2">
                                     <ul>
                                         <li>
-                                            <a href="#">오늘의 책</a>
+                                            <a href="#smain_container" onClick={this.handleClick}>오늘의 책</a>
                                         </li>
                                         <span>|</span>
                                         <li>
-                                            <a href="#monthbooks_wrap">이달의 책</a>
+                                            <a href="#monthbooks_wrap" onClick={this.handleClick} >이달의 책</a>
                                         </li>
                                         <span>|</span>
                                         <li>
-                                            <a href="#soaring_wrap">급상승</a>
+                                            <a href="#soaring_wrap" onClick={this.handleClick} >급상승</a>
                                         </li>
                                     </ul>
                                 </nav>
