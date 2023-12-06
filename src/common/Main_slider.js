@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import axios from "axios";
 import "slick-carousel/slick/slick.css";
@@ -72,7 +73,9 @@ const MainSlider = () => {
         <Slider {...settings1} ref={slider1} className="main">
           {books.map((book) => (
             <div key={book.isbn}>
-              <img className="img1" src={book.cover} alt={book.title} />
+              <Link to={`/bookDetail/${book.isbn}`}>
+                <img className="img1" src={book.cover} alt={book.title} />
+              </Link>
               <div className="book-info">
                 <p className="book-title">{book.title}</p>
                 <p className="book-author">{book.author}</p>
