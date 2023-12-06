@@ -7,7 +7,7 @@
 
 .mylibrary-maincontainer {
     padding-top: 140px;
-    
+
 }
 
 button,
@@ -186,39 +186,41 @@ button {
     height: 40px;
     margin: 0 auto;
     display: flex;
-    justify-content: space-between; /* 자식 요소들 사이에 공간을 최대한 분배 */
+    justify-content: space-between;
+    /* 자식 요소들 사이에 공간을 최대한 분배 */
     align-items: center;
 }
 
 .selectAllButtons {
     order: 1;
-  }
-  
-  .editButtonsAndViewButtons {
+}
+
+.editButtonsAndViewButtons {
     order: 2;
-  }
-  
-  .library-list {
+}
+
+.library-list {
     order: 3;
-  }
-  
+}
+
 .button-container .editAll {
     justify-content: space-between;
     flex: 1;
 }
-  
+
 .button-container .library-list {
     display: flex;
 }
 
 .editButtons {
-    margin-top: 5px;;
+    margin-top: 5px;
+    ;
 }
 
 .libraryAll {
     margin-top: 25px;
 }
-  
+
 .library-list {
     order: 1;
     margin-right: 15px;

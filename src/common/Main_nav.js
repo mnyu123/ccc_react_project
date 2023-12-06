@@ -5,16 +5,17 @@ const Mainnav = () => {
   const handleClick = (event) => {
     event.preventDefault();
 
-    const targetId = event.target.getAttribute('href');
+    const targetId = event.target.getAttribute("href");
     const targetElement = document.querySelector(targetId);
 
     if (targetElement) {
-      const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+      const targetPosition =
+        targetElement.getBoundingClientRect().top + window.pageYOffset;
       const headerHeight = 220;
 
       window.scrollTo({
         top: targetPosition - headerHeight,
-        behavior: "smooth"
+        behavior: "smooth",
       });
     }
   };
@@ -26,10 +27,14 @@ const Mainnav = () => {
           <a href="#">오늘의 책</a>
         </li>
         <li>
-          <a href="#monthbooks_wrap" onClick={handleClick}>이달의 책</a>
+          <a href="#monthbooks_wrap" onClick={handleClick}>
+            이달의 책
+          </a>
         </li>
         <li>
-          <a href="#soaring_wrap" onClick={handleClick}>급상승</a>
+          <a href="#soaring_wrap" onClick={handleClick}>
+            급상승
+          </a>
         </li>
       </ul>
     </nav>
@@ -37,4 +42,3 @@ const Mainnav = () => {
 };
 
 export default Mainnav;
-

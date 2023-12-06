@@ -74,7 +74,8 @@ const Polledit = (props) => {
 
   return (
     <div id="popup2" className={`popup2 ${showPopup ? "show-popup2" : ""}`}>
-      <div className="overlay2"></div> <div className="content-title2">
+      <div className="overlay2"></div>{" "}
+      <div className="content-title2">
         <div className="title-container2">
           선호 장르 조사
           <button className="close-btn2" onClick={props.onClose}>
@@ -82,25 +83,28 @@ const Polledit = (props) => {
           </button>
         </div>
       </div>
-      <div className="content-explain2">
-        책 선호 장르를 선택해 주세요.
-      </div>
+      <div className="content-explain2">책 선호 장르를 선택해 주세요.</div>
       <div className="content2">
         {genres.map((genre, index) => (
           <div key={index} className="genre-item2">
-            <input type="checkbox" 
-            name="genre" 
-            value={genre} 
-            checked={selectedGenres.includes(genre)} 
-            onChange={() => handleCheck(genre)} />
-            <span className="genre-name2">
-              {genre}
-            </span>
+            <input
+              type="checkbox"
+              name="genre"
+              value={genre}
+              checked={selectedGenres.includes(genre)}
+              onChange={() => handleCheck(genre)}
+            />
+            <span className="genre-name2">{genre}</span>
           </div>
         ))}
         <div className="positioned-container2">
-          {errorMessage && <p className={`error-message2 ${errorMessage ? "show-error2" : ""}`}>
-            적어도 하나의 장르를 선택해 주세요.</p>}
+          {errorMessage && (
+            <p
+              className={`error-message2 ${errorMessage ? "show-error2" : ""}`}
+            >
+              적어도 하나의 장르를 선택해 주세요.
+            </p>
+          )}
           <button className="signup-btn2" onClick={handleSubmit}>
             수정
           </button>

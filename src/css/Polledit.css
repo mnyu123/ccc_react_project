@@ -41,8 +41,8 @@
     display: flex;
     position: relative;
     flex-direction: row;
-    flex-wrap: wrap; 
-    justify-content: flex-start; 
+    flex-wrap: wrap;
+    justify-content: flex-start;
     width: 720px;
     padding-top: 15px;
     margin-left: 7%;
@@ -53,10 +53,10 @@
     display: flex;
     align-items: baseline;
     width: 240px;
-    height: 40px; 
-    font-size: 22px; 
+    height: 40px;
+    font-size: 22px;
     margin-top: 5px;
-  }
+}
 
 .genre-name2 {
     padding-left: 10px;
@@ -111,8 +111,8 @@ input[type="checkbox"] {
 input[type="checkbox"]:before {
     content: '';
     display: block;
-    width: 70%; 
-    height: 70%; 
+    width: 70%;
+    height: 70%;
     margin: 15% auto;
     border-radius: 50%;
 }

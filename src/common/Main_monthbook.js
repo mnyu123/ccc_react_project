@@ -6,14 +6,14 @@ import "../css/Main_monthbook.css";
 const Main_monthbook = () => {
   const [books, setBooks] = useState([]);
   const [viewMore, setViewMore] = useState(false); // 더보기 상태
-  const genreToCategoryId = require('../common/genreToCategoryId');
+  const genreToCategoryId = require("../common/genreToCategoryId");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const userId = JSON.parse(sessionStorage.getItem('userid'));
+        const userId = JSON.parse(sessionStorage.getItem("userid"));
         let genre2;
-  
+
         if (userId) {
           const response = await axios.get(`/api/usergenre/${userId}`);
           genre2 = response.data.genre2;
@@ -21,8 +21,10 @@ const Main_monthbook = () => {
           // 로그인하지 않은 사용자의 경우 genreToCategoryId 배열에서 첫 번째 항목의 장르를 사용
           genre2 = genreToCategoryId[0].genre;
         }
-  
-        const categoryId = genreToCategoryId.find(item => item.genre === genre2).categoryId;
+
+        const categoryId = genreToCategoryId.find(
+          (item) => item.genre === genre2
+        ).categoryId;
         const aladinResponse = await axios.get(`/api/aladin/${categoryId}`, {
           params: {
             Query: genre2,

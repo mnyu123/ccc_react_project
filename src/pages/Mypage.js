@@ -18,9 +18,9 @@ const Mypage = ({ isMypageOpen, onClose }) => {
   }, []);
 
   const handleLogout = () => {
-    sessionStorage.removeItem('userid');
-    sessionStorage.removeItem('userpw');
-    sessionStorage.setItem('isLoggedIn', 'false');
+    sessionStorage.removeItem("userid");
+    sessionStorage.removeItem("userpw");
+    sessionStorage.setItem("isLoggedIn", "false");
     setUserid(null); // 로그아웃하면 userid를 null로 설정
     navigate("/");
   };

@@ -4,9 +4,10 @@
     padding: 5px 0px;
     border-bottom: 1px solid #dadada;
     background-color: #ffffffd4;
-    
+
 }
-.header_fixed a{
+
+.header_fixed a {
     text-decoration: none;
     cursor: pointer
 }

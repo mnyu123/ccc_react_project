@@ -11,8 +11,8 @@ const MainPage = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   useEffect(() => {
-    const dontShowToday = localStorage.getItem('dontShowToday');
-    if (dontShowToday !== 'true') {
+    const dontShowToday = localStorage.getItem("dontShowToday");
+    if (dontShowToday !== "true") {
       setIsPopupOpen(true);
     }
   }, []);
@@ -29,7 +29,9 @@ const MainPage = () => {
       <MainMonthBook />
       <MainHotTopic />
       <Footer />
-      {isPopupOpen && <WeekPopup isOpen={isPopupOpen} onClose={handleClosePopup} />}
+      {isPopupOpen && (
+        <WeekPopup isOpen={isPopupOpen} onClose={handleClosePopup} />
+      )}
     </div>
   );
 };

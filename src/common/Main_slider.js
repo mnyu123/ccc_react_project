@@ -10,7 +10,7 @@ const MainSlider = () => {
   const slider1 = useRef();
   const slider2 = useRef();
 
-  const genreToCategoryId = require('../common/genreToCategoryId');
+  const genreToCategoryId = require("../common/genreToCategoryId");
 
   const settings1 = {
     infinite: true,
@@ -34,9 +34,9 @@ const MainSlider = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const userId = JSON.parse(sessionStorage.getItem('userid'));
+        const userId = JSON.parse(sessionStorage.getItem("userid"));
         let genre1;
-  
+
         if (userId) {
           const response = await axios.get(`/api/usergenre/${userId}`);
           genre1 = response.data.genre1;
@@ -44,8 +44,10 @@ const MainSlider = () => {
           // 로그인하지 않은 사용자의 경우 genreToCategoryId 배열에서 첫 번째 항목의 장르를 사용
           genre1 = genreToCategoryId[0].genre;
         }
-  
-        const categoryId = genreToCategoryId.find(item => item.genre === genre1).categoryId;
+
+        const categoryId = genreToCategoryId.find(
+          (item) => item.genre === genre1
+        ).categoryId;
         const aladinResponse = await axios.get(`/api/aladin/${categoryId}`, {
           params: {
             Query: genre1,

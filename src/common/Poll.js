@@ -73,12 +73,8 @@ const Poll = ({ isModalOpen, setIsModalOpen, userId }) => {
   return (
     <div id="popup" className={`popup ${isModalOpen ? "show-popup" : ""}`}>
       <div className="overlay"></div>
-      <div className="content-title">
-        선호 장르 조사
-      </div>
-      <div className="content-explain">
-        책 선호 장르를 선택해 주세요.
-      </div>
+      <div className="content-title">선호 장르 조사</div>
+      <div className="content-explain">책 선호 장르를 선택해 주세요.</div>
       <div className="content">
         {genres.map((genre, index) => (
           <div key={index} className="genre-item">
@@ -89,9 +85,7 @@ const Poll = ({ isModalOpen, setIsModalOpen, userId }) => {
               checked={selectedGenres.includes(genre)}
               onChange={() => handleCheck(genre)}
             />{" "}
-            <span className="genre-name2">
-              {genre}
-            </span>
+            <span className="genre-name2">{genre}</span>
           </div>
         ))}
         <div className="positioned-container">
@@ -99,8 +93,13 @@ const Poll = ({ isModalOpen, setIsModalOpen, userId }) => {
             <button className="signup-btn" onClick={handleSubmit}>
               회원가입
             </button>
-            {errorMessage && <p className={`error-message ${errorMessage ? "show-error" : ""}`}>
-              적어도 하나의 장르를 선택해 주세요.</p>}
+            {errorMessage && (
+              <p
+                className={`error-message ${errorMessage ? "show-error" : ""}`}
+              >
+                적어도 하나의 장르를 선택해 주세요.
+              </p>
+            )}
           </div>
           {isSignedUp && <p>회원가입이 완료되었습니다.</p>}{" "}
           {/* 회원가입 완료 메시지 출력 */}
