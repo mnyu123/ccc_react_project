@@ -11,9 +11,9 @@ const MainHotTopic = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`/api/aladin/656`, {
+        const response = await axios.get(`/api/aladin/2551`, {
           params: {
-            Query: "인문",
+            Query: "만화",
             QueryType: "Title",
           },
         });

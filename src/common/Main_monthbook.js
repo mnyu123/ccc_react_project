@@ -19,7 +19,7 @@ const Main_monthbook = () => {
           genre2 = response.data.genre2;
         } else {
           // 로그인하지 않은 사용자의 경우 genreToCategoryId 배열에서 첫 번째 항목의 장르를 사용
-          genre2 = genreToCategoryId[0].genre;
+          genre2 = genreToCategoryId[2].genre;
         }
 
         const categoryId = genreToCategoryId.find(
