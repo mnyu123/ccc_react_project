@@ -36,6 +36,11 @@ const isLoggedIn = sessionStorage.getItem('isLoggedIn');
 if (isLoggedIn !==  'true') {
   navigate('/');
 }
+// 사용자가 '오늘 다시 보지 않음'을 선택했는지 확인
+const dontShowToday = localStorage.getItem('dontShowToday');
+if (dontShowToday === 'true') {
+  onClose();
+}
 
   }, []);
 
@@ -44,6 +49,11 @@ if (isLoggedIn !==  'true') {
     setIsRemembered(e.target.checked);
   };
 
+  const handleDontShowToday = () => {
+    localStorage.setItem('dontShowToday', 'true'); // 오늘 다시 보지 않음을 저장
+    onClose();
+  }
+
   return (
     <Modal
         isOpen={sessionStorage.getItem('isLoggedIn') === 'true'}
@@ -51,7 +61,11 @@ if (isLoggedIn !==  'true') {
         style={customStyles}
         contentLabel="modal"
       >
+
+        <h1 style={{marginBottom: '20px'}}>이번주의 책</h1>
+        <img src="../images/ccc_bookcover/명탐정코난.jpg" alt="명탐정 코난" width="200px" height="300px" style={{marginRight: '20px'}}/>
         <button onClick={onClose}>닫기</button>
+        <button onClick={handleDontShowToday}>오늘 다시 보지 않기</button>
       </Modal>
   );
 };
