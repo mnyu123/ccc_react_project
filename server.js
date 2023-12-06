@@ -144,7 +144,7 @@ app.get("/api/usergenre/:userId", (req, res) => {
       });
     } else {
       if (results.length > 0) {
-        res.send({ success: true, genre1: results[0].genre1 });
+        res.send({ success: true, genre1: results[0].genre1, genre2: results[0].genre2, genre3: results[0].genre3 });
       } else {
         res.send({ success: false, message: "장르 정보가 없습니다." });
       }
