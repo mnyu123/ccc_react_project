@@ -18,7 +18,7 @@ const MainSlider = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: true,
-    fade: true,
+    fade: false,
     asNavFor: slider2.current,
   };
 
