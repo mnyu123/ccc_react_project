@@ -24,12 +24,13 @@ const MainSlider = () => {
   };
 
   const settings2 = {
-    slidesToShow: 3,
+    slidesToShow: 7,
     slidesToScroll: 1,
     asNavFor: slider1.current,
     arrows: false,
     centerMode: true,
     focusOnSelect: true,
+    draggable: false,
   };
 
   useEffect(() => {

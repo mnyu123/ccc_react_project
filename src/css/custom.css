@@ -10,6 +10,7 @@
 }
 
 .smain_container h2 {
+  margin-top: 15px;
   position: absolute;
   /* 제목을 절대 위치로 설정합니다. */
   top: 22%;

@@ -11,7 +11,7 @@ const Mainnav = () => {
     if (targetElement) {
       const targetPosition =
         targetElement.getBoundingClientRect().top + window.pageYOffset;
-      const headerHeight = 220;
+      const headerHeight = 109;
 
       window.scrollTo({
         top: targetPosition - headerHeight,
