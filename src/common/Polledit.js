@@ -5,26 +5,26 @@ import { useNavigate } from "react-router-dom";
 
 const genres = [
   "소설",
-  "시/에세이",
+  "성생활",
   "인문",
-  "가정/육아",
-  "요리",
-  "건강",
-  "취미/실용",
-  "경제",
+  "한국요리",
+  "제과제빵",
+  "인테리어",
+  "공예",
+  "경제경영",
   "자기계발",
-  "정치/사회",
-  "역사/문화",
-  "종교",
-  "예술",
-  "사회과학",
-  "자연과학",
-  "공학",
+  "자습서",
+  "철학",
+  "탈모",
+  "식물도감",
+  "종교학",
+  "지구과학",
+  "컴퓨터공학",
   "여행",
-  "컴퓨터과학",
-  "참고서",
-  "잡지",
-  "취업/수험서",
+  "생명과학",
+  "판타지",
+  "문학잡지",
+  "순정만화",
   "청소년",
   "만화",
 ];
@@ -74,7 +74,8 @@ const Polledit = (props) => {
 
   return (
     <div id="popup2" className={`popup2 ${showPopup ? "show-popup2" : ""}`}>
-      <div className="overlay2"></div> <div className="content-title2">
+      <div className="overlay2"></div>{" "}
+      <div className="content-title2">
         <div className="title-container2">
           선호 장르 조사
           <button className="close-btn2" onClick={props.onClose}>
@@ -82,25 +83,28 @@ const Polledit = (props) => {
           </button>
         </div>
       </div>
-      <div className="content-explain2">
-        책 선호 장르를 선택해 주세요.
-      </div>
+      <div className="content-explain2">책 선호 장르를 선택해 주세요.</div>
       <div className="content2">
         {genres.map((genre, index) => (
           <div key={index} className="genre-item2">
-            <input type="checkbox" 
-            name="genre" 
-            value={genre} 
-            checked={selectedGenres.includes(genre)} 
-            onChange={() => handleCheck(genre)} />
-            <span className="genre-name2">
-              {genre}
-            </span>
+            <input
+              type="checkbox"
+              name="genre"
+              value={genre}
+              checked={selectedGenres.includes(genre)}
+              onChange={() => handleCheck(genre)}
+            />
+            <span className="genre-name2">{genre}</span>
           </div>
         ))}
         <div className="positioned-container2">
-          {errorMessage && <p className={`error-message2 ${errorMessage ? "show-error2" : ""}`}>
-            적어도 하나의 장르를 선택해 주세요.</p>}
+          {errorMessage && (
+            <p
+              className={`error-message2 ${errorMessage ? "show-error2" : ""}`}
+            >
+              적어도 하나의 장르를 선택해 주세요.
+            </p>
+          )}
           <button className="signup-btn2" onClick={handleSubmit}>
             수정
           </button>

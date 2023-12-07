@@ -1,10 +1,15 @@
 .header_normal,
 .header_fixed {
     width: 100%;
-    align-items: center;
     padding: 5px 0px;
     border-bottom: 1px solid #dadada;
     background-color: #ffffffd4;
+
+}
+
+.header_fixed a {
+    text-decoration: none;
+    cursor: pointer
 }
 
 .header_fixed {
@@ -12,35 +17,22 @@
     position: fixed;
     top: 0;
     z-index: 5;
-    padding: 10px 0px;
-    background-color: #ffffffd4;
-  }
+}
 
 .header_inner {
-    width: 1280px;
+    width: 100%;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
     margin: auto;
+    padding: 0 15px;
 
 }
-
-.logo,
-.search_wrap,
-.menu_wrap {
-    flex-grow: 1;
-}
-
-.logo {
-    width: 300px;
-    height: 78px;
-    padding: 0px 10px 10px 0px;
-    margin-right: -10px;
-}
-
 
 
 .search_wrap {
+    margin: 10px 0;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -49,38 +41,13 @@
 }
 
 
-.menu_wrap {
-    width: 300px;
-    display: flex;
-    justify-content: right;
-}
-
-.library_icon,
-.mypage_icon {
-    margin: 5px;
-}
-
-.search_box input[type=text]::-webkit-input-placeholder {
-    color: #b1b1b1
-}
-
 .search_ {
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.input_text_mh {
-    width: 85%;
-    height: 49px;
-    padding: 0px 5px 0px 10px;
-    box-sizing: border-box;
-    font-size: 18px;
-    font-weight: 400;
-    letter-spacing: -.5px;
-    color: #222;
-    z-index: 2
-}
 
 .search_box {
     width: 560px;
@@ -97,17 +64,13 @@
     list-style-type: none;
 }
 
-.small_nav_2 ul li {
-    display: inline;
-}
-
-
 .small_nav_2 {
     padding-top: 15px;
 
 }
 
 .small_nav_2 ul li {
+    display: inline;
     font-size: 15px;
     font-weight: 600;
     line-height: 24px;
@@ -122,4 +85,28 @@
 
 .small_nav_2 a:hover {
     color: #692ead;
+}
+
+
+@media (min-width: 641px) {
+    .header_inner {
+        width: 1280px;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .search_wrap {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        margin: auto;
+    }
+
+    .search_ {
+        width: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }

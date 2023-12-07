@@ -156,7 +156,14 @@ const CccRegister = () => {
                     </ul>
                     <ul className="adult_list" id="listForeigner">
                       <li className="radio_item second">
-                        <input type="radio" id="foreigner1" name="foreigner" value="K" className="blind" checked />
+                        <input
+                          type="radio"
+                          id="foreigner1"
+                          name="foreigner"
+                          value="K"
+                          className="blind"
+                          checked
+                        />
                         <label htmlFor="foreigner1">연령대</label>
                       </li>
 
@@ -179,10 +186,7 @@ const CccRegister = () => {
                         </select>
                       </li>
                     </ul>
-
                   </div>
-
-
                 </div>
               </div>
             </div>

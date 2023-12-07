@@ -5,26 +5,26 @@ import axios from "axios";
 
 const genres = [
   "소설",
-  "시/에세이",
+  "성생활",
   "인문",
-  "가정/육아",
-  "요리",
-  "건강",
-  "취미/실용",
-  "경제",
+  "한국요리",
+  "제과제빵",
+  "인테리어",
+  "공예",
+  "경제경영",
   "자기계발",
-  "정치/사회",
-  "역사/문화",
-  "종교",
-  "예술",
-  "사회과학",
-  "자연과학",
-  "공학",
+  "자습서",
+  "철학",
+  "탈모",
+  "식물도감",
+  "종교학",
+  "지구과학",
+  "컴퓨터공학",
   "여행",
-  "컴퓨터과학",
-  "참고서",
-  "잡지",
-  "취업/수험서",
+  "생명과학",
+  "판타지",
+  "문학잡지",
+  "순정만화",
   "청소년",
   "만화",
 ];
@@ -73,12 +73,8 @@ const Poll = ({ isModalOpen, setIsModalOpen, userId }) => {
   return (
     <div id="popup" className={`popup ${isModalOpen ? "show-popup" : ""}`}>
       <div className="overlay"></div>
-      <div className="content-title">
-        선호 장르 조사
-      </div>
-      <div className="content-explain">
-        책 선호 장르를 선택해 주세요.
-      </div>
+      <div className="content-title">선호 장르 조사</div>
+      <div className="content-explain">책 선호 장르를 선택해 주세요.</div>
       <div className="content">
         {genres.map((genre, index) => (
           <div key={index} className="genre-item">
@@ -89,9 +85,7 @@ const Poll = ({ isModalOpen, setIsModalOpen, userId }) => {
               checked={selectedGenres.includes(genre)}
               onChange={() => handleCheck(genre)}
             />{" "}
-            <span className="genre-name2">
-              {genre}
-            </span>
+            <span className="genre-name2">{genre}</span>
           </div>
         ))}
         <div className="positioned-container">
@@ -99,8 +93,13 @@ const Poll = ({ isModalOpen, setIsModalOpen, userId }) => {
             <button className="signup-btn" onClick={handleSubmit}>
               회원가입
             </button>
-            {errorMessage && <p className={`error-message ${errorMessage ? "show-error" : ""}`}>
-              적어도 하나의 장르를 선택해 주세요.</p>}
+            {errorMessage && (
+              <p
+                className={`error-message ${errorMessage ? "show-error" : ""}`}
+              >
+                적어도 하나의 장르를 선택해 주세요.
+              </p>
+            )}
           </div>
           {isSignedUp && <p>회원가입이 완료되었습니다.</p>}{" "}
           {/* 회원가입 완료 메시지 출력 */}

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import axios from "axios";
 import "slick-carousel/slick/slick.css";
@@ -10,7 +11,7 @@ const MainSlider = () => {
   const slider1 = useRef();
   const slider2 = useRef();
 
-  const genreToCategoryId = require('../common/genreToCategoryId');
+  const genreToCategoryId = require("../common/genreToCategoryId");
 
   const settings1 = {
     infinite: true,
@@ -18,25 +19,26 @@ const MainSlider = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: true,
-    fade: true,
+    fade: false,
     asNavFor: slider2.current,
   };
 
   const settings2 = {
-    slidesToShow: 3,
+    slidesToShow: 7,
     slidesToScroll: 1,
     asNavFor: slider1.current,
     arrows: false,
     centerMode: true,
     focusOnSelect: true,
+    draggable: false,
   };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const userId = JSON.parse(sessionStorage.getItem('userid'));
+        const userId = JSON.parse(sessionStorage.getItem("userid"));
         let genre1;
-  
+
         if (userId) {
           const response = await axios.get(`/api/usergenre/${userId}`);
           genre1 = response.data.genre1;
@@ -44,8 +46,10 @@ const MainSlider = () => {
           // 로그인하지 않은 사용자의 경우 genreToCategoryId 배열에서 첫 번째 항목의 장르를 사용
           genre1 = genreToCategoryId[0].genre;
         }
-  
-        const categoryId = genreToCategoryId.find(item => item.genre === genre1).categoryId;
+
+        const categoryId = genreToCategoryId.find(
+          (item) => item.genre === genre1
+        ).categoryId;
         const aladinResponse = await axios.get(`/api/aladin/${categoryId}`, {
           params: {
             Query: genre1,
@@ -70,7 +74,9 @@ const MainSlider = () => {
         <Slider {...settings1} ref={slider1} className="main">
           {books.map((book) => (
             <div key={book.isbn}>
-              <img className="img1" src={book.cover} alt={book.title} />
+              <Link to={`/bookDetail/${book.isbn}`}>
+                <img className="img1" src={book.cover} alt={book.title} />
+              </Link>
               <div className="book-info">
                 <p className="book-title">{book.title}</p>
                 <p className="book-author">{book.author}</p>

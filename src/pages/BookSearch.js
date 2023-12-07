@@ -16,26 +16,26 @@ function BookSearch() {
 
     const categoryNames = {
       1: "소설",
-      55889: "시/에세이",
+      53512: "성생활",
       656: "인문",
-      33026: "가정/육아",
-      103606: "요리",
-      152908: "건강",
-      152747: "취미/실용",
-      75161: "경제",
-      75160: "자기계발",
-      97530: "정치/사회",
-      90847: "역사/문화",
-      105397: "종교",
-      97608: "예술",
-      97761: "사회과학",
-      90855: "자연과학",
-      8467: "공학",
+      53490: "한국요리",
+      53481: "제과제빵",
+      90456: "인테리어",
+      53532: "공예",
+      170: "경제경영",
+      48840: "자기계발",
+      77389: "자습서",
+      8516: "철학",
+      53551: "탈모",
+      51279: "식물도감",
+      17436: "종교학",
+      8369: "지구과학",
+      8467: "컴퓨터공학",
       51377: "여행",
-      164349: "컴퓨터과학",
-      56385: "참고서",
-      39045: "잡지",
-      177: "취업/수험서",
+      54889: "생명과학",
+      4132: "판타지",
+      50951: "문학잡지",
+      3741: "순정만화",
       3560: "청소년",
       2551: "만화",
     };
@@ -76,26 +76,26 @@ function BookSearch() {
       <select onChange={handleSelectChange}>
         <option value="">-- 장르를 선택하세요 --</option>
         <option value="1">소설</option>
-        <option value="55889">시/에세이</option>
+        <option value="53512">성생활</option>
         <option value="656">인문</option>
-        <option value="33026">가정/육아</option>
-        <option value="103606">요리</option>
-        <option value="152908">건강</option>
-        <option value="152747">취미/실용</option>
-        <option value="75161">경제</option>
-        <option value="75160">자기계발</option>
-        <option value="97530">정치/사회</option>
-        <option value="90847">역사/문화</option>
-        <option value="105397">종교</option>
-        <option value="97608">예술</option>
-        <option value="97761">사회과학</option>
-        <option value="90855">자연과학</option>
-        <option value="8467">공학</option>
+        <option value="53490">한국요리</option>
+        <option value="53481">제과제빵</option>
+        <option value="90456">인테리어</option>
+        <option value="53532">공예</option>
+        <option value="170">경제경영</option>
+        <option value="48840">자기계발</option>
+        <option value="77389">자습서</option>
+        <option value="8516">철학</option>
+        <option value="53551">탈모</option>
+        <option value="51279">식물도감</option>
+        <option value="17436">종교학</option>
+        <option value="8369">지구과학</option>
+        <option value="8467">컴퓨터공학</option>
         <option value="51377">여행</option>
-        <option value="164349">컴퓨터과학</option>
-        <option value="56385">참고서</option>
-        <option value="39045">잡지</option>
-        <option value="177">취업/수험서</option>
+        <option value="54889">생명과학</option>
+        <option value="4132">판타지</option>
+        <option value="50951">문학잡지</option>
+        <option value="3741">순정만화</option>
         <option value="3560">청소년</option>
         <option value="2551">만화</option>
       </select>

@@ -34,7 +34,7 @@
     position: relative;
     z-index: 3;
     margin: 0;
-    padding: 0; 
+    padding: 0;
 }
 
 .panel_item {
@@ -144,7 +144,7 @@
 .dotted-line span {
     position: relative;
     display: inline-block;
-    font-size: 14px; 
+    font-size: 14px;
     background-color: white;
     z-index: 1
 }
@@ -154,9 +154,9 @@
     content: "";
     position: absolute;
     top: 50%;
-    width: calc(50% - 10px - 10px); 
+    width: calc(50% - 10px - 10px);
     border-top: 1px dotted #2f2f2f;
-    z-index: 0;  
+    z-index: 0;
 }
 
 .dotted-line:before {

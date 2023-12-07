@@ -1,16 +1,24 @@
 .smain_container {
   display: flex;
   justify-content: space-between;
-  flex-direction: row; /* 자식 요소들을 가로로 배치합니다. */
-  align-items: center; /* 자식 요소들을 세로선 중앙에 배치합니다. */
-  padding: 100px; /* 모든 방향에 20px의 내부 여백을 추가합니다. */
+  flex-direction: row;
+  /* 자식 요소들을 가로로 배치합니다. */
+  align-items: center;
+  /* 자식 요소들을 세로선 중앙에 배치합니다. */
+  padding: 100px;
+  /* 모든 방향에 20px의 내부 여백을 추가합니다. */
 }
 
 .smain_container h2 {
-  position: absolute; /* 제목을 절대 위치로 설정합니다. */
-  top: 22%; /* 제목을 상단에 배치합니다. */
-  left: 50%; /* 제목을 화면 가로선 중앙에 배치합니다. */
-  transform: translate(-50%, -50%); /* 제목을 정확히 중앙에 배치하기 위해 위치를 조정합니다. */
+  margin-top: 15px;
+  position: absolute;
+  /* 제목을 절대 위치로 설정합니다. */
+  top: 22%;
+  /* 제목을 상단에 배치합니다. */
+  left: 50%;
+  /* 제목을 화면 가로선 중앙에 배치합니다. */
+  transform: translate(-50%, -50%);
+  /* 제목을 정확히 중앙에 배치하기 위해 위치를 조정합니다. */
 }
 
 .smain_container .main-slider {
@@ -31,8 +39,10 @@
 }
 
 .book-description {
-  width: 150px; /* 책 설명의 너비를 제한합니다. */
-  overflow-wrap: break-word; /* 단어가 너무 길어지면 단어를 나눠서 표시합니다. */
-  word-wrap: break-word; /* 이전 버전의 브라우저를 지원하기 위해 추가합니다. */
+  width: 150px;
+  /* 책 설명의 너비를 제한합니다. */
+  overflow-wrap: break-word;
+  /* 단어가 너무 길어지면 단어를 나눠서 표시합니다. */
+  word-wrap: break-word;
+  /* 이전 버전의 브라우저를 지원하기 위해 추가합니다. */
 }
-
