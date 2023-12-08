@@ -10,28 +10,65 @@ const MainSlider = () => {
   const [books, setBooks] = useState([]);
   const slider1 = useRef();
   const slider2 = useRef();
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
 
   const genreToCategoryId = require("../common/genreToCategoryId");
+
+  const SampleNextArrow = (props) => {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ ...style, display: "block", background: "black", right: "-50px" }}
+        onClick={onClick}
+      />
+    );
+  };
+
+  const SamplePrevArrow = (props) => {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{
+          ...style,
+          display: "block",
+          background: "green",
+          position: "absolute", // 위치를 절대값으로 지정
+          left: "-550px", // 왼쪽으로부터 -50px 위치에 버튼을 둠
+        }}
+        onClick={onClick}
+      />
+    );
+  };
+
 
   const settings1 = {
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    arrows: true,
     fade: false,
+    initialSlide: 4,
     asNavFor: slider2.current,
+    arrows: false,
+    beforeChange: (current, next) => setCurrentSlideIndex(next),
   };
 
   const settings2 = {
-    slidesToShow: 7,
+    slidesToShow: 5,
     slidesToScroll: 1,
     asNavFor: slider1.current,
-    arrows: false,
-    centerMode: true,
+    arrows: true,
+    centerMode: false,
+    initialSlide: 0,
+    centerPadding: "0px",
     focusOnSelect: true,
+    prevArrow: <SamplePrevArrow />,
+    nextArrow: <SampleNextArrow />,
     draggable: false,
   };
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -68,38 +105,51 @@ const MainSlider = () => {
   }, []);
 
   return (
+    <div className="smain_wrap">
+    <h2 className="sh2">오늘의 책</h2>
     <div className="smain_container">
-      <h2>오늘의 책</h2>
-      <div className="main-slider">
+      
+      <div className="main-slider main-slider1">
         <Slider {...settings1} ref={slider1} className="main">
-          {books.map((book) => (
+          {books.map((book, index) => (
             <div key={book.isbn}>
-              <Link to={`/bookDetail/${book.isbn}`}>
-                <img className="img1" src={book.cover} alt={book.title} />
-              </Link>
-              <div className="book-info">
-                <p className="book-title">{book.title}</p>
-                <p className="book-author">{book.author}</p>
-                <p className="book-description">
-                  <img src="/images/ccc_image/dialogue.png" alt="말풍선" />
-                  <span className="bookinfo">{book.description}</span>
-                </p>
+              <div className="slide-content">
+                <div className="slide1_img">
+                  <Link to={`/bookDetail/${book.isbn}`}>
+                    <img className="img1" src={book.cover} alt={book.title} />
+                  </Link>
+                </div>
+                <div className="book-info">
+                  <p className="book-title_s">{book.title}</p>
+                  <p className="book-author_s">{book.author}</p>
+                  <p className="book-description">
+                    <img src="/images/ccc_image/dialogue.png" alt="말풍선" className="bicon" />
+                    <span className="bookinfo">{book.description}</span>
+                  </p>
+                </div>
               </div>
             </div>
           ))}
         </Slider>
       </div>
-      <div className="main-slider">
+      <div className="main-slider main-slider2">
         <Slider {...settings2} ref={slider2}>
-          {books.map((book) => (
-            <div key={book.isbn}>
-              <img className="img1" src={book.cover} alt={book.title} />
-            </div>
-          ))}
+          {books.map((book, index) => {
+            return (
+              <div key={book.isbn}>
+                <img className="img2" src={books[index].cover} alt={books[index].title} />
+              </div>
+            );
+          })}
         </Slider>
+
       </div>
+
+    </div>
     </div>
   );
+
+
 };
 
 export default MainSlider;

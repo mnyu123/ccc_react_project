@@ -174,7 +174,7 @@ class Header extends React.Component {
                 <nav className="small_nav_2">
                   <ul>
                     <li>
-                      <a href="#smain_container" onClick={this.handleClick}>
+                      <a href="#smain_wrap" onClick={this.handleClick}>
                         오늘의 책
                       </a>
                     </li>
