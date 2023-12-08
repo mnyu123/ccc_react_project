@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import Modal from "react-modal"; //모달을 위해 react modal 컴포넌트를 사용했습니다.
 import "../css/WeekPopup.css";
 
-// 팝업에 대한 스타일 지정(필요없으면 안써도되고 필요시 수정)
 const customStyles = {
   content: {
     top: "50%",
@@ -12,8 +11,7 @@ const customStyles = {
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
-    backgroundColor: "lightblue", // 배경 색상 지정
-    padding: "20px",
+    backgroundColor: "white",
   },
 };
 
@@ -54,16 +52,30 @@ const WeekPopup = ({ onClose }) => {
       style={customStyles}
       contentLabel="modal"
     >
-      <h1 style={{ marginBottom: "20px" }}>이번주의 책</h1>
-      <img
-        src="../images/ccc_bookcover/명탐정코난.jpg"
-        alt="명탐정 코난"
-        width="200px"
-        height="300px"
-        style={{ marginRight: "20px" }}
-      />
-      <button onClick={onClose}>닫기</button>
-      <button onClick={handleDontShowToday}>오늘 다시 보지 않기</button>
+
+      <div className="week">
+        <div className="week-book"><h4>이번주의 책</h4></div>
+        <span className="close" onClick={onClose}>&times;</span>
+      </div>
+      <hr />
+      <div className="book">
+        <div className="book-cover">책 표지</div>
+        <div className="book-explain">
+          <div className="book-title">제목의 길이가 제일 긴거는 얼마나 길까 진짜 길겠지</div>
+          <div className="book-author">저자</div>
+          <div className="book-review">동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 무궁화 삼천리 화려강산 대한사람 대한으로 길이 보전하세</div>
+        </div>
+      </div>
+      <hr />
+      <div className="check-close">
+        <input
+          type="checkbox"
+          id="remember"
+          checked={isRemembered}
+          onChange={handleCheckboxChange}
+        />
+        <label htmlFor="remember">오늘 하루 열지 않음</label>
+      </div>
     </Modal>
   );
 };

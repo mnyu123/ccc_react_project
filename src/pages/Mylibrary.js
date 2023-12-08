@@ -4,9 +4,12 @@ import { Link } from "react-router-dom";
 import Header from "../common/Header";
 import Footer from "../common/Footer";
 import "../css/Mylibrary.css";
+import axios from "axios";
 
 const MyLibrary = () => {
-  console.log("내 서재 화면 렌더링됨.");
+  const userId = sessionStorage.getItem("userid");
+  const [books, setBooks] = useState([]);
+  // console.log("내 서재 화면 렌더링됨.");
 
   const [isEditMode, setIsEditMode] = useState(false);
   const [selectedBooks, setSelectedBooks] = useState([]);
@@ -22,6 +25,7 @@ const MyLibrary = () => {
 
   const navigate = useNavigate();
 
+  // 내 서재 때문에 수정한 내용(12/8)
   useEffect(() => {
     const isLoggedIn = sessionStorage.getItem("isLoggedIn");
 
@@ -29,12 +33,32 @@ const MyLibrary = () => {
       navigate("/login");
     }
 
-    const userId = sessionStorage.getItem("userid");
-    const savedFavorites = JSON.parse(localStorage.getItem(userId));
-    if (savedFavorites) {
-      setFavorites(savedFavorites);
-    }
-  }, []);
+    const fetchMyLibrary = async () => {
+      const response = await axios.get(`/api/mybookshelf/${userId}`);
+      const bookIsbns = response.data.map((book) => book.mybookisbn);
+
+      const bookDetailsPromises = bookIsbns.map((isbn) =>
+        axios.get(`/api/bookDetail/${isbn}`)
+      );
+      const bookDetailsResponses = await Promise.all(bookDetailsPromises);
+      console.log("책 상세페이지 응답 : ", bookDetailsResponses.map((response) => response.data)); // 로그 추가
+
+      const books = bookDetailsResponses.map((response) => {
+        if (!response.data.item) {
+          // 'item' 키가 없는 경우 로그 출력
+          console.error(
+            `'item' key is missing in the response data: ${JSON.stringify(
+              response.data
+            )}`
+          );
+        }
+        return response.data;
+      });
+      console.log("내 서재 테스투: ", books);
+      setBooks(books);
+    };
+    fetchMyLibrary();
+  }, [userId]);
 
   const handleEditMode = () => {
     setIsEditMode(!isEditMode);
@@ -42,6 +66,7 @@ const MyLibrary = () => {
   };
 
   const selectBook = (book) => {
+    console.log("선택된 책 : ", book); // 로그 추가
     if (isEditMode) {
       if (selectedBooks.includes(book)) {
         setSelectedBooks(
@@ -111,29 +136,37 @@ const MyLibrary = () => {
               )}
             </div>
             <div className="library-list">
-              <div className="library-cover">
+              <div className="library-cover" style={{ backgroundColor: isListView ? 'white' : '#6626af' }}>
                 <button
                   className="listCoverBtn"
                   id="listCoverBtn"
-                  onClick={() => setIsListView(false)}
+                  onClick={() => {
+                    if (!isEditMode) {
+                      setIsListView(false);
+                    }
+                  }}
                   style={{ margin: 0 }}
                 >
                   <img
-                    src="/images/ccc_library/grid-2.png"
+                    src={isListView ? "/images/ccc_library/grid-1.png" : "/images/ccc_library/grid-2.png"}
                     alt="Image 1"
                     id="buttonImage1"
                   />
                 </button>
               </div>
-              <div className="library-view">
+              <div className="library-view" style={{ backgroundColor: isListView ? '#6626af' : 'white' }}>
                 <button
                   className="listViewBtn"
                   id="listViewBtn"
-                  onClick={() => setIsListView(true)}
+                  onClick={() => {
+                    if (!isEditMode) {
+                      setIsListView(true);
+                    }
+                  }}
                   style={{ margin: 0 }}
                 >
                   <img
-                    src="/images/ccc_library/list-1.png"
+                    src={isListView ? "/images/ccc_library/list-2.png" : "/images/ccc_library/list-1.png"}
                     alt="Image 2"
                     id="buttonImage2"
                   />
@@ -144,7 +177,7 @@ const MyLibrary = () => {
         </div>
         <div className={containerClass()}>
           <div className={bookContainerClass()} id="bookContainer">
-            {favorites.map((book, index) => (
+            {books.map((book, index) => (
               <div
                 key={index}
                 onClick={() => selectBook(book)}
@@ -152,12 +185,17 @@ const MyLibrary = () => {
                   isEditMode && selectedBooks.includes(book) ? "selected" : ""
                 }
               >
-                <img src={book.cover} alt={book.title} />
+
+                {console.log("렌더링된 책 : ", book)}
+                <Link to={`/bookDetail/${book.item[0].isbn}`}>
+                  <img src={book.item[0].cover} alt={book.item[0].title} />
+                </Link>
+                <h4>{book.item[0].title}</h4>
                 {isListView && (
                   <>
-                    <h4>{book.title}</h4>
-                    <p>{book.author}</p>
+                    <p>{book.item[0].author}</p>
                   </>
+
                 )}
               </div>
             ))}
@@ -166,7 +204,7 @@ const MyLibrary = () => {
       </div>
 
       <Header />
-      <Link to="/">다시 메인으로</Link>
+      <Link to="/"><br/><br/>다시 메인으로</Link>
       <Footer />
     </main>
   );

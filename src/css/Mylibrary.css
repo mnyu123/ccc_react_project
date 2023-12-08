@@ -52,7 +52,7 @@ button {
 
 /* 책 부분 */
 .concontainer {
-    width: 100%;
+    width: 1080px;
     padding: 0;
     margin: auto;
     display: flex;
@@ -61,87 +61,92 @@ button {
 }
 
 /* 표지 보기 */
-.container1 .book-container1 {
+.book-container1 {
+    width: 860px;
+    margin: 0 auto; /* 컨테이너를 화면 가운데에 배치합니다 */
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 10px;
     justify-content: center;
-    align-content: flex-start;
+    align-content: start; /* 그리드 셀의 아이템들을 위쪽으로 정렬합니다 */
 }
 
-.container1 .book-container1 .book-item1 {
-    width: 220px;
-    height: 360px;
+.book-container1 > div {
+    width: 180px;
+    height: 260px;
     padding: 10px 15px 1px 15px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
 }
 
-.container1 .book-container1 .book-item1 img {
-    width: 100%;
-    height: auto;
+.book-container1 > div img {
+    width: 100%;  
+    height: auto; 
     border-bottom: 1px solid #f2ebfa;
 }
 
-.container1 .book-container1 .book-item1 .description {
+.book-container1 > div .description {
     display: none;
 }
 
-.container1 .book-container1 .book-item1 img.selected {
+.book-container1 > div.selected img {
     border: 2px solid #6626af;
     box-shadow: 0px 2px 10px rgba(231, 170, 255, 0.2);
     box-sizing: border-box;
 }
 
 /* 목록 보기 */
-.container2 .book-container2 {
+.book-container2 {
+    width: 1140px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-    justify-content: flex-start;
+    gap: 20px;
+    justify-content: center;
     align-content: flex-start;
 }
 
-.container2 .book-container2 .book-item2 {
-    width: 637px;
+.book-container2 > div {
+    width: 550px;
     height: auto;
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
+    justify-content: flex-start;
     border-bottom: 1px solid #f2ebfa;
 }
 
-.container2 .book-container2 .book-item2 .book-content {
+.book-container2 > div .book-content {
     display: flex;
     align-items: center;
     justify-content: flex-start;
 }
 
-.container2 .book-container2 .book-item2 .img-wrapper {
+.book-container2 > div .img-wrapper {
     width: 100px;
     height: auto;
     margin-left: 30px;
+    box-sizing: border-box;
 }
 
-.container2 .book-container2 .book-item2 .description {
+.book-container2 > div .description {
     width: calc(100% - 100px);
 }
 
-
-.container2 .book-container2 .book-item2 img.selected {
-    border: 2px solid #6626af;
+.book-container2 > div.selected img {
+    outline: 2px solid #6626af;
     box-shadow: 0px 2px 10px rgba(231, 170, 255, 0.2);
     box-sizing: border-box;
 }
 
 .img-wrapper {
     position: relative;
+    box-sizing: border-box;
 }
 
 .img-wrapper img {
     width: 100%;
     height: 100%;
+    box-sizing: border-box;
 }
 
 .border-overlay {
@@ -167,28 +172,28 @@ button {
 }
 
 .description div:first-child {
-    font-size: 18px;
-    margin-left: 20px;
-    margin-bottom: 10px;
+    font-size: 16px;
+    margin: 0px 5px 10px 10px;
     font-weight: 600;
     color: #373737;
 }
 
 .description div:last-child {
-    font-size: 16px;
+    font-size: 15px;
     margin-left: 20px;
     color: #373737;
 }
 
 /* 버튼 모음 */
 .button-container {
-    width: 840px;
+    width: 1000px;
     height: 40px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
     /* 자식 요소들 사이에 공간을 최대한 분배 */
     align-items: center;
+    margin-top: 40px;
 }
 
 .selectAllButtons {
@@ -218,7 +223,7 @@ button {
 }
 
 .libraryAll {
-    margin-top: 25px;
+    margin-top: 30px;
 }
 
 .library-list {

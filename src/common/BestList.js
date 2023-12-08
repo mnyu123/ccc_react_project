@@ -9,7 +9,7 @@ const BestList = ({ categoryId }) => {
       try {
         // API를 호출합니다.
         const response = await axios.get(`/api/bestList/${categoryId}`);
-        console.log("API 응답 결과 테스트용:", response); // API 응답 출력
+        // console.log("API 응답 결과 테스트용:", response); // API 응답 출력
         // 상태를 업데이트합니다.
         setBestList(response.data.item.slice(0, 5));
       } catch (e) {
