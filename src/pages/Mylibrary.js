@@ -98,7 +98,7 @@ const MyLibrary = () => {
       <div className="libraryAll">
         <div className="library">
           <span id="libraryTitle">내 서재</span>
-          <span id="bookCount">(총 {favorites.length}권)</span>
+          <span id="bookCount">(총 {books.length}권)</span>
         </div>
 
         <div className="button-container">
