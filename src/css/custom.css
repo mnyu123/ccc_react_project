@@ -1,3 +1,7 @@
+.smain_wrap{
+  text-align: center;
+}
+
 .smain_container {
   width: 1400px;
   display: flex;
@@ -5,23 +9,13 @@
   flex-direction: row;
   /* 자식 요소들을 가로로 배치합니다. */
   align-items: center;
-  /* 자식 요소들을 세로선 중앙에 배치합니다. */
   padding: 100px;
   margin: auto;
-  /* 모든 방향에 20px의 내부 여백을 추가합니다. */
 }
 
-.smain_container h2 {
-  margin-top: 15px;
-  position: absolute;
-  /* 제목을 절대 위치로 설정합니다. */
-  top: 22%;
-  /* 제목을 상단에 배치합니다. */
-  left: 50%;
-  /* 제목을 화면 가로선 중앙에 배치합니다. */
-  transform: translate(-50%, -50%);
-  z-index: 3;
-  /* 제목을 정확히 중앙에 배치하기 위해 위치를 조정합니다. */
+.sh2 {
+  margin-top: 20px;
+  margin-bottom: -50px;
 }
 
 .smain_container .main-slider1 {

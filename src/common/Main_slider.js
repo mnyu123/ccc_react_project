@@ -105,8 +105,10 @@ const MainSlider = () => {
   }, []);
 
   return (
+    <div className="smain_wrap">
+    <h2 className="sh2">오늘의 책</h2>
     <div className="smain_container">
-      <h2>오늘의 책</h2>
+      
       <div className="main-slider main-slider1">
         <Slider {...settings1} ref={slider1} className="main">
           {books.map((book, index) => (
@@ -143,6 +145,7 @@ const MainSlider = () => {
 
       </div>
 
+    </div>
     </div>
   );
 
