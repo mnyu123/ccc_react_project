@@ -4,11 +4,12 @@ import { Link } from "react-router-dom";
 import Header from "../common/Header";
 import Footer from "../common/Footer";
 import "../css/Mylibrary.css";
+import axios from "axios";
 
 const MyLibrary = () => {
   const userId = sessionStorage.getItem("userid");
   const [books, setBooks] = useState([]);
-  console.log("내 서재 화면 렌더링됨.");
+  // console.log("내 서재 화면 렌더링됨.");
 
   const [isEditMode, setIsEditMode] = useState(false);
   const [selectedBooks, setSelectedBooks] = useState([]);
@@ -42,11 +43,19 @@ const MyLibrary = () => {
   useEffect(() => {
     const fetchMyLibrary = async () => {
       const response = await axios.get(`/api/mybookshelf/${userId}`);
-      setBooks(response.data);
+      const bookIsbns = response.data.map((book) => book.mybookisbn);
+
+      const bookDetailsPromises = bookIsbns.map((isbn) =>
+        axios.get(`/api/bookDetail/${isbn}`)
+      );
+      const bookDetailsResponses = await Promise.all(bookDetailsPromises);
+
+      const books = bookDetailsResponses.map((response) => response.data);
+      console.log("내 서재 테스투: ", books);
+      setBooks(books);
     };
     fetchMyLibrary();
   }, [userId]);
-
 
   const handleEditMode = () => {
     setIsEditMode(!isEditMode);
@@ -156,7 +165,7 @@ const MyLibrary = () => {
         </div>
         <div className={containerClass()}>
           <div className={bookContainerClass()} id="bookContainer">
-            {favorites.map((book, index) => (
+            {books.map((book, index) => (
               <div
                 key={index}
                 onClick={() => selectBook(book)}

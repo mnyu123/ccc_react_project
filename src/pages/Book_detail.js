@@ -46,7 +46,7 @@ const BookDetail = () => {
       try {
         // API를 호출합니다.
         const response = await axios.get(`/api/bookDetail/${bookIsbn}`);
-        console.log("API 응답 결과 테스트용:", response); // API 응답 출력
+        // console.log("API 응답 결과 테스트용:", response); // API 응답 출력
         // 상태를 업데이트합니다.
         setBookDetail(response.data.item[0]);
       } catch (e) {

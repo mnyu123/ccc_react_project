@@ -43,7 +43,7 @@ function BookSearch() {
     const query = categoryNames[categoryId]; // 카테고리 id에 해당하는 검색어를 가져옵니다.
 
     setLoading(true);
-    console.log("카테고리 검색 전 확인:", categoryId); // 콘솔에 데이터 출력
+    // console.log("카테고리 검색 전 확인:", categoryId); // 콘솔에 데이터 출력
 
     axios
       .get(`/api/aladin/${categoryId}`, {
@@ -54,7 +54,7 @@ function BookSearch() {
       })
 
       .then((response) => {
-        console.log("API 뜨는지", response.data); // 콘솔에 데이터 출력
+        // console.log("API 뜨는지", response.data); // 콘솔에 데이터 출력
         setBooks(response.data.item);
         setLoading(false);
       })

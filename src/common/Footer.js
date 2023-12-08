@@ -3,7 +3,7 @@ import React from "react";
 import "../css/Footer.css";
 
 const Footer = () => {
-  console.log("푸터 부분 렌더링됨.");
+  // console.log("푸터 부분 렌더링됨.");
   return (
     <footer>
       <p className="Developer">

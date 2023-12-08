@@ -25,6 +25,19 @@ app.use("/api/aladin", aladinApiService);
 app.use("/api/bookDetail", bookDetailService);
 // 알라딘 책 상세페이지 관련
 
+app.get("/api/mybookshelf/:userId", async (req, res) => {
+  const { userId } = req.params;
+  const query = "SELECT * FROM mybookshelf WHERE UserID = ?";
+
+  db.query(query, [userId], (error, results) => {
+    if (error) {
+      res.status(500).send({ error: "서재 정보를 가져오는데 실패하였습니다. 다시 시도해주세요." });
+    } else {
+      res.send(results);
+    }
+  });
+});
+
 app.use("/api/bestList", bestSellerService);
 // 알라딘 베스트셀러 출력 관련
 
