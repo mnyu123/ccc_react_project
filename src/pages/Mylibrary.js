@@ -6,6 +6,8 @@ import Footer from "../common/Footer";
 import "../css/Mylibrary.css";
 
 const MyLibrary = () => {
+  const userId = sessionStorage.getItem("userid");
+  const [books, setBooks] = useState([]);
   console.log("내 서재 화면 렌더링됨.");
 
   const [isEditMode, setIsEditMode] = useState(false);
@@ -22,19 +24,29 @@ const MyLibrary = () => {
 
   const navigate = useNavigate();
 
+  // useEffect(() => {
+  //   const isLoggedIn = sessionStorage.getItem("isLoggedIn");
+
+  //   if (isLoggedIn !== "true") {
+  //     navigate("/login");
+  //   }
+
+  //   const userId = sessionStorage.getItem("userid");
+  //   const savedFavorites = JSON.parse(localStorage.getItem(userId));
+  //   if (savedFavorites) {
+  //     setFavorites(savedFavorites);
+  //   }
+  // }, []);
+
+  // 내 서재 때문에 수정한 내용(12/8)
   useEffect(() => {
-    const isLoggedIn = sessionStorage.getItem("isLoggedIn");
+    const fetchMyLibrary = async () => {
+      const response = await axios.get(`/api/mybookshelf/${userId}`);
+      setBooks(response.data);
+    };
+    fetchMyLibrary();
+  }, [userId]);
 
-    if (isLoggedIn !== "true") {
-      navigate("/login");
-    }
-
-    const userId = sessionStorage.getItem("userid");
-    const savedFavorites = JSON.parse(localStorage.getItem(userId));
-    if (savedFavorites) {
-      setFavorites(savedFavorites);
-    }
-  }, []);
 
   const handleEditMode = () => {
     setIsEditMode(!isEditMode);
