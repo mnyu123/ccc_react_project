@@ -59,7 +59,7 @@ const Poll = ({ isModalOpen, setIsModalOpen, userId }) => {
           },
         };
         const response = await axios.post("http://localhost:3000/poll", user);
-        console.log(response.data);
+        // console.log(response.data);
         setErrorMessage(false);
         setIsSignedUp(true);
         setIsModalOpen(false);

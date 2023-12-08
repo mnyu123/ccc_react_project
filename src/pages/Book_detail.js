@@ -19,13 +19,11 @@ const BookDetail = () => {
   const userId = sessionStorage.getItem("userid");
 
   // 내 서재 담기 버튼 클릭 이벤트 핸들러
-  const handleLibraryBtnClick = () => {
+  const handleLibraryBtnClick = async () => {
     if (libraryIcon === defaultImage) {
       setLibraryIcon(changedImage);
-      let favorites = JSON.parse(localStorage.getItem(userId)) || [];
-      favorites.push(bookDetail);
-      localStorage.setItem(userId, JSON.stringify(favorites));
-      localStorage.setItem(`${bookDetail.isbn}-icon`, changedImage); // 아이콘 상태 저장
+      // 서버에 POST 요청을 보냅니다.
+      await axios.post("/api/mybookshelf", { userId, bookIsbn });
     } else {
       setLibraryIcon(defaultImage);
       let favorites = JSON.parse(localStorage.getItem(userId)) || [];
@@ -48,7 +46,7 @@ const BookDetail = () => {
       try {
         // API를 호출합니다.
         const response = await axios.get(`/api/bookDetail/${bookIsbn}`);
-        console.log("API 응답 결과 테스트용:", response); // API 응답 출력
+        // console.log("API 응답 결과 테스트용:", response); // API 응답 출력
         // 상태를 업데이트합니다.
         setBookDetail(response.data.item[0]);
       } catch (e) {

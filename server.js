@@ -25,6 +25,19 @@ app.use("/api/aladin", aladinApiService);
 app.use("/api/bookDetail", bookDetailService);
 // 알라딘 책 상세페이지 관련
 
+app.get("/api/mybookshelf/:userId", async (req, res) => {
+  const { userId } = req.params;
+  const query = "SELECT * FROM mybookshelf WHERE UserID = ?";
+
+  db.query(query, [userId], (error, results) => {
+    if (error) {
+      res.status(500).send({ error: "서재 정보를 가져오는데 실패하였습니다. 다시 시도해주세요." });
+    } else {
+      res.send(results);
+    }
+  });
+});
+
 app.use("/api/bestList", bestSellerService);
 // 알라딘 베스트셀러 출력 관련
 
@@ -153,6 +166,35 @@ app.get("/api/usergenre/:userId", (req, res) => {
       } else {
         res.send({ success: false, message: "장르 정보가 없습니다." });
       }
+    }
+  });
+});
+
+// 내 서재 정보 DB 저장
+app.post("/api/mybookshelf", (req, res) => {
+  const { userId, bookIsbn } = req.body;
+  const query =
+    "INSERT INTO mybookshelf (UserID, mybookisbn) VALUES (?, ?)";
+
+  db.query(query, [userId, bookIsbn], (error, results) => {
+    if (error) {
+      res.status(500).send({ error: "내 서재에 추가하는데 실패하였습니다. 다시 시도해주세요." });
+    } else {
+      res.send({ success: true, message: "내 서재에 추가되었습니다." });
+    }
+  });
+});
+
+// 내 서재 정보 DB에서 조회
+app.get("/api/mybookshelf/:userId", (req, res) => {
+  const { userId } = req.params;
+  const query = "SELECT * FROM mybookshelf WHERE UserID = ?";
+
+  db.query(query, [userId], (error, results) => {
+    if (error) {
+      res.status(500).send({ error: "서재 정보를 가져오는데 실패하였습니다. 다시 시도해주세요." });
+    } else {
+      res.send(results);
     }
   });
 });

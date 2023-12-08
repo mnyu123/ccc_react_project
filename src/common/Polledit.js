@@ -62,7 +62,7 @@ const Polledit = (props) => {
           "http://localhost:3000/polledit",
           user
         );
-        console.log(response.data);
+        // console.log(response.data);
         setErrorMessage(false);
         setShowPopup(false);
         navigate("/");

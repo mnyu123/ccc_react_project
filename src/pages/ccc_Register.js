@@ -6,7 +6,7 @@ import axios from "axios";
 
 const CccRegister = () => {
   const logo = "/images/ccc_image/logo.png";
-  console.log("회원가입 페이지 렌더링 됨.");
+  // console.log("회원가입 페이지 렌더링 됨.");
 
   const [color, setColor] = useState("#929294");
   const [fontWeight, setFontWeight] = useState("normal");
@@ -62,7 +62,7 @@ const CccRegister = () => {
           console.log(response);
           // 성공 시 처리 로직
           setIsModalOpen(true);
-          console.log("모달 생성됨.");
+          // console.log("모달 생성됨.");
         })
         .catch(function (error) {
           console.log(error);
