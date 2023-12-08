@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "../css/Header.css";
 import { Link } from "react-router-dom";
 import Mypage from "../pages/Mypage";
@@ -22,7 +23,16 @@ class Header extends React.Component {
 
   // 마이페이지를 열고 닫는 메서드입니다.
   toggleMypage = () => {
-    this.setState((prevState) => ({ isMypageOpen: !prevState.isMypageOpen }));
+    const isLoggedIn = sessionStorage.getItem("isLoggedIn");
+
+    if (isLoggedIn !== "true") {
+      alert("로그인이 필요합니다.");
+    } else {
+      this.setState((prevState) => ({
+        isMypageOpen: !prevState.isMypageOpen,
+      }));
+      
+    }
   };
 
   // 검색창의 값이 바뀔 때마다 이 함수를 실행하여 state를 업데이트합니다.
@@ -32,7 +42,6 @@ class Header extends React.Component {
 
   render() {
     console.log("헤더 렌더링됨.");
-    console.log("사용자: ", userid);
     return (
       <React.Fragment>
         <header className="header_fixed2">
@@ -117,12 +126,6 @@ class Header extends React.Component {
       behavior: "smooth",
     });
   };
-}
-
-if (userid) {
-  console.log("사용자: ", userid);
-} else {
-  console.log("로그인 정보가 없습니다.");
 }
 
 export default Header;
