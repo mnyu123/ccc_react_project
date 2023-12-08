@@ -62,7 +62,7 @@ hr {
     height: 600px;
 }
 
-.book-cover {
+.book-cover_w {
     width: 360px;
     height: 400px;
     background-color: yellow;
@@ -127,29 +127,29 @@ hr {
     vertical-align: middle;
 }
 
-.book-title {
+.book-title_w {
     padding: 5px 0px 5px 0px;
     border-bottom: 1px solid #dbd0e7;
     font-size: 18px;
     font-weight: 700;
 }
 
-.book-author {
+.book-author_w {
     padding: 8px 10px 5px 0px;
     font-size: 14px;
     font-weight: 500;
 }
 
-.book-review {
+.book-review_w {
     padding: 8px 10px 12px 0px;
     font-size: 16px;
     font-weight: 600;
     min-height: 50px;
 }
 
-.book-title,
-.book-author,
-.book-review {
+.book-title_w,
+.book-author_w,
+.book-review_w {
     margin-left: 10px;
     margin-right: 10px;
 }
