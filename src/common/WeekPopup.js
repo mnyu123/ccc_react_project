@@ -61,9 +61,9 @@ const WeekPopup = ({ onClose }) => {
       <div className="book">
         <div className="book-cover">책 표지</div>
         <div className="book-explain">
-          <div className="book-title">책 제목</div>
+          <div className="book-title">제목의 길이가 제일 긴거는 얼마나 길까 진짜 길겠지</div>
           <div className="book-author">저자</div>
-          <div className="book-review">리뷰 내용</div>
+          <div className="book-review">동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 무궁화 삼천리 화려강산 대한사람 대한으로 길이 보전하세</div>
         </div>
       </div>
       <hr />
