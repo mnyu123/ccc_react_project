@@ -9,8 +9,6 @@ const books = "/images/ccc_image/books.png";
 const user = "/images/ccc_image/user.png";
 const upArrow = "/images/ccc_image/up-arrow.png";
 
-const loginIcon = "/images/ccc_other/login.png"; // 로그인 아이콘 이미지 경로
-const registerIcon = "/images/ccc_other/register.png"; // 회원가입 아이콘 이미지 경로
 
 const userid = JSON.parse(sessionStorage.getItem("userid"));
 
@@ -31,7 +29,7 @@ class Header extends React.Component {
       this.setState((prevState) => ({
         isMypageOpen: !prevState.isMypageOpen,
       }));
-      
+
     }
   };
 
@@ -76,10 +74,18 @@ class Header extends React.Component {
               </div>
             </div>
             <div className="menu_wrap">
+              <div>
+                <Link to="/register">
+                  <button className="register_">회원가입</button>
+                </Link>
+                <span>|</span>
+                <Link to="/login">
+                  <button className="login_">로그인</button>
+                </Link>
+              </div>
               <div className="library_icon">
-                {/* Link 컴포넌트를 사용해 /mylibrary 경로로 이동하게 변경했습니다. */}
                 <Link to="/mylibrary">
-                  <button className="library_button" id="librarypagemove">
+                  <button type="books_button" id="mybooksmove">
                     <img src={books} alt="search_button" />
                   </button>
                 </Link>
@@ -92,18 +98,6 @@ class Header extends React.Component {
                 >
                   <img src={user} alt="search_button" />
                 </button>
-                {/* 로그인 버튼 */}
-                <Link to="/login">
-                  <img className="login_icon" src={loginIcon} alt="로그인" />
-                </Link>
-                {/* 회원가입 버튼 */}
-                <Link to="/register">
-                  <img
-                    className="register_icon"
-                    src={registerIcon}
-                    alt="회원가입"
-                  />
-                </Link>
               </div>
             </div>
           </div>

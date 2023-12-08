@@ -9,8 +9,6 @@ const search = "/images/ccc_image/search.png";
 const books = "/images/ccc_image/books.png";
 const user = "/images/ccc_image/user.png";
 const upArrow = "/images/ccc_image/up-arrow.png";
-const loginIcon = "/images/ccc_other/login.png";
-const registerIcon = "/images/ccc_other/register.png";
 
 const userid = JSON.parse(sessionStorage.getItem("userid"));
 
@@ -108,6 +106,16 @@ class Header extends React.Component {
                 </div>
               </div>
               <div className="menu_wrap">
+                <div>
+
+                  <Link to="/register">
+                    <button className="register_">회원가입</button>
+                  </Link>
+                  <span>|</span>
+                  <Link to="/login">
+                    <button className="login_">로그인</button>
+                  </Link>
+                </div>
                 <div className="library_icon">
                   <Link to="/mylibrary">
                     <button type="books_button" id="mybooksmove">
@@ -123,18 +131,6 @@ class Header extends React.Component {
                   >
                     <img src={user} alt="search_button" />
                   </button>
-                  {/* 로그인 버튼 */}
-                  <Link to="/login">
-                    <img className="login_icon" src={loginIcon} alt="로그인" />
-                  </Link>
-                  {/* 회원가입 버튼 */}
-                  <Link to="/register">
-                    <img
-                      className="register_icon"
-                      src={registerIcon}
-                      alt="회원가입"
-                    />
-                  </Link>
                 </div>
               </div>
             </div>
@@ -194,6 +190,15 @@ class Header extends React.Component {
                 </nav>
               </div>
               <div className="menu_wrap">
+                <div>
+                  <Link to="/register">
+                    <button className="register_">회원가입</button>
+                  </Link>
+                  <span>|</span>
+                  <Link to="/login">
+                    <button className="login_">로그인</button>
+                  </Link>
+                </div>
                 <div className="library_icon">
                   <Link to="/mylibrary">
                     <button type="books_button" id="mybooksmove">
@@ -209,18 +214,6 @@ class Header extends React.Component {
                   >
                     <img src={user} alt="search_button" />
                   </button>
-                  {/* 로그인 버튼 */}
-                  <Link to="/login">
-                    <img className="login_icon" src={loginIcon} alt="로그인" />
-                  </Link>
-                  {/* 회원가입 버튼 */}
-                  <Link to="/register">
-                    <img
-                      className="register_icon"
-                      src={registerIcon}
-                      alt="회원가입"
-                    />
-                  </Link>
                 </div>
               </div>
             </div>
