@@ -33,6 +33,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 400px;
 }
 
 .close {
@@ -57,6 +58,8 @@ hr {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 400px;
+    height: 600px;
 }
 
 .book-cover {
@@ -77,21 +80,70 @@ hr {
 
 .check-close {
     margin-bottom: 5px;
+    margin-top: 8px;
     color: #373737;
     margin-left: 10px;
+    width: 400px;
+    height: 21px;
+}
+
+.check-close input[type="checkbox"] {
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 10%;
+    outline: none;
+    box-shadow: 0 0 0 1px #373737;
+    background-color: white;
+    position: relative;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.check-close input[type="checkbox"]:before {
+    content: initial;
+    position: initial;
+    width: initial;
+    height: initial;
+    border-radius: initial;
+    top: initial;
+    left: initial;
+}
+
+.check-close input[type="checkbox"]:checked:before {
+    content: "\2713";
+    text-align: center;
+    line-height: 15px;
+    font-size: 15px;
+    color: #373737;
+    background-color: initial;
+    margin: 0;
+}
+
+.check-close label {
+    height: 21px;
+    display: inline-block;
+    line-height: 22px;
+    vertical-align: middle;
 }
 
 .book-title {
     padding: 5px 0px 5px 0px;
     border-bottom: 1px solid #dbd0e7;
+    font-size: 18px;
+    font-weight: 700;
 }
 
 .book-author {
-    padding: 15px 10px 5px 0px;
+    padding: 8px 10px 5px 0px;
+    font-size: 14px;
+    font-weight: 500;
 }
 
 .book-review {
-    padding: 10px 10px 15px 0px;
+    padding: 8px 10px 12px 0px;
+    font-size: 16px;
+    font-weight: 600;
 }
 
 .book-title,
