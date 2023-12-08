@@ -25,22 +25,14 @@ const MyLibrary = () => {
 
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   const isLoggedIn = sessionStorage.getItem("isLoggedIn");
-
-  //   if (isLoggedIn !== "true") {
-  //     navigate("/login");
-  //   }
-
-  //   const userId = sessionStorage.getItem("userid");
-  //   const savedFavorites = JSON.parse(localStorage.getItem(userId));
-  //   if (savedFavorites) {
-  //     setFavorites(savedFavorites);
-  //   }
-  // }, []);
-
   // 내 서재 때문에 수정한 내용(12/8)
   useEffect(() => {
+    const isLoggedIn = sessionStorage.getItem("isLoggedIn");
+
+    if (isLoggedIn !== "true") {
+      navigate("/login");
+    }
+
     const fetchMyLibrary = async () => {
       const response = await axios.get(`/api/mybookshelf/${userId}`);
       const bookIsbns = response.data.map((book) => book.mybookisbn);
@@ -49,8 +41,19 @@ const MyLibrary = () => {
         axios.get(`/api/bookDetail/${isbn}`)
       );
       const bookDetailsResponses = await Promise.all(bookDetailsPromises);
+      console.log("책 상세페이지 응답 : ", bookDetailsResponses.map((response) => response.data)); // 로그 추가
 
-      const books = bookDetailsResponses.map((response) => response.data);
+      const books = bookDetailsResponses.map((response) => {
+        if (!response.data.item) {
+          // 'item' 키가 없는 경우 로그 출력
+          console.error(
+            `'item' key is missing in the response data: ${JSON.stringify(
+              response.data
+            )}`
+          );
+        }
+        return response.data;
+      });
       console.log("내 서재 테스투: ", books);
       setBooks(books);
     };
@@ -63,6 +66,7 @@ const MyLibrary = () => {
   };
 
   const selectBook = (book) => {
+    console.log("선택된 책 : ", book); // 로그 추가
     if (isEditMode) {
       if (selectedBooks.includes(book)) {
         setSelectedBooks(
@@ -173,7 +177,10 @@ const MyLibrary = () => {
                   isEditMode && selectedBooks.includes(book) ? "selected" : ""
                 }
               >
-                <img src={book.item[0].cover} alt={book.item[0].title} />
+                {console.log("렌더링된 책 : ", book)}
+                <Link to={`/bookDetail/${book.item[0].isbn}`}>
+                  <img src={book.item[0].cover} alt={book.item[0].title} />
+                </Link>
                 <h4>{book.item[0].title}</h4>
                 {isListView && (
                   <>
