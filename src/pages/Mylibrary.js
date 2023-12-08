@@ -173,11 +173,11 @@ const MyLibrary = () => {
                   isEditMode && selectedBooks.includes(book) ? "selected" : ""
                 }
               >
-                <img src={book.cover} alt={book.title} />
+                <img src={book.item[0].cover} alt={book.item[0].title} />
+                <h4>{book.item[0].title}</h4>
                 {isListView && (
                   <>
-                    <h4>{book.title}</h4>
-                    <p>{book.author}</p>
+                    <p>{book.item[0].author}</p>
                   </>
                 )}
               </div>
