@@ -111,29 +111,37 @@ const MyLibrary = () => {
               )}
             </div>
             <div className="library-list">
-              <div className="library-cover">
+              <div className="library-cover" style={{ backgroundColor: isListView ? 'white' : '#6626af' }}>
                 <button
                   className="listCoverBtn"
                   id="listCoverBtn"
-                  onClick={() => setIsListView(false)}
+                  onClick={() => {
+                    if (!isEditMode) {
+                      setIsListView(false);
+                    }
+                  }}
                   style={{ margin: 0 }}
                 >
                   <img
-                    src="/images/ccc_library/grid-2.png"
+                    src={isListView ? "/images/ccc_library/grid-1.png" : "/images/ccc_library/grid-2.png"}
                     alt="Image 1"
                     id="buttonImage1"
                   />
                 </button>
               </div>
-              <div className="library-view">
+              <div className="library-view" style={{ backgroundColor: isListView ? '#6626af' : 'white' }}>
                 <button
                   className="listViewBtn"
                   id="listViewBtn"
-                  onClick={() => setIsListView(true)}
+                  onClick={() => {
+                    if (!isEditMode) {
+                      setIsListView(true);
+                    }
+                  }}
                   style={{ margin: 0 }}
                 >
                   <img
-                    src="/images/ccc_library/list-1.png"
+                    src={isListView ? "/images/ccc_library/list-2.png" : "/images/ccc_library/list-1.png"}
                     alt="Image 2"
                     id="buttonImage2"
                   />
@@ -152,12 +160,14 @@ const MyLibrary = () => {
                   isEditMode && selectedBooks.includes(book) ? "selected" : ""
                 }
               >
-                <img src={book.cover} alt={book.title} />
+                <div className="img-wrapper">
+                  <img src={book.cover} alt={book.title} />
+                </div>
                 {isListView && (
-                  <>
-                    <h4>{book.title}</h4>
-                    <p>{book.author}</p>
-                  </>
+                  <div className="description">
+                    <div>{book.title}</div>
+                    <div>{book.author}</div>
+                  </div>
                 )}
               </div>
             ))}
@@ -166,7 +176,7 @@ const MyLibrary = () => {
       </div>
 
       <Header />
-      <Link to="/">다시 메인으로</Link>
+      <Link to="/"><br/><br/>다시 메인으로</Link>
       <Footer />
     </main>
   );
