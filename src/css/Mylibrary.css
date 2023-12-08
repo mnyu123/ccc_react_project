@@ -98,19 +98,20 @@ button {
 
 /* 목록 보기 */
 .book-container2 {
+    width: 1140px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-    justify-content: flex-start;
+    gap: 20px;
+    justify-content: center;
     align-content: flex-start;
 }
 
 .book-container2 > div {
-    width: 637px;
+    width: 550px;
     height: auto;
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
+    justify-content: flex-start;
     border-bottom: 1px solid #f2ebfa;
 }
 
@@ -124,6 +125,7 @@ button {
     width: 100px;
     height: auto;
     margin-left: 30px;
+    box-sizing: border-box;
 }
 
 .book-container2 > div .description {
@@ -131,18 +133,20 @@ button {
 }
 
 .book-container2 > div.selected img {
-    border: 2px solid #6626af;
+    outline: 2px solid #6626af;
     box-shadow: 0px 2px 10px rgba(231, 170, 255, 0.2);
     box-sizing: border-box;
 }
 
 .img-wrapper {
     position: relative;
+    box-sizing: border-box;
 }
 
 .img-wrapper img {
     width: 100%;
     height: 100%;
+    box-sizing: border-box;
 }
 
 .border-overlay {
@@ -168,15 +172,14 @@ button {
 }
 
 .description div:first-child {
-    font-size: 18px;
-    margin-left: 20px;
-    margin-bottom: 10px;
+    font-size: 16px;
+    margin: 0px 5px 10px 10px;
     font-weight: 600;
     color: #373737;
 }
 
 .description div:last-child {
-    font-size: 16px;
+    font-size: 15px;
     margin-left: 20px;
     color: #373737;
 }
