@@ -3,11 +3,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Header from "../common/Header";
+import "../css/SearchBook.css";
 
 const SearchBook = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [books, setBooks] = useState([]);
+
 
   useEffect(() => {
     // URL에서 검색어 가져오기
