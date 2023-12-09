@@ -15,6 +15,8 @@ const bookDetailService = require("./BookDetailService");
 const bestSellerService = require("./BestSellerService");
 // 알라딘 베스트셀러 출력 관련
 
+const booksearchservice = require("./BookSearchService")
+
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -24,6 +26,8 @@ app.use("/api/aladin", aladinApiService);
 
 app.use("/api/bookDetail", bookDetailService);
 // 알라딘 책 상세페이지 관련
+
+app.use("/api/booksearch", booksearchservice);
 
 app.get("/api/mybookshelf/:userId", async (req, res) => {
   const { userId } = req.params;

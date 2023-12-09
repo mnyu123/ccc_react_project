@@ -22,9 +22,18 @@ class Header extends React.Component {
     isMypageOpen: false,
     isScrolled: false, // 추가
   };
-
+  // 마이페이지를 열고 닫는 메서드입니다.
   toggleMypage = () => {
-    this.setState((prevState) => ({ isMypageOpen: !prevState.isMypageOpen }));
+    const isLoggedIn = sessionStorage.getItem("isLoggedIn");
+
+    if (isLoggedIn !== "true") {
+      alert("로그인이 필요합니다.");
+    } else {
+      this.setState((prevState) => ({
+        isMypageOpen: !prevState.isMypageOpen,
+      }));
+      
+    }
   };
 
   handleChange = (event) => {
@@ -100,9 +109,11 @@ class Header extends React.Component {
                       autoCapitalize="off"
                     />
                     <span>
+                    <Link to={`/search?query=${this.state.search}`}>
                       <button type="search_button" id="searchbooks">
                         <img src={search} alt="search_button" />
                       </button>
+                    </Link>
                     </span>
                   </div>
                 </div>
@@ -165,9 +176,11 @@ class Header extends React.Component {
                       autoCapitalize="off"
                     />
                     <span>
+                    <Link to={`/search?query=${this.state.search}`}>
                       <button type="search_button" id="searchbooks">
                         <img src={search} alt="search_button" />
                       </button>
+                    </Link>
                     </span>
                   </div>
                 </div>
@@ -244,12 +257,6 @@ class Header extends React.Component {
       behavior: "smooth",
     });
   };
-}
-
-if (userid) {
-  console.log("사용자: ", userid);
-} else {
-  console.log("로그인 정보가 없습니다.");
 }
 
 export default Header;
