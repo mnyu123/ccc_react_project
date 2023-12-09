@@ -84,9 +84,31 @@
 
 
 .small_nav_2 a:hover {
-    color: #692ead;
+    color: #a353ff;
 }
 
+.register_{
+    margin: 0px 5px;
+    font-weight: 600;
+    color: #373737;
+}
+
+.register_:hover {
+    color: #a353ff;
+}
+
+#mybooksmove img:hover {
+    filter: invert(0.5) sepia(10) saturate(15) brightness(0.5) hue-rotate(400deg);
+  }
+  
+.login_{
+    margin: 0px 5px;
+    font-weight: 600;
+    color: #373737;
+}
+.login_:hover{
+    color: #a353ff
+}
 
 @media (min-width: 641px) {
     .header_inner {
