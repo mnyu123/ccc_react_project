@@ -5,6 +5,7 @@
     width: 1280px;
     height: 650px;
     margin: auto;
+    margin-top: 109px;
 }
 
 .todaybooks_wrap {
@@ -34,7 +35,7 @@
 
 /* 책 이미지 설정 관련 */
 .todaybooks_wrap .book_cover {
-    width: 200px;
+    width: 300px;
     /* 가로 크기 */
     height: auto;
     object-fit: cover;
@@ -47,6 +48,7 @@
     border-radius: 6px;
     padding: 10px 5px;
     background-color: #fbf8fea0;
+    text-align: left;
 }
 
 .todaybooks_wrap .info_wrap .publisher,
@@ -58,19 +60,23 @@
 
 .todaybooks_wrap .info_wrap .author {
     font-size: 14px;
+    text-align: left;
+    color: #020202;
+    font-weight: bold;
 }
 
 .todaybooks_wrap .category_wrap {
     display: inline-block;
     border: 1px solid #692ead;
     border-radius: 6px;
+ 
 }
 
 .todaybooks_wrap .category {
     font-size: 15px;
     color: #6f36b0;
     padding: 1px 2px;
-    font-weight: 500;
+    font-weight: 600;
     
 }
 
