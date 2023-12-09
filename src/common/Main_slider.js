@@ -19,7 +19,12 @@ const MainSlider = () => {
     return (
       <div
         className={className}
-        style={{ ...style, display: "block", background: "black", right: "-50px" }}
+        style={{
+          ...style,
+          display: "block",
+          background: "black",
+          right: "-50px",
+        }}
         onClick={onClick}
       />
     );
@@ -41,7 +46,6 @@ const MainSlider = () => {
       />
     );
   };
-
 
   const settings1 = {
     infinite: true,
@@ -68,7 +72,6 @@ const MainSlider = () => {
     nextArrow: <SampleNextArrow />,
     draggable: false,
   };
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -106,50 +109,53 @@ const MainSlider = () => {
 
   return (
     <div className="smain_wrap">
-    <h2 className="sh2">오늘의 책</h2>
-    <div className="smain_container">
-      
-      <div className="main-slider main-slider1">
-        <Slider {...settings1} ref={slider1} className="main">
-          {books.map((book, index) => (
-            <div key={book.isbn}>
-              <div className="slide-content">
-                <div className="slide1_img">
-                  <Link to={`/bookDetail/${book.isbn}`}>
-                    <img className="img1" src={book.cover} alt={book.title} />
-                  </Link>
-                </div>
-                <div className="book-info">
-                  <p className="book-title_s">{book.title}</p>
-                  <p className="book-author_s">{book.author}</p>
-                  <p className="book-description">
-                    <img src="/images/ccc_image/dialogue.png" alt="말풍선" className="bicon" />
-                    <span className="bookinfo">{book.description}</span>
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </Slider>
-      </div>
-      <div className="main-slider main-slider2">
-        <Slider {...settings2} ref={slider2}>
-          {books.map((book, index) => {
-            return (
+      <h2 className="sh2">오늘의 책</h2>
+      <div className="smain_container">
+        <div className="main-slider main-slider1">
+          <Slider {...settings1} ref={slider1} className="main">
+            {books.map((book, index) => (
               <div key={book.isbn}>
-                <img className="img2" src={books[index].cover} alt={books[index].title} />
+                <div className="slide-content">
+                  <div className="slide1_img">
+                    <Link to={`/bookDetail/${book.isbn}`}>
+                      <img className="img1" src={book.cover} alt={book.title} />
+                    </Link>
+                  </div>
+                  <div className="book-info">
+                    <p className="book-title_s">{book.title}</p>
+                    <p className="book-author_s">{book.author}</p>
+                    <p className="book-description">
+                      <img
+                        src="/images/ccc_image/dialogue.png"
+                        alt="말풍선"
+                        className="bicon"
+                      />
+                      <span className="bookinfo">{book.description}</span>
+                    </p>
+                  </div>
+                </div>
               </div>
-            );
-          })}
-        </Slider>
-
+            ))}
+          </Slider>
+        </div>
+        <div className="main-slider main-slider2">
+          <Slider {...settings2} ref={slider2}>
+            {books.map((book, index) => {
+              return (
+                <div key={book.isbn}>
+                  <img
+                    className="img2"
+                    src={books[index].cover}
+                    alt={books[index].title}
+                  />
+                </div>
+              );
+            })}
+          </Slider>
+        </div>
       </div>
-
-    </div>
     </div>
   );
-
-
 };
 
 export default MainSlider;
