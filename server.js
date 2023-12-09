@@ -7,16 +7,16 @@ const cors = require("cors");
 const app = express();
 const port = 3000;
 
-const aladinApiService = require("./AladinApiService");
+const aladinApiService = require("../ccc_react_project/src/services/AladinApiService");
 // 상대 경로를 사용하여 AladinApiService.js를 가져옵니다.
 
-const bookDetailService = require("./BookDetailService");
+const bookDetailService = require("../ccc_react_project/src/services/BookDetailService");
 // 알라딘 책 상세페이지 관련
 
-const bestSellerService = require("./BestSellerService");
+const bestSellerService = require("../ccc_react_project/src/services/BestSellerService");
 // 알라딘 베스트셀러 출력 관련
 
-const booksearchservice = require("./BookSearchService");
+const booksearchservice = require("../ccc_react_project/src/services/BookSearchService");
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));

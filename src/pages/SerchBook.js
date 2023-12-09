@@ -1,6 +1,8 @@
 // SearchBook.js
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import Header from "../common/Header";
 
 const SearchBook = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -34,15 +36,18 @@ const SearchBook = () => {
 
   return (
     <div>
+      <Header />
       <h1>검색 결과</h1>
       <h2>검색어: {searchQuery}</h2>
       <ul>
         {searchResults.map((result) => (
           <li key={result.itemId}>
-            <div>
-              <h2>{result.title}</h2>
-              <img src={result.cover} alt={result.title} />
-            </div>
+            <Link to={`/bookdetail/${result.isbn}`} style={{ textDecoration: 'none' }}>
+              <div>
+                <h2>{result.title}</h2>
+                <img src={result.cover} alt={result.title} />
+              </div>
+            </Link>
           </li>
         ))}
       </ul>
