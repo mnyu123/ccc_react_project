@@ -36,22 +36,24 @@ const SearchBook = () => {
   }, []);
 
   return (
-    <div>
+    <div >
       <Header />
-      <h1>검색 결과</h1>
-      <h2>검색어: {searchQuery}</h2>
+      <div className="result_wrap">
+      <strong> '{searchQuery}' 검색 결과 </strong> <span>(총 {searchResults.length}개)</span>
+
       <ul>
         {searchResults.map((result) => (
           <li key={result.itemId}>
             <Link to={`/bookdetail/${result.isbn}`} style={{ textDecoration: 'none' }}>
               <div>
-                <h2>{result.title}</h2>
+                <h4>{result.title}</h4>
                 <img src={result.cover} alt={result.title} />
               </div>
             </Link>
           </li>
         ))}
       </ul>
+      </div>
     </div>
   );
 };
