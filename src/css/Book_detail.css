@@ -34,7 +34,7 @@
 
 /* 책 이미지 설정 관련 */
 .todaybooks_wrap .book_cover {
-    width: 100px;
+    width: 200px;
     /* 가로 크기 */
     height: auto;
     object-fit: cover;
@@ -71,6 +71,7 @@
     color: #6f36b0;
     padding: 1px 2px;
     font-weight: 500;
+    
 }
 
 .todaybooks_wrap .title_wrap {
@@ -80,6 +81,7 @@
 .todaybooks_wrap .title {
     font-size: 2.5ch;
     font-weight: 600;
+    text-align: left;
 }
 
 .todaybooks_wrap .libraryBtn_wrap {
