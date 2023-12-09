@@ -1,4 +1,4 @@
-.smain_wrap{
+.smain_wrap {
   text-align: center;
 }
 
@@ -21,7 +21,7 @@
 
 
 .smain_container .main-slider1 {
-  width: 45%; 
+  width: 45%;
   z-index: 2;
   transform: translateX(76px);
   background-color: rgb(255, 255, 255);
@@ -33,11 +33,11 @@
 }
 
 
-.main-slider .slick-slide > div { 
-  position: relative; 
+.main-slider .slick-slide>div {
+  position: relative;
 }
 
-.slide1_img{
+.slide1_img {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -55,7 +55,7 @@
 .img1 {
   width: 250px;
   height: auto;
-  
+
 }
 
 .img2 {
@@ -65,7 +65,7 @@
   margin-right: 20px;
 }
 
-.book-title_s{
+.book-title_s {
   text-align: left;
   font-size: 20px;
   font-weight: 700;
@@ -79,17 +79,17 @@
   padding: 10px 20px 0 0;
 }
 
-.book-title_s{
+.book-title_s {
   text-align: left;
   font-size: 20px;
   font-weight: 700;
 }
 
-.bicon{
+.bicon {
   width: 22px;
 }
 
-.book-author_s{
+.book-author_s {
   text-align: left;
   color: #6a6a6a;
   font-size: 15px;
@@ -104,5 +104,5 @@
   word-wrap: break-word;
   /* 이전 버전의 브라우저를 지원하기 위해 추가합니다. */
   margin-top: 5px;
-  
+
 }

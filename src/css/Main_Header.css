@@ -87,7 +87,7 @@
     color: #a353ff;
 }
 
-.register_{
+.register_ {
     margin: 0px 5px;
     font-weight: 600;
     color: #373737;
@@ -99,14 +99,15 @@
 
 #mybooksmove img:hover {
     filter: invert(0.5) sepia(10) saturate(15) brightness(0.5) hue-rotate(400deg);
-  }
-  
-.login_{
+}
+
+.login_ {
     margin: 0px 5px;
     font-weight: 600;
     color: #373737;
 }
-.login_:hover{
+
+.login_:hover {
     color: #a353ff
 }
 
