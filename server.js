@@ -1,4 +1,4 @@
-require('dotenv').config();
+require("dotenv").config();
 const express = require("express");
 const mysql = require("mysql");
 const bodyParser = require("body-parser");
@@ -16,7 +16,7 @@ const bookDetailService = require("./BookDetailService");
 const bestSellerService = require("./BestSellerService");
 // 알라딘 베스트셀러 출력 관련
 
-const booksearchservice = require("./BookSearchService")
+const booksearchservice = require("./BookSearchService");
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -36,7 +36,11 @@ app.get("/api/mybookshelf/:userId", async (req, res) => {
 
   db.query(query, [userId], (error, results) => {
     if (error) {
-      res.status(500).send({ error: "서재 정보를 가져오는데 실패하였습니다. 다시 시도해주세요." });
+      res
+        .status(500)
+        .send({
+          error: "서재 정보를 가져오는데 실패하였습니다. 다시 시도해주세요.",
+        });
     } else {
       res.send(results);
     }
@@ -178,12 +182,15 @@ app.get("/api/usergenre/:userId", (req, res) => {
 // 내 서재 정보 DB 저장
 app.post("/api/mybookshelf", (req, res) => {
   const { userId, bookIsbn } = req.body;
-  const query =
-    "INSERT INTO mybookshelf (UserID, mybookisbn) VALUES (?, ?)";
+  const query = "INSERT INTO mybookshelf (UserID, mybookisbn) VALUES (?, ?)";
 
   db.query(query, [userId, bookIsbn], (error, results) => {
     if (error) {
-      res.status(500).send({ error: "내 서재에 추가하는데 실패하였습니다. 다시 시도해주세요." });
+      res
+        .status(500)
+        .send({
+          error: "내 서재에 추가하는데 실패하였습니다. 다시 시도해주세요.",
+        });
     } else {
       res.send({ success: true, message: "내 서재에 추가되었습니다." });
     }
@@ -197,7 +204,11 @@ app.get("/api/mybookshelf/:userId", (req, res) => {
 
   db.query(query, [userId], (error, results) => {
     if (error) {
-      res.status(500).send({ error: "서재 정보를 가져오는데 실패하였습니다. 다시 시도해주세요." });
+      res
+        .status(500)
+        .send({
+          error: "서재 정보를 가져오는데 실패하였습니다. 다시 시도해주세요.",
+        });
     } else {
       res.send(results);
     }

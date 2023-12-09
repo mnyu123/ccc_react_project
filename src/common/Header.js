@@ -9,7 +9,6 @@ const books = "/images/ccc_image/books.png";
 const user = "/images/ccc_image/user.png";
 const upArrow = "/images/ccc_image/up-arrow.png";
 
-
 const userid = JSON.parse(sessionStorage.getItem("userid"));
 
 class Header extends React.Component {
@@ -29,7 +28,6 @@ class Header extends React.Component {
       this.setState((prevState) => ({
         isMypageOpen: !prevState.isMypageOpen,
       }));
-
     }
   };
 

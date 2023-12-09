@@ -30,7 +30,6 @@ class Header extends React.Component {
       this.setState((prevState) => ({
         isMypageOpen: !prevState.isMypageOpen,
       }));
-      
     }
   };
 
@@ -107,18 +106,17 @@ class Header extends React.Component {
                       autoCapitalize="off"
                     />
                     <span>
-                    <Link to={`/search?query=${this.state.search}`}>
-                      <button type="search_button" id="searchbooks">
-                        <img src={search} alt="search_button" />
-                      </button>
-                    </Link>
+                      <Link to={`/search?query=${this.state.search}`}>
+                        <button type="search_button" id="searchbooks">
+                          <img src={search} alt="search_button" />
+                        </button>
+                      </Link>
                     </span>
                   </div>
                 </div>
               </div>
               <div className="menu_wrap">
                 <div>
-
                   <Link to="/register">
                     <button className="register_">회원가입</button>
                   </Link>
@@ -172,11 +170,11 @@ class Header extends React.Component {
                       autoCapitalize="off"
                     />
                     <span>
-                    <Link to={`/search?query=${this.state.search}`}>
-                      <button type="search_button" id="searchbooks">
-                        <img src={search} alt="search_button" />
-                      </button>
-                    </Link>
+                      <Link to={`/search?query=${this.state.search}`}>
+                        <button type="search_button" id="searchbooks">
+                          <img src={search} alt="search_button" />
+                        </button>
+                      </Link>
                     </span>
                   </div>
                 </div>

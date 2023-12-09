@@ -5,7 +5,7 @@ import BookDetail from "./pages/Book_detail";
 import CccRegister from "./pages/ccc_Register";
 import CccLogin from "./pages/ccc_Login";
 import BookSearch from "./pages/BookSearch";
-import MyLibrary from "./pages/Mylibrary"; 
+import MyLibrary from "./pages/Mylibrary";
 import SearchBook from "./pages/SerchBook";
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
           <Route path="/register" element={<CccRegister />} />
           <Route path="/login" element={<CccLogin />} />
           <Route path="/booksearch" element={<BookSearch />} />
-          <Route path="/search"element={<SearchBook />} />
+          <Route path="/search" element={<SearchBook />} />
         </Routes>
       </BrowserRouter>
     </div>

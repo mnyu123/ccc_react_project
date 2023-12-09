@@ -18,7 +18,7 @@ const SearchBook = () => {
       try {
         const response = await axios.get(`/api/aladin/booksearch`, {
           params: {
-            Query: query, 
+            Query: query,
           },
         });
         setSearchResults(response.data.item);
