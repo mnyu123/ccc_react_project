@@ -2,8 +2,9 @@ const express = require("express");
 const axios = require("axios");
 const qs = require("qs");
 const router = express.Router();
+const API_KEY = process.env.REACT_APP_API_KEY;
 
-const ttbkey = "ttbwhdudwo55821335001";
+const ttbkey = API_KEY;
 
 router.get("/:categoryId", async (req, res) => {
   if (!req.params.categoryId) {
