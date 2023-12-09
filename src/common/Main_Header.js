@@ -86,11 +86,10 @@ class Header extends React.Component {
         {!this.state.isScrolled && (
           <header className="header_normal" ref={this.headerRef}>
             <div className="header_inner" id="inner1">
-              <div className="logo">
-                <Link to="/">
-                  <img src={logo} alt="로고" />
-                </Link>
+              <div className="logo" onClick={() => window.location.reload()}>
+                <img src={logo} alt="로고" />
               </div>
+
               <div className="search_wrap">
                 <div className="search_box">
                   <div className="search_">
@@ -150,10 +149,10 @@ class Header extends React.Component {
             className={this.state.isScrolled ? "header_fixed" : "header_normal"}
           >
             <div className="header_inner">
-              <div className="logo">
-                <Link to="/">
-                  <img src={logo} alt="로고" />
-                </Link>
+              <div className="logo" onClick={() => {
+                window.scrollTo(0, 0);
+              }}>
+                <img src={logo} alt="로고" />
               </div>
               <div className="search_wrap">
                 <div className="search_box">
@@ -181,7 +180,9 @@ class Header extends React.Component {
                 <nav className="small_nav_2">
                   <ul>
                     <li>
-                      <a href="#smain_wrap" onClick={this.handleClick}>
+                      <a onClick={(e) => {
+                        window.scrollTo(0, 0);
+                      }}>
                         오늘의 책
                       </a>
                     </li>
