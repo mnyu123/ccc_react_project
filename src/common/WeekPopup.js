@@ -13,6 +13,7 @@ const customStyles = {
     transform: "translate(-50%, -50%)",
     backgroundColor: "white",
     zIndex: "1000",
+    position: "fixed",
   },
 };
 
@@ -46,10 +47,21 @@ const WeekPopup = ({ onClose }) => {
     onClose();
   };
 
+  const disableBodyScroll = () => {
+    document.body.style.overflow = 'hidden';
+  };
+
+  const enableBodyScroll = () => {
+    document.body.style.overflow = 'auto';
+  };
+
   return (
     <Modal
       isOpen={sessionStorage.getItem("isLoggedIn") === "true"}
-      onRequestClose={onClose} //모달이 닫힘(화면 외부를 클릭하거나 esc키 감지)
+      onRequestClose={() => {
+        enableBodyScroll(); // 모달이 닫힐 때 실행
+        onClose();
+      }} //모달이 닫힘(화면 외부를 클릭하거나 esc키 감지)
       style={customStyles}
       contentLabel="modal"
     >
