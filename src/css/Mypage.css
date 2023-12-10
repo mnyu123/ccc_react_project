@@ -10,7 +10,7 @@
     align-items: center;
     opacity: 0;
     visibility: hidden;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(111, 111, 111, 0.5);
     /* 배경 색상을 흰색에 50% 투명도로 설정합니다. */
     z-index: 10;
     /* 다른 요소들보다 더 높은 값을 지정해 줍니다. */
@@ -25,23 +25,63 @@
     max-width: 500px;
 }
 
+
+.user_id{
+    color: #2f2f2f;
+    font-size: 2ch;
+    font-weight: 600;
+}
+
+.userid_wrap{
+    color: rgb(76, 0, 147);
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.dotted-line {
+    display: block;
+    white-space: nowrap;
+    width: 70%;
+    margin: auto;
+    border-top: 1px solid #939393;
+}
+.user_id img{
+width: 45px;
+}
+
+.name_fwrap,.fq_wrap,.newpassword_wrap {
+    width: 70%;
+    display: block;
+    margin: auto;
+    text-align: left;
+    color: #2f2f2f;
+    font-size: 2ch;
+    font-weight: 600;
+}
+
+.name_fwrap input{
+  width: 35%;
+}
+
+.newpassword_wrap div {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
 .modal-content h2 {
     margin-bottom: 20px;
 }
-
+.fq_wrap input{
+    width: 50%;
+  }
 .modal-content p {
     margin-bottom: 10px;
-}
-
-.modal-content input {
-    margin-bottom: 20px;
 }
 
 .modal-content button {
     margin-bottom: 10px;
     margin-right: 3px;
     /* 버튼 요소들 간의 간격을 3px로 설정합니다. */
-    background-color: white;
     color: black;
     border: none;
     padding: 5px 10px;

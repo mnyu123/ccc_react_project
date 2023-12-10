@@ -33,7 +33,7 @@ const Main_monthbook = () => {
         });
         console.log("오늘의 책 로그인 한 유저 : ", userId); // 디버깅용
         console.log("오늘의 책 로그인 한 유저의 장르1번 : ", genre2); // 디버깅용
-        // console.log("오늘의 책 테스트 : ", aladinResponse.data.item); // 디버깅용
+        console.log("오늘의 책 테스트 : ", aladinResponse.data.item); // 디버깅용
         setBooks(aladinResponse.data.item);
       } catch (e) {
         console.log(e);

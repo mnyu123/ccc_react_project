@@ -9,8 +9,6 @@ const search = "/images/ccc_image/search.png";
 const books = "/images/ccc_image/books.png";
 const user = "/images/ccc_image/user.png";
 const upArrow = "/images/ccc_image/up-arrow.png";
-const loginIcon = "/images/ccc_other/login.png";
-const registerIcon = "/images/ccc_other/register.png";
 
 const userid = JSON.parse(sessionStorage.getItem("userid"));
 
@@ -22,9 +20,17 @@ class Header extends React.Component {
     isMypageOpen: false,
     isScrolled: false, // 추가
   };
-
+  // 마이페이지를 열고 닫는 메서드입니다.
   toggleMypage = () => {
-    this.setState((prevState) => ({ isMypageOpen: !prevState.isMypageOpen }));
+    const isLoggedIn = sessionStorage.getItem("isLoggedIn");
+
+    if (isLoggedIn !== "true") {
+      alert("로그인이 필요합니다.");
+    } else {
+      this.setState((prevState) => ({
+        isMypageOpen: !prevState.isMypageOpen,
+      }));
+    }
   };
 
   handleChange = (event) => {
@@ -80,11 +86,10 @@ class Header extends React.Component {
         {!this.state.isScrolled && (
           <header className="header_normal" ref={this.headerRef}>
             <div className="header_inner" id="inner1">
-              <div className="logo">
-                <Link to="/">
-                  <img src={logo} alt="로고" />
-                </Link>
+              <div className="logo" onClick={() => window.location.reload()}>
+                <img src={logo} alt="로고" />
               </div>
+
               <div className="search_wrap">
                 <div className="search_box">
                   <div className="search_">
@@ -100,14 +105,25 @@ class Header extends React.Component {
                       autoCapitalize="off"
                     />
                     <span>
-                      <button type="search_button" id="searchbooks">
-                        <img src={search} alt="search_button" />
-                      </button>
+                      <Link to={`/search?query=${this.state.search}`}>
+                        <button type="search_button" id="searchbooks">
+                          <img src={search} alt="search_button" />
+                        </button>
+                      </Link>
                     </span>
                   </div>
                 </div>
               </div>
               <div className="menu_wrap">
+                <div>
+                  <Link to="/register">
+                    <button className="register_">회원가입</button>
+                  </Link>
+                  <span>|</span>
+                  <Link to="/login">
+                    <button className="login_">로그인</button>
+                  </Link>
+                </div>
                 <div className="library_icon">
                   <Link to="/mylibrary">
                     <button type="books_button" id="mybooksmove">
@@ -123,18 +139,6 @@ class Header extends React.Component {
                   >
                     <img src={user} alt="search_button" />
                   </button>
-                  {/* 로그인 버튼 */}
-                  <Link to="/login">
-                    <img className="login_icon" src={loginIcon} alt="로그인" />
-                  </Link>
-                  {/* 회원가입 버튼 */}
-                  <Link to="/register">
-                    <img
-                      className="register_icon"
-                      src={registerIcon}
-                      alt="회원가입"
-                    />
-                  </Link>
                 </div>
               </div>
             </div>
@@ -145,10 +149,10 @@ class Header extends React.Component {
             className={this.state.isScrolled ? "header_fixed" : "header_normal"}
           >
             <div className="header_inner">
-              <div className="logo">
-                <Link to="/">
-                  <img src={logo} alt="로고" />
-                </Link>
+              <div className="logo" onClick={() => {
+                window.scrollTo(0, 0);
+              }}>
+                <img src={logo} alt="로고" />
               </div>
               <div className="search_wrap">
                 <div className="search_box">
@@ -165,16 +169,20 @@ class Header extends React.Component {
                       autoCapitalize="off"
                     />
                     <span>
-                      <button type="search_button" id="searchbooks">
-                        <img src={search} alt="search_button" />
-                      </button>
+                      <Link to={`/search?query=${this.state.search}`}>
+                        <button type="search_button" id="searchbooks">
+                          <img src={search} alt="search_button" />
+                        </button>
+                      </Link>
                     </span>
                   </div>
                 </div>
                 <nav className="small_nav_2">
                   <ul>
                     <li>
-                      <a href="#smain_container" onClick={this.handleClick}>
+                      <a onClick={(e) => {
+                        window.scrollTo(0, 0);
+                      }}>
                         오늘의 책
                       </a>
                     </li>
@@ -194,6 +202,15 @@ class Header extends React.Component {
                 </nav>
               </div>
               <div className="menu_wrap">
+                <div>
+                  <Link to="/register">
+                    <button className="register_">회원가입</button>
+                  </Link>
+                  <span>|</span>
+                  <Link to="/login">
+                    <button className="login_">로그인</button>
+                  </Link>
+                </div>
                 <div className="library_icon">
                   <Link to="/mylibrary">
                     <button type="books_button" id="mybooksmove">
@@ -209,18 +226,6 @@ class Header extends React.Component {
                   >
                     <img src={user} alt="search_button" />
                   </button>
-                  {/* 로그인 버튼 */}
-                  <Link to="/login">
-                    <img className="login_icon" src={loginIcon} alt="로그인" />
-                  </Link>
-                  {/* 회원가입 버튼 */}
-                  <Link to="/register">
-                    <img
-                      className="register_icon"
-                      src={registerIcon}
-                      alt="회원가입"
-                    />
-                  </Link>
                 </div>
               </div>
             </div>
@@ -244,12 +249,6 @@ class Header extends React.Component {
       behavior: "smooth",
     });
   };
-}
-
-if (userid) {
-  console.log("사용자: ", userid);
-} else {
-  console.log("로그인 정보가 없습니다.");
 }
 
 export default Header;

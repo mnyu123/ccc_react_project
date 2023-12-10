@@ -41,7 +41,10 @@ const MyLibrary = () => {
         axios.get(`/api/bookDetail/${isbn}`)
       );
       const bookDetailsResponses = await Promise.all(bookDetailsPromises);
-      console.log("책 상세페이지 응답 : ", bookDetailsResponses.map((response) => response.data)); // 로그 추가
+      console.log(
+        "책 상세페이지 응답 : ",
+        bookDetailsResponses.map((response) => response.data)
+      ); // 로그 추가
 
       const books = bookDetailsResponses.map((response) => {
         if (!response.data.item) {
@@ -98,7 +101,7 @@ const MyLibrary = () => {
       <div className="libraryAll">
         <div className="library">
           <span id="libraryTitle">내 서재</span>
-          <span id="bookCount">(총 {favorites.length}권)</span>
+          <span id="bookCount">(총 {books.length}권)</span>
         </div>
 
         <div className="button-container">
@@ -136,7 +139,10 @@ const MyLibrary = () => {
               )}
             </div>
             <div className="library-list">
-              <div className="library-cover" style={{ backgroundColor: isListView ? 'white' : '#6626af' }}>
+              <div
+                className="library-cover"
+                style={{ backgroundColor: isListView ? "white" : "#6626af" }}
+              >
                 <button
                   className="listCoverBtn"
                   id="listCoverBtn"
@@ -148,13 +154,20 @@ const MyLibrary = () => {
                   style={{ margin: 0 }}
                 >
                   <img
-                    src={isListView ? "/images/ccc_library/grid-1.png" : "/images/ccc_library/grid-2.png"}
+                    src={
+                      isListView
+                        ? "/images/ccc_library/grid-1.png"
+                        : "/images/ccc_library/grid-2.png"
+                    }
                     alt="Image 1"
                     id="buttonImage1"
                   />
                 </button>
               </div>
-              <div className="library-view" style={{ backgroundColor: isListView ? '#6626af' : 'white' }}>
+              <div
+                className="library-view"
+                style={{ backgroundColor: isListView ? "#6626af" : "white" }}
+              >
                 <button
                   className="listViewBtn"
                   id="listViewBtn"
@@ -166,7 +179,11 @@ const MyLibrary = () => {
                   style={{ margin: 0 }}
                 >
                   <img
-                    src={isListView ? "/images/ccc_library/list-2.png" : "/images/ccc_library/list-1.png"}
+                    src={
+                      isListView
+                        ? "/images/ccc_library/list-2.png"
+                        : "/images/ccc_library/list-1.png"
+                    }
                     alt="Image 2"
                     id="buttonImage2"
                   />
@@ -185,7 +202,6 @@ const MyLibrary = () => {
                   isEditMode && selectedBooks.includes(book) ? "selected" : ""
                 }
               >
-
                 {console.log("렌더링된 책 : ", book)}
                 <Link to={`/bookDetail/${book.item[0].isbn}`}>
                   <img src={book.item[0].cover} alt={book.item[0].title} />
@@ -195,7 +211,6 @@ const MyLibrary = () => {
                   <>
                     <p>{book.item[0].author}</p>
                   </>
-
                 )}
               </div>
             ))}
@@ -204,7 +219,11 @@ const MyLibrary = () => {
       </div>
 
       <Header />
-      <Link to="/"><br/><br/>다시 메인으로</Link>
+      <Link to="/">
+        <br />
+        <br />
+        다시 메인으로
+      </Link>
       <Footer />
     </main>
   );

@@ -1,3 +1,7 @@
+.smain_wrap {
+  text-align: center;
+}
+
 .smain_container {
   width: 1400px;
   display: flex;
@@ -5,27 +9,19 @@
   flex-direction: row;
   /* 자식 요소들을 가로로 배치합니다. */
   align-items: center;
-  /* 자식 요소들을 세로선 중앙에 배치합니다. */
   padding: 100px;
   margin: auto;
-  /* 모든 방향에 20px의 내부 여백을 추가합니다. */
 }
 
-.smain_container h2 {
-  margin-top: 15px;
-  position: absolute;
-  /* 제목을 절대 위치로 설정합니다. */
-  top: 22%;
-  /* 제목을 상단에 배치합니다. */
-  left: 50%;
-  /* 제목을 화면 가로선 중앙에 배치합니다. */
-  transform: translate(-50%, -50%);
-  z-index: 3;
-  /* 제목을 정확히 중앙에 배치하기 위해 위치를 조정합니다. */
+.sh2 {
+  margin-top: 20px;
+  margin-bottom: -50px;
+  color: #373737;
 }
+
 
 .smain_container .main-slider1 {
-  width: 45%; 
+  width: 45%;
   z-index: 2;
   transform: translateX(76px);
   background-color: rgb(255, 255, 255);
@@ -37,11 +33,11 @@
 }
 
 
-.main-slider .slick-slide > div { 
-  position: relative; 
+.main-slider .slick-slide>div {
+  position: relative;
 }
 
-.slide1_img{
+.slide1_img {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -59,7 +55,7 @@
 .img1 {
   width: 250px;
   height: auto;
-  
+
 }
 
 .img2 {
@@ -69,7 +65,7 @@
   margin-right: 20px;
 }
 
-.book-title_s{
+.book-title_s {
   text-align: left;
   font-size: 20px;
   font-weight: 700;
@@ -83,17 +79,17 @@
   padding: 10px 20px 0 0;
 }
 
-.book-title_s{
+.book-title_s {
   text-align: left;
   font-size: 20px;
   font-weight: 700;
 }
 
-.bicon{
+.bicon {
   width: 22px;
 }
 
-.book-author_s{
+.book-author_s {
   text-align: left;
   color: #6a6a6a;
   font-size: 15px;
@@ -108,5 +104,5 @@
   word-wrap: break-word;
   /* 이전 버전의 브라우저를 지원하기 위해 추가합니다. */
   margin-top: 5px;
-  
+
 }
