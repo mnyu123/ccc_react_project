@@ -57,7 +57,7 @@ const MainHotTopic = () => {
         <div className="soaring1">
           {books.map((book, index) => (
             <Link to={`/bookDetail/${book.isbn}`} key={book.isbn}>
-              <div className="item">
+              <div className="item_h">
                 <img src={book.cover} alt={book.title} />
                 <span className="number">{index + 1}</span>
                 <p className="description">{book.title}</p>
