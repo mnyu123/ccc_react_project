@@ -22,7 +22,6 @@
 
 .smain_container .main-slider1 {
   width: 45%;
-  z-index: 2;
   transform: translateX(76px);
   background-color: rgb(255, 255, 255);
 }

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Modal from "react-modal"; //모달을 위해 react modal 컴포넌트를 사용했습니다.
 import "../css/WeekPopup.css";
+import axios from "axios";
 
 const customStyles = {
   content: {
@@ -12,7 +13,6 @@ const customStyles = {
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
     backgroundColor: "white",
-    zIndex: "1000",
     position: "fixed",
   },
 };
@@ -21,6 +21,7 @@ Modal.setAppElement("#root");
 
 const WeekPopup = ({ onClose }) => {
   const [isRemembered, setIsRemembered] = useState(false);
+  const [book, setBook] = useState(null); // 책 정보를 저장할 상태
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,6 +31,21 @@ const WeekPopup = ({ onClose }) => {
     // 로그인 상태가 true가 아닐 경우 로그인 페이지로 이동
     if (isLoggedIn !== "true") {
       navigate("/");
+    }
+    else{
+      axios
+      .get(`/api/aladin/1`, {
+        params: {
+          Query: "소설", // 검색어를 파라미터로 추가합니다.
+          QueryType: "Title", // 검색어 종류를 'Title'로 설정합니다.
+        },
+      })
+      .then((response) => {
+        setBook(response.data.item[0]); // 첫 번째 결과를 가져옵니다.
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     }
     // 사용자가 '오늘 다시 보지 않음'을 선택했는지 확인
     const dontShowToday = localStorage.getItem("dontShowToday");
@@ -75,17 +91,18 @@ const WeekPopup = ({ onClose }) => {
       </div>
       <hr />
       <div className="book">
-        <div className="book-cover_w">책 표지</div>
-        <div className="book-explain">
-          <div className="book-title_w">
-            제목의 길이가 제일 긴거는 얼마나 길까 진짜 길겠지
-          </div>
-          <div className="book-author_w">저자</div>
-          <div className="book-review_w">
-            동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세
-            무궁화 삼천리 화려강산 대한사람 대한으로 길이 보전하세
-          </div>
-        </div>
+      {book && (
+          <>
+            <div className="book-cover_w">
+              <img src={book.cover} alt={book.title} />
+            </div>
+            <div className="book-explain">
+              <div className="book-title_w">{book.title}</div>
+              <div className="book-author_w">{book.author}</div>
+              <div className="book-review_w">{book.description}</div>
+            </div>
+          </>
+        )}
       </div>
       <hr />
       <div className="check-close">
