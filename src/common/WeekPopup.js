@@ -17,6 +17,7 @@ const customStyles = {
     transform: "translate(-50%, -50%)",
     backgroundColor: "white",
     position: "fixed",
+    width: "400px", 
   },
 };
 
