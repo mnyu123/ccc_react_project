@@ -22,14 +22,13 @@ const MainSlider = () => {
         style={{
           ...style,
           display: "block",
-          background: "black",
           right: "-50px",
         }}
         onClick={onClick}
       />
     );
   };
-
+  
   const SamplePrevArrow = (props) => {
     const { className, style, onClick } = props;
     return (
@@ -38,14 +37,14 @@ const MainSlider = () => {
         style={{
           ...style,
           display: "block",
-          background: "green",
-          position: "absolute", // 위치를 절대값으로 지정
-          left: "-550px", // 왼쪽으로부터 -50px 위치에 버튼을 둠
+          position: "absolute",
+          left: "-550px",
         }}
         onClick={onClick}
       />
     );
   };
+  
 
   const settings1 = {
     infinite: true,
@@ -53,7 +52,7 @@ const MainSlider = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     fade: false,
-    initialSlide: 4,
+    initialSlide: 0, 
     asNavFor: slider2.current,
     arrows: false,
     beforeChange: (current, next) => setCurrentSlideIndex(next),
@@ -65,8 +64,8 @@ const MainSlider = () => {
     asNavFor: slider1.current,
     arrows: true,
     centerMode: false,
-    initialSlide: 0,
     centerPadding: "0px",
+    initialSlide: 1, 
     focusOnSelect: true,
     prevArrow: <SamplePrevArrow />,
     nextArrow: <SampleNextArrow />,
