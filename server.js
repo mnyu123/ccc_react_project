@@ -218,3 +218,27 @@ app.get("/api/mybookshelf/:userId", (req, res) => {
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
+
+app.delete("/api/mybookshelf/:userId/:bookIsbn", (req, res) => {
+  const { userId, bookIsbn } = req.params;
+
+  const checkQuery = "SELECT * FROM mybookshelf WHERE UserID = ? AND mybookisbn = ?";
+
+  db.query(checkQuery, [userId, bookIsbn], (error, results) => {
+    if (error) {
+      res.status(500).send({ error: "서버 오류가 발생했습니다. 다시 시도해주세요." });
+    } else if (results.length === 0) {
+      res.status(404).send({ error: "해당 책이 사용자의 서재에 없습니다." });
+    } else {
+      const deleteQuery = "DELETE FROM mybookshelf WHERE UserID = ? AND mybookisbn = ?";
+
+      db.query(deleteQuery, [userId, bookIsbn], (error, results) => {
+        if (error) {
+          res.status(500).send({ error: "서재에서 책을 제거하는데 실패하였습니다. 다시 시도해주세요." });
+        } else {
+          res.send({ message: "책이 성공적으로 삭제되었습니다.", results });
+        }
+      });
+    }
+  });
+});
