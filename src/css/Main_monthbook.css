@@ -9,7 +9,7 @@
     align-items: center;
 }
 
-.monthbooks_wrap .month_title {
+.month_title {
     text-align: center;
     font-size: 22px;
     margin: 20px 0;
@@ -17,7 +17,7 @@
     color: #373737;
 }
 
-.monthbooks_wrap .view_more {
+.view_more {
     position: absolute;
     right: 10px;
     top: 20px;
@@ -25,23 +25,32 @@
     cursor: pointer;
 }
 
-.monthbooks_wrap .book_covers {
+.coverbook1 {
+    margin-right: 20px; 
+    width: 240px;
+}
+
+.coverbook1:last-child {
+    margin-right: 0; /* 마지막 요소의 오른쪽 간격은 0으로 설정 */
+}
+
+.book_covers_m {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    /* 추가 */
     padding: 0px;
     margin: 10px 0px;
 }
 
-.monthbooks_wrap .book_covers img {
+.coverbook1 img {
     width: 160px;
     height: 240px;
     margin: 10px 0px;
 }
 
-.coverexplain {
+.coverexplain_m {
     text-align: center;
+    width: 100%; /* 책 제목과 저자가 있는 칸의 너비를 100%로 설정 */
 }
 
 .bookcovertitle,
@@ -53,6 +62,10 @@
     font-size: 16px;
     line-height: 1.5;
     text-align: center;
+}
+
+.book_covers_m a {
+    text-decoration: none; 
 }
 
 .bookcovertitle {
@@ -80,9 +93,7 @@
     gap: 1em;
 }
 
-.month-line1,
-.month-line2,
-.month-line3 {
+.month-line {
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -98,6 +109,89 @@
     position: relative;
 }
 
+.month-line1, .month-line2, .month-line3 {
+    display: flex;
+    justify-content: space-between;
+}
+
+.bookcover_m {
+    position: absolute;
+    width: 20vw;
+    height: 25vh;
+    background-size: auto 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    filter: drop-shadow(0px 2px 5px rgba(72, 85, 97, 0.2));
+    z-index: 2;
+    bottom: 0;
+}
+
+.book_covers_m a {
+    width: 100%;
+    height: 100%;
+}
+
+.bookcover_m img {
+    width: auto;
+    height: 25vh;
+}
+
+.bookback1,
+.bookback2,
+.bookback3,
+.bookback4,
+.bookback5,
+.bookback6,
+.bookback7,
+.bookback8,
+.bookback9 {
+    position: absolute;
+    width: 100%;
+    height: 15vh;
+    background-size: auto 100%;
+    background-position: center;
+    bottom: 0;
+    pointer-events: none;
+    border-radius: 3px;
+}
+
+.bookback1 {
+    background-color: #c9cccf;
+}
+
+.bookback2 {
+    background-color: #576370;
+}
+
+.bookback3 {
+    background-color: #889099;
+}
+
+.bookback4 {
+    background-color: #415b77;
+}
+
+.bookback5 {
+    background-color: #3f5269;
+}
+
+.bookback6 {
+    background-color: #afb4b9;
+}
+
+.bookback7 {
+    background-color: rgb(72, 85, 97);
+}
+
+.bookback8 {
+    background-color: #364a5e;
+}
+
+.bookback9 {
+    background-color: #52657a;
+}
+
 .book1,
 .book2,
 .book3,
@@ -111,7 +205,7 @@
     height: 40vh;
 }
 
-.bookexplain {
+.bookexplain_m {
     position: relative;
     width: 100%;
     height: auto;

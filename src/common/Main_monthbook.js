@@ -50,28 +50,47 @@ const Main_monthbook = () => {
     <div className="monthbooks_wrap" id="monthbooks_wrap">
       <div className="month_title">이달의 책</div>
       <div className="view_more" id="view-more" onClick={handleViewMore}>
-        {viewMore ? "< 더보기" : "접기 >"}
+        {viewMore ? "< 접기" : "더보기 >"}
       </div>
-      {viewMore ? (
-        <div className="month" id="more-books">
-          {" "}
-          {/* 다른 책 컴포넌트들... */}{" "}
-        </div>
-      ) : (
-        <div className="book_covers">
-          {books.slice(0, viewMore ? 3 : books.length).map((book, index) => (
+      <div className="book_covers_m">
+        {viewMore
+          ? (
+            <div className="month" id="more-books">
+              {Array.from({ length: 3 }, (_, i) => i * 3).map((start) => (
+                <div className={`month-line${start / 3 + 1}`}>
+                  {books.slice(start, start + 3).map((book, index) => (
+                    <div className={`book${index + 1}`}>
+                      <Link to={`/bookDetail/${book.isbn}`} key={book.isbn}>
+                        <div className="month-book">
+                          <div className="bookcover_m">
+                            <img src={book.cover} alt={`book${index + start + 1}`} />
+                          </div>
+                          <div className={`bookback${((index + start) % 9) + 1}`}></div>  
+                        </div>
+                        <div className="coverexplain_m">
+                          <div className="bookcovertitle">{book.title}</div>
+                          <div className="author">{book.author}</div>
+                        </div>
+                      </Link>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          )
+          : books.slice(0, 5).map((book, index) => (
             <Link to={`/bookDetail/${book.isbn}`} key={book.isbn}>
               <div className="coverbook1">
                 <img src={book.cover} alt={`book${index + 1}`} />
-                <div className="coverexplain">
+                <div className="coverexplain_m">
                   <div className="bookcovertitle">{book.title}</div>
                   <div className="author">{book.author}</div>
                 </div>
               </div>
             </Link>
-          ))}
-        </div>
-      )}
+          ))
+        }
+      </div>
     </div>
   );
 };
