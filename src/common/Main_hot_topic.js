@@ -60,7 +60,7 @@ const MainHotTopic = () => {
               <div className="item">
                 <img src={book.cover} alt={book.title} />
                 <span className="number">{index + 1}</span>
-                <p className="description">{book.description}</p>
+                <p className="description">{book.title}</p>
               </div>
             </Link>
           ))}
