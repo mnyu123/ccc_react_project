@@ -16,6 +16,7 @@ const MyLibrary = () => {
   const [isListView, setIsListView] = useState(false);
   const [favorites, setFavorites] = useState([]);
 
+
   const containerClass = () =>
     isListView ? "concontainer container2" : "concontainer container1";
   const bookContainerClass = () =>
@@ -83,13 +84,13 @@ const MyLibrary = () => {
     }
   };
 
-  const selectAllBooks = () => {
-    setSelectedBooks(favorites);
-  };
+  function selectAllBooks() {
+    setSelectedBooks(books);
+  }
 
-  const deselectAllBooks = () => {
+  function deselectAllBooks() {
     setSelectedBooks([]);
-  };
+  }
 
   const deleteSelectedBooks = () => {
     setFavorites(favorites.filter((book) => !selectedBooks.includes(book)));
@@ -203,13 +204,25 @@ const MyLibrary = () => {
                 }
               >
                 {console.log("렌더링된 책 : ", book)}
-                <Link to={`/bookDetail/${book.item[0].isbn}`}>
-                  <img src={book.item[0].cover} alt={book.item[0].title} />
-                </Link>
-                <h4>{book.item[0].title}</h4>
+                {!isEditMode && (
+                  <div className="img-wrapper">
+                    <Link to={`/bookDetail/${book.item[0].isbn}`}>
+                      <img src={book.item[0].cover} alt={book.item[0].title} />
+                    </Link>
+                  </div>
+                )}
+                {isEditMode && (
+                  <div className="img-wrapper">
+                    <img src={book.item[0].cover} alt={book.item[0].title} />
+                  </div>
+                )}
+
                 {isListView && (
                   <>
-                    <p>{book.item[0].author}</p>
+                    <div className="description">
+                      <div>{book.item[0].title}</div>
+                      <div>{book.item[0].author}</div>
+                    </div>
                   </>
                 )}
               </div>
@@ -228,5 +241,4 @@ const MyLibrary = () => {
     </main>
   );
 };
-
 export default MyLibrary;
