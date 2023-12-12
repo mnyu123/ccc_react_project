@@ -15,14 +15,47 @@ const Mypage = ({ isMypageOpen, onClose }) => {
   const [usergenre, setGenre] = useState("");
 
   const handleChangePassword = () => {
-    // 비밀번호 변경 로직 구현
-  };
+    if (currentPassword !== userpw) {
+      console.log("현재 비밀번호가 일치하지 않습니다.");
+      return;
+    }
 
+    if (newPassword !== confirmPassword) {
+      console.log("새 비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+      return;
+    }
+
+    fetch("/api/changePassword", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userId: userid, newPassword: newPassword }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          console.log(data.message);
+          sessionStorage.setItem("userpw", JSON.stringify(newPassword));
+        } else {
+          console.log(data.error);
+        }
+      });
+  };
 
   useEffect(() => {
     const storedUserid = sessionStorage.getItem("userid");
     if (storedUserid) {
       setUserid(JSON.parse(storedUserid));
+
+      fetch(`/api/user/${storedUserid}`)
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            document.getElementById("name").value = data.UserName;
+            document.getElementById("gender").value = data.UserGender;
+          } else {
+            console.log(data.error);
+          }
+        });
     }
   }, []);
 
@@ -59,33 +92,73 @@ const Mypage = ({ isMypageOpen, onClose }) => {
           <span>
             <img src="/images/ccc_image/ghost.png" alt="profile" />
           </span>
-          <span className="userid_wrap"> {userid}</span><span>님,</span>
+          <span className="userid_wrap"> {userid}</span>
+          <span>님,</span>
         </div>
         <div className="dotted-line"></div>
         <div className="name_fwrap">
-        이름 <input type="text" id="name" readOnly /> 성별 <input type="text" id="gender" value={usergenre} readOnly />
+          이름 <input type="text" id="name" readOnly /> 성별{" "}
+          <input type="text" id="gender" value={usergenre} readOnly />
         </div>
         <div className="dotted-line"></div>
-        
+
         <div className="newpassword_wrap">
-        비밀번호 변경
+          비밀번호 변경
           <div className="input_row mg" id="pw_line">
-            <input type="password" id="currentPasswordInput" placeholder="현재 비밀번호" title="비밀번호"
-              className="input_text required-input" maxLength="16" value={currentPassword} onChange={(e) => setCurrentPassword(e.target.value)} />
+            <input
+              type="password"
+              id="currentPasswordInput"
+              placeholder="현재 비밀번호"
+              title="비밀번호"
+              className="input_text required-input"
+              maxLength="16"
+              value={currentPassword}
+              onChange={(e) => setCurrentPassword(e.target.value)}
+            />
           </div>
           <div className="input_row mg" id="pw_line">
-            <input type="password" id="newpasswordInput" placeholder="새 비밀번호" title="비밀번호"
-              className="input_text required-input" maxLength="16" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
+            <input
+              type="password"
+              id="newpasswordInput"
+              placeholder="새 비밀번호"
+              title="비밀번호"
+              className="input_text required-input"
+              maxLength="16"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+            />
           </div>
           <div className="input_row mg" id="pw_line">
-            <input type="password" id="newpasswordcheck" placeholder="새 비밀번호 확인" title="비밀번호"
-              className="input_text required-input" maxLength="16" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+            <input
+              type="password"
+              id="newpasswordcheck"
+              placeholder="새 비밀번호 확인"
+              title="비밀번호"
+              className="input_text required-input"
+              maxLength="16"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
           </div>
-          <button type="submit" className="btn_login" id="changePassword" onClick={handlePasswordCheck}><span className="btn_text">변경</span></button>
+          <button
+            type="submit"
+            className="btn_login"
+            id="changePassword"
+            onClick={handleChangePassword}
+          >
+            <span className="btn_text">변경</span>
+          </button>
         </div>
         <div className="dotted-line"></div>
         <div className="fq_wrap">
-          선호장르 <input type="text" id="genre" value={usergenre} onChange={(e) => setGenre(e.target.value)} /> <button onClick={openPolledit}>장르 재선택</button>
+          선호장르{" "}
+          <input
+            type="text"
+            id="genre"
+            value={usergenre}
+            onChange={(e) => setGenre(e.target.value)}
+          />{" "}
+          <button onClick={openPolledit}>장르 재선택</button>
         </div>
         <div className="dotted-line"></div>
         <button onClick={handleLogout}>로그아웃</button>

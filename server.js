@@ -36,11 +36,9 @@ app.get("/api/mybookshelf/:userId", async (req, res) => {
 
   db.query(query, [userId], (error, results) => {
     if (error) {
-      res
-        .status(500)
-        .send({
-          error: "서재 정보를 가져오는데 실패하였습니다. 다시 시도해주세요.",
-        });
+      res.status(500).send({
+        error: "서재 정보를 가져오는데 실패하였습니다. 다시 시도해주세요.",
+      });
     } else {
       res.send(results);
     }
@@ -186,11 +184,9 @@ app.post("/api/mybookshelf", (req, res) => {
 
   db.query(query, [userId, bookIsbn], (error, results) => {
     if (error) {
-      res
-        .status(500)
-        .send({
-          error: "내 서재에 추가하는데 실패하였습니다. 다시 시도해주세요.",
-        });
+      res.status(500).send({
+        error: "내 서재에 추가하는데 실패하였습니다. 다시 시도해주세요.",
+      });
     } else {
       res.send({ success: true, message: "내 서재에 추가되었습니다." });
     }
@@ -204,11 +200,9 @@ app.get("/api/mybookshelf/:userId", (req, res) => {
 
   db.query(query, [userId], (error, results) => {
     if (error) {
-      res
-        .status(500)
-        .send({
-          error: "서재 정보를 가져오는데 실패하였습니다. 다시 시도해주세요.",
-        });
+      res.status(500).send({
+        error: "서재 정보를 가져오는데 실패하였습니다. 다시 시도해주세요.",
+      });
     } else {
       res.send(results);
     }
@@ -222,23 +216,79 @@ app.listen(port, () => {
 app.delete("/api/mybookshelf/:userId/:bookIsbn", (req, res) => {
   const { userId, bookIsbn } = req.params;
 
-  const checkQuery = "SELECT * FROM mybookshelf WHERE UserID = ? AND mybookisbn = ?";
+  const checkQuery =
+    "SELECT * FROM mybookshelf WHERE UserID = ? AND mybookisbn = ?";
 
   db.query(checkQuery, [userId, bookIsbn], (error, results) => {
     if (error) {
-      res.status(500).send({ error: "서버 오류가 발생했습니다. 다시 시도해주세요." });
+      res
+        .status(500)
+        .send({ error: "서버 오류가 발생했습니다. 다시 시도해주세요." });
     } else if (results.length === 0) {
       res.status(404).send({ error: "해당 책이 사용자의 서재에 없습니다." });
     } else {
-      const deleteQuery = "DELETE FROM mybookshelf WHERE UserID = ? AND mybookisbn = ?";
+      const deleteQuery =
+        "DELETE FROM mybookshelf WHERE UserID = ? AND mybookisbn = ?";
 
       db.query(deleteQuery, [userId, bookIsbn], (error, results) => {
         if (error) {
-          res.status(500).send({ error: "서재에서 책을 제거하는데 실패하였습니다. 다시 시도해주세요." });
+          res
+            .status(500)
+            .send({
+              error:
+                "서재에서 책을 제거하는데 실패하였습니다. 다시 시도해주세요.",
+            });
         } else {
           res.send({ message: "책이 성공적으로 삭제되었습니다.", results });
         }
       });
+    }
+  });
+});
+
+// 마이페이지 비밀번호 업데이트
+app.post("/api/changePassword", (req, res) => {
+  const { userId, newPassword } = req.body;
+  const query = "UPDATE user SET UserPW = ? WHERE UserID = ?";
+
+  console.log(`비밀번호 바뀐 유저 : ${userId}`); // 추가된 로그
+
+  db.query(query, [newPassword, userId], (error, results) => {
+    if (error) {
+      console.error(error); // 추가된 로그
+      res
+        .status(500)
+        .send({ error: "비밀번호 변경에 실패했습니다. 다시 시도해주세요." });
+    } else {
+      console.log(results); // 추가된 로그
+      res.send({
+        success: true,
+        message: "비밀번호가 성공적으로 변경되었습니다.",
+      });
+    }
+  });
+});
+
+// 마이페이지 사용자 정보 조회
+app.get("/api/user/:userId", (req, res) => {
+  const { userId } = req.params;
+  const query = "SELECT UserName, UserGender FROM user WHERE UserID = ?";
+
+  console.log(`정보 조회가 된 유저 :  ${userId}`); // 추가된 로그
+
+  db.query(query, [userId], (error, results) => {
+    if (error) {
+      console.error(error); // 추가된 로그
+      res
+        .status(500)
+        .send({ error: "사용자 정보 조회에 실패했습니다. 다시 시도해주세요." });
+    } else {
+      if (results.length > 0) {
+        console.log(results); // 추가된 로그
+        res.send({ success: true, ...results[0] });
+      } else {
+        res.send({ success: false, message: "사용자 정보가 없습니다." });
+      }
     }
   });
 });
