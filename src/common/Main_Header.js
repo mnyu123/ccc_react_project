@@ -79,7 +79,7 @@ class Header extends React.Component {
   }
 
   render() {
-    console.log("헤더 렌더링됨.");
+    // console.log("헤더 렌더링됨.");
     console.log("사용자: ", userid);
     return (
       <React.Fragment>

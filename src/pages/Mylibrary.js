@@ -15,7 +15,7 @@ const MyLibrary = () => {
   const [selectedBooks, setSelectedBooks] = useState([]);
   const [isListView, setIsListView] = useState(false);
   const [favorites, setFavorites] = useState([]);
-
+  const navigate = useNavigate();
 
   const containerClass = () =>
     isListView ? "concontainer container2" : "concontainer container1";
@@ -24,53 +24,12 @@ const MyLibrary = () => {
       ? "book-container book-container2"
       : "book-container book-container1";
 
-  const navigate = useNavigate();
-
-  // 내 서재 때문에 수정한 내용(12/8)
-  useEffect(() => {
-    const isLoggedIn = sessionStorage.getItem("isLoggedIn");
-
-    if (isLoggedIn !== "true") {
-      navigate("/login");
-    }
-
-    const fetchMyLibrary = async () => {
-      const response = await axios.get(`/api/mybookshelf/${userId}`);
-      const bookIsbns = response.data.map((book) => book.mybookisbn);
-
-      const bookDetailsPromises = bookIsbns.map((isbn) =>
-        axios.get(`/api/bookDetail/${isbn}`)
-      );
-      const bookDetailsResponses = await Promise.all(bookDetailsPromises);
-      console.log(
-        "책 상세페이지 응답 : ",
-        bookDetailsResponses.map((response) => response.data)
-      ); // 로그 추가
-
-      const books = bookDetailsResponses.map((response) => {
-        if (!response.data.item) {
-          // 'item' 키가 없는 경우 로그 출력
-          console.error(
-            `'item' key is missing in the response data: ${JSON.stringify(
-              response.data
-            )}`
-          );
-        }
-        return response.data;
-      });
-      console.log("내 서재 테스투: ", books);
-      setBooks(books);
-    };
-    fetchMyLibrary();
-  }, [userId]);
-
   const handleEditMode = () => {
     setIsEditMode(!isEditMode);
     setSelectedBooks([]);
   };
 
   const selectBook = (book) => {
-    console.log("선택된 책 : ", book); // 로그 추가
     if (isEditMode) {
       if (selectedBooks.includes(book)) {
         setSelectedBooks(
@@ -84,18 +43,54 @@ const MyLibrary = () => {
     }
   };
 
-  function selectAllBooks() {
+  const selectAllBooks = () => {
     setSelectedBooks(books);
-  }
+  };
 
-  function deselectAllBooks() {
-    setSelectedBooks([]);
-  }
-
-  const deleteSelectedBooks = () => {
-    setFavorites(favorites.filter((book) => !selectedBooks.includes(book)));
+  const deselectAllBooks = () => {
     setSelectedBooks([]);
   };
+
+  const deleteSelectedBooks = async () => {
+    const deletePromises = selectedBooks.map((book) =>
+      axios.delete(`/api/mybookshelf/${userId}/${book.isbn}`)
+    );
+    await Promise.all(deletePromises);
+    setSelectedBooks([]);
+    // 다시 서재 데이터를 fetch
+    fetchMyLibrary();
+  };
+
+  const fetchMyLibrary = async () => {
+    const response = await axios.get(`/api/mybookshelf/${userId}`);
+    const bookIsbns = response.data.map((book) => book.mybookisbn);
+
+    console.log("내 서재에 있는 책들의 isbn 목록 : ", bookIsbns);
+
+    const bookDetailsPromises = bookIsbns.map((isbn) =>
+      axios.get(`/api/bookDetail/${isbn}`)
+    );
+    console.log("bookDetailsPromises : ", bookDetailsPromises);
+    const bookDetailsResponses = await Promise.all(bookDetailsPromises);
+    bookDetailsResponses.forEach((response, index) => {
+      console.log(`책 정보 응답 ${index}:`, response.data);
+    });
+
+    const books = bookDetailsResponses.map((response) => response.data.item[0]);
+    setBooks(books);
+    console.log("도서 정보 : ", books);
+  };
+
+  // 내 서재 때문에 수정한 내용(12/8)
+  useEffect(() => {
+    const isLoggedIn = sessionStorage.getItem("isLoggedIn");
+
+    if (isLoggedIn !== "true") {
+      navigate("/login");
+    }
+
+    fetchMyLibrary();
+  }, [userId]);
 
   return (
     <main className="mylibrary-maincontainer">
@@ -203,11 +198,10 @@ const MyLibrary = () => {
                   isEditMode && selectedBooks.includes(book) ? "selected" : ""
                 }
               >
-                {console.log("렌더링된 책 : ", book)}
                 {!isEditMode && (
                   <div className="img-wrapper">
-                    <Link to={`/bookDetail/${book.item[0].isbn}`}>
-                      <img src={book.item[0].cover} alt={book.item[0].title} />
+                    <Link to={`/bookDetail/${book.isbn}`}>
+                      <img src={book.cover} alt={book.title} />
                     </Link>
                   </div>
                 )}
@@ -216,7 +210,6 @@ const MyLibrary = () => {
                     <img src={book.item[0].cover} alt={book.item[0].title} />
                   </div>
                 )}
-
                 {isListView && (
                   <>
                     <div className="description">

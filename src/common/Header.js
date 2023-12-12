@@ -37,7 +37,7 @@ class Header extends React.Component {
   };
 
   render() {
-    console.log("헤더 렌더링됨.");
+    // console.log("헤더 렌더링됨.");
     return (
       <React.Fragment>
         <header className="header_fixed2">
