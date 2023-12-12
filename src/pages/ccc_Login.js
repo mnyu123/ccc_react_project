@@ -29,7 +29,7 @@ const Ccc_Login = () => {
       .post(`http://localhost:3000/Login`, { user })
       .then((res) => {
         // console.log(res);
-        console.log(user.UserID);
+        // console.log(user.UserID);
         if (res.data.success) {
           // 로그인 성공 시 사용자 정보를 세션 스토리지에 저장
           sessionStorage.setItem("userid", JSON.stringify(user.UserID));

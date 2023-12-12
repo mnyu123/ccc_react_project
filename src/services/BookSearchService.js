@@ -31,7 +31,7 @@ router.get("/booksearch", async (req, res) => {
     );
 
     const data = response.data;
-    console.log("Aladin API 응답:", data); // 콘솔에 데이터 출력
+    // console.log("Aladin API 응답:", data); // 콘솔에 데이터 출력
 
     res.json(data);
   } catch (error) {

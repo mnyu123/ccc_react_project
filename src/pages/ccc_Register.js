@@ -59,7 +59,7 @@ const CccRegister = () => {
         })
 
         .then(function (response) {
-          console.log(response);
+          // console.log(response);
           // 성공 시 처리 로직
           setIsModalOpen(true);
           // console.log("모달 생성됨.");

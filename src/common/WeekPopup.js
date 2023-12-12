@@ -5,6 +5,9 @@ import "../css/WeekPopup.css";
 import axios from "axios";
 
 const customStyles = {
+  overlay: {
+    zIndex: 10, 
+  },
   content: {
     top: "50%",
     left: "50%",
@@ -14,6 +17,7 @@ const customStyles = {
     transform: "translate(-50%, -50%)",
     backgroundColor: "white",
     position: "fixed",
+    width: "400px", 
   },
 };
 

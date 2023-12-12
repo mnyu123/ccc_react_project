@@ -26,10 +26,8 @@ const BookDetail = () => {
       await axios.post("/api/mybookshelf", { userId, bookIsbn });
     } else {
       setLibraryIcon(defaultImage);
-      let favorites = JSON.parse(localStorage.getItem(userId)) || [];
-      favorites = favorites.filter((book) => book.isbn !== bookDetail.isbn);
-      localStorage.setItem(userId, JSON.stringify(favorites));
-      localStorage.setItem(`${bookDetail.isbn}-icon`, defaultImage); // 아이콘 상태 저장
+     // 서버에 DELETE 요청을 보냅니다.
+      await axios.delete(`/api/mybookshelf/${userId}/${bookIsbn}`);
     }
   };
 

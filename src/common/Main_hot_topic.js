@@ -36,9 +36,9 @@ const MainHotTopic = () => {
             },
           });
 
-          console.log("급상승 로그인 한 유저 : ", userId); // 디버깅용
-        console.log("급상승 로그인 한 유저의 장르3번 : ", genre3); // 디버깅용
-        console.log("급상승 책 테스트 : ", response.data.item); // 디버깅용
+        //   console.log("급상승 로그인 한 유저 : ", userId); // 디버깅용
+        // console.log("급상승 로그인 한 유저의 장르3번 : ", genre3); // 디버깅용
+        // console.log("급상승 책 테스트 : ", response.data.item); // 디버깅용
           setBooks(response.data.item);
         } else {
           console.log("해당하는 카테고리 ID를 찾을 수 없습니다.");
@@ -57,7 +57,7 @@ const MainHotTopic = () => {
         <div className="soaring1">
           {books.map((book, index) => (
             <Link to={`/bookDetail/${book.isbn}`} key={book.isbn}>
-              <div className="item">
+              <div className="item_h">
                 <img src={book.cover} alt={book.title} />
                 <span className="number">{index + 1}</span>
                 <p className="description">{book.title}</p>

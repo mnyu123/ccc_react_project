@@ -29,7 +29,7 @@ router.get("/:categoryId", async (req, res) => {
     );
 
     const data = response.data;
-    console.log(data); // 콘솔에 데이터 출력
+    // console.log(data); // 콘솔에 데이터 출력
 
     res.json(data);
   } catch (error) {

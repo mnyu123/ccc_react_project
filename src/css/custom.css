@@ -24,6 +24,7 @@
   width: 45%;
   transform: translateX(76px);
   background-color: rgb(255, 255, 255);
+  z-index: 2;
 }
 
 .smain_container .main-slider2 {
@@ -31,6 +32,19 @@
   transform: translateX(-75px);
 }
 
+.slick-prev:before, .slick-next:before {
+  font-family: 'slick';
+  font-size: 50px;
+  line-height: 1;
+  opacity: .75;
+  color: #c4c4c4;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.slick-prev:before {
+  content: '←';
+}
 
 .main-slider .slick-slide>div {
   position: relative;

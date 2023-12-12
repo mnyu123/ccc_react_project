@@ -1,9 +1,15 @@
 /* Book_detail.css */
 
-.todaybooks_wrap,
-.monthbooks_wrap {
+.todaybooks_wrap{
     width: 1280px;
     height: 650px;
+    margin: auto;
+    margin-top: 109px;
+}
+
+.monthbooks_wrap {
+    width: 1280px;
+    height: auto;
     margin: auto;
     margin-top: 109px;
 }
@@ -103,6 +109,8 @@
 
 .monthbooks_wrap {
     border-top: 1px solid #dadada;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #dadada;
 }
 
 .monthbooks_wrap .bcontent_wrap {

@@ -26,7 +26,7 @@ router.get("/:bookIsbn", async (req, res) => {
     );
 
     const data = response.data;
-    console.log(data);
+    // console.log(data);
 
     res.json(data);
   } catch (error) {

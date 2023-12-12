@@ -7,13 +7,22 @@
     padding: 20px 0 30px 0;
 }
 
+.soaring1 a{
+    text-decoration: none;
+    color: #2f2f2f; 
+}
+
+.soaring1 a:hover {
+    color:#692ead
+}
+
 .soaring1 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2px 26px;
 }
 
-.item img {
+.item_h img {
     width: 96px;
     height: 139px;
     object-fit: cover;
@@ -24,7 +33,7 @@
     text-align: center;
 }
 
-.item {
+.item_h {
     display: flex;
     align-items: center;
 }
@@ -52,6 +61,10 @@
     font-size: 18px;
     padding: 10px;
     cursor: pointer;
+}
+
+.item_h p{
+font-weight: normal;
 }
 
 #nextBtn {
@@ -103,6 +116,7 @@
 .number {
     width: 80px;
     text-align: center;
+    font-weight: 600;
 }
 
 @media screen and (max-width: 640px) {
