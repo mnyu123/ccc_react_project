@@ -272,11 +272,12 @@ app.post("/api/changePassword", (req, res) => {
 // 마이페이지 사용자 정보 조회
 app.get("/api/user/:userId", (req, res) => {
   const { userId } = req.params;
+  const cleanedUserId = userId.replace(/"/g, ''); // 쌍따옴표 제거
   const query = "SELECT UserName, UserGender FROM user WHERE UserID = ?";
 
   console.log(`정보 조회가 된 유저 :  ${userId}`); // 추가된 로그
 
-  db.query(query, [userId], (error, results) => {
+  db.query(query, [cleanedUserId], (error, results) => {
     if (error) {
       console.error(error); // 추가된 로그
       res
@@ -284,7 +285,7 @@ app.get("/api/user/:userId", (req, res) => {
         .send({ error: "사용자 정보 조회에 실패했습니다. 다시 시도해주세요." });
     } else {
       if (results.length > 0) {
-        console.log(results); // 추가된 로그
+        console.log(`조회된 사용자 정보: `, results[0]); // 로그 출력
         res.send({ success: true, ...results[0] });
       } else {
         res.send({ success: false, message: "사용자 정보가 없습니다." });
