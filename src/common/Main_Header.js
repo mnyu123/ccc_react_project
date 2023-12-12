@@ -132,14 +132,17 @@ class Header extends React.Component {
                   </Link>
                 </div>
                 <div className="mypage_icon">
-                  <button
-                    className="user_button"
-                    id="userpagemove1"
-                    onClick={this.toggleMypage}
-                  >
-                    <img src={user} alt="search_button" />
-                  </button>
-                </div>
+        <button
+          className="user_button"
+          id="userpagemove1"
+          onClick={this.toggleMypage}
+        >
+          <img src={user} alt="search_button" />
+        </button>
+      </div>
+      {this.state.isMypageOpen && (
+        <Mypage isMypageOpen={this.state.isMypageOpen} onClose={this.toggleMypage} />
+      )}
               </div>
             </div>
           </header>
