@@ -76,8 +76,10 @@ const MyLibrary = () => {
       console.log(`책 정보 응답 ${index}:`, response.data);
     });
 
-    const books = bookDetailsResponses.map((response) => response.data.item[0]);
-    setBooks(books);
+    const books = bookDetailsResponses.map((response) =>
+      response.data.item ? response.data.item[0] : null
+    );
+    setBooks(books.filter(Boolean)); // null 값을 제거합니다.
     console.log("도서 정보 : ", books);
   };
 
@@ -207,14 +209,14 @@ const MyLibrary = () => {
                 )}
                 {isEditMode && (
                   <div className="img-wrapper">
-                    <img src={book.item[0].cover} alt={book.item[0].title} />
+                    <img src={book.cover} alt={book.title} />
                   </div>
                 )}
                 {isListView && (
                   <>
                     <div className="description">
-                      <div>{book.item[0].title}</div>
-                      <div>{book.item[0].author}</div>
+                      <div>{book.title}</div>
+                      <div>{book.author}</div>
                     </div>
                   </>
                 )}
