@@ -14,6 +14,9 @@ const Mypage = ({ isMypageOpen, onClose }) => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [usergenre, setGenre] = useState("");
 
+  const [userName, setUserName] = useState(""); // UserName 상태 추가
+  const [userGender, setUserGender] = useState(""); // UserGender 상태 추가
+
   const handleChangePassword = () => {
     if (currentPassword !== userpw) {
       console.log("현재 비밀번호가 일치하지 않습니다.");
@@ -43,15 +46,17 @@ const Mypage = ({ isMypageOpen, onClose }) => {
 
   useEffect(() => {
     const storedUserid = sessionStorage.getItem("userid");
+    console.log("누가 로그인 했나요?:",storedUserid); // 로그 추가
     if (storedUserid) {
       setUserid(JSON.parse(storedUserid));
 
       fetch(`/api/user/${storedUserid}`)
         .then((response) => response.json())
         .then((data) => {
+          console.log("API 응답:", data); // 로그 추가
           if (data.success) {
-            document.getElementById("name").value = data.UserName;
-            document.getElementById("gender").value = data.UserGender;
+            setUserName(data.UserName); // 상태를 이용해 값 설정
+            setUserGender(data.UserGender); // 상태를 이용해 값 설정
           } else {
             console.log(data.error);
           }
@@ -97,8 +102,8 @@ const Mypage = ({ isMypageOpen, onClose }) => {
         </div>
         <div className="dotted-line"></div>
         <div className="name_fwrap">
-          이름 <input type="text" id="name" readOnly /> 성별{" "}
-          <input type="text" id="gender" value={usergenre} readOnly />
+          이름 <input type="text" value={userName} readOnly /> 성별{" "}
+          <input type="text" value={userGender} readOnly />
         </div>
         <div className="dotted-line"></div>
 
