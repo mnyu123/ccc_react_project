@@ -27,6 +27,13 @@ const WeekPopup = ({ onClose }) => {
   const [isRemembered, setIsRemembered] = useState(false);
   const [book, setBook] = useState(null); // 책 정보를 저장할 상태
   const navigate = useNavigate();
+  const disableBodyScroll = () => {
+    document.body.style.overflow = 'hidden';
+  };
+  const enableBodyScroll = () => {
+    document.body.style.overflow = 'auto';
+  };
+  
 
   useEffect(() => {
     // 페이지가 로드될 때 로그인 상태를 확인
@@ -37,6 +44,7 @@ const WeekPopup = ({ onClose }) => {
       navigate("/");
     }
     else{
+      disableBodyScroll(); // 모달이 열릴 때 실행
       axios
       .get(`/api/aladin/1`, {
         params: {
@@ -54,25 +62,21 @@ const WeekPopup = ({ onClose }) => {
     // 사용자가 '오늘 다시 보지 않음'을 선택했는지 확인
     const dontShowToday = localStorage.getItem("dontShowToday");
     if (dontShowToday === "true") {
-      onClose();
+      onclose();
     }
   }, []);
 
   const handleCheckboxChange = (e) => {
     setIsRemembered(e.target.checked);
+    if (e.target.checked) {
+      localStorage.setItem("dontShowToday", "true"); // 체크박스를 체크하면 '오늘 다시 보지 않음'을 저장
+      handleClose(); // 체크박스를 체크하면 팝업창을 닫습니다.
+    }
   };
 
-  const handleDontShowToday = () => {
-    localStorage.setItem("dontShowToday", "true"); // 오늘 다시 보지 않음을 저장
+  const handleClose = () => {
+    enableBodyScroll(); // 모달이 닫힐 때 실행
     onClose();
-  };
-
-  const disableBodyScroll = () => {
-    document.body.style.overflow = 'hidden';
-  };
-
-  const enableBodyScroll = () => {
-    document.body.style.overflow = 'auto';
   };
 
   return (
@@ -89,7 +93,7 @@ const WeekPopup = ({ onClose }) => {
         <div className="week-book">
           <h4>이번주의 책</h4>
         </div>
-        <span className="close" onClick={onClose}>
+        <span className="close" onClick={handleClose}>
           &times;
         </span>
       </div>
