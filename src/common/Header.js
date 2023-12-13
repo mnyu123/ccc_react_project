@@ -64,9 +64,11 @@ class Header extends React.Component {
                     autoCapitalize="off"
                   />
                   <span>
-                    <button type="search_button" id="searchbooks">
-                      <img src={search} alt="search_button" />
-                    </button>
+                  <Link to={`/search?query=${this.state.search}`}>
+                        <button type="search_button" id="searchbooks">
+                          <img src={search} alt="search_button" />
+                        </button>
+                      </Link>
                   </span>
                 </div>
               </div>
