@@ -106,14 +106,7 @@ const [isNewPasswordDiff, setIsNewPasswordDiff] = useState(false);
     setIsPolleditOpen(false);
   };
 
-  // 비밀번호 확인 함수
-  const handlePasswordCheck = () => {
-    if (currentPassword === userpw) {
-      console.log("비밀번호가 일치합니다.");
-    } else {
-      console.log("비밀번호가 일치하지 않습니다.");
-    }
-  };
+  
 
   return (
     <div className={`modal ${isMypageOpen ? "open" : ""}`}>
